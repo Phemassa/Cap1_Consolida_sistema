@@ -1,11 +1,15 @@
 from datetime import datetime
 
+from phases.fase6.pipeline import infer_folder
 
-def run() -> dict:
+
+def run(images_dir: str | None = None, limit: int = 50) -> dict:
+    report = infer_folder(folder=images_dir, limit=limit)
     return {
         "phase": "fase6",
         "status": "ok",
-        "message": "Wrapper de inferencia de visao pronto para evolucao",
+        "message": "Inferencia de visao executada",
         "timestamp": datetime.utcnow().isoformat() + "Z",
         "input_mode": "images_folder",
+        "report": report,
     }

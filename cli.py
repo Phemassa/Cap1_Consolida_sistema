@@ -3,7 +3,7 @@ import json
 
 from services.alert_service import AlertService
 from services.healthcheck import collect_health
-from services.orchestrator import infer_fase4, monitor_fase3, run_phase, train_fase4
+from services.orchestrator import infer_fase4, monitor_fase3, run_fase6_vision, run_phase, train_fase4
 
 
 def main() -> None:
@@ -31,6 +31,10 @@ def main() -> None:
     predict_parser.add_argument("--temperatura", type=float, required=True)
     predict_parser.add_argument("--umidade-solo", type=float, required=True)
     predict_parser.add_argument("--ph-solo", type=float, required=True)
+
+    vision_parser = sub.add_parser("run-fase6", help="Executa inferencia da Fase 6 em pasta de imagens")
+    vision_parser.add_argument("--images-dir", type=str, default=None)
+    vision_parser.add_argument("--limit", type=int, default=50)
 
     args = parser.parse_args()
 
@@ -70,6 +74,11 @@ def main() -> None:
             umidade_solo=args.umidade_solo,
             ph_solo=args.ph_solo,
         )
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return
+
+    if args.command == "run-fase6":
+        result = run_fase6_vision(images_dir=args.images_dir, limit=args.limit)
         print(json.dumps(result, indent=2, ensure_ascii=True))
 
 

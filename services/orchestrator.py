@@ -27,3 +27,7 @@ def train_fase4(limit: int = 120, force_train: bool = True) -> dict:
 
 def infer_fase4(temperatura: float, umidade_solo: float, ph_solo: float) -> dict:
     return predict_fase4(temperatura=temperatura, umidade_solo=umidade_solo, ph_solo=ph_solo)
+
+
+def run_fase6_vision(images_dir: str | None = None, limit: int = 50) -> dict:
+    return run_fase6(images_dir=images_dir, limit=limit)

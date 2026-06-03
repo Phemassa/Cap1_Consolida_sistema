@@ -4,7 +4,7 @@ import streamlit as st
 
 from services.alert_service import AlertService
 from services.healthcheck import collect_health
-from services.orchestrator import infer_fase4, monitor_fase3, run_phase, train_fase4
+from services.orchestrator import infer_fase4, monitor_fase3, run_fase6_vision, run_phase, train_fase4
 
 
 st.set_page_config(page_title="FarmTech Fase 7", layout="wide")
@@ -51,6 +51,12 @@ with col_p3:
 if st.button("Prever necessidade de irrigacao"):
     st.json(infer_fase4(temperatura=p_temp, umidade_solo=p_umidade, ph_solo=p_ph))
 
+st.subheader("Fase 6 - Visao Computacional (baseline)")
+images_dir = st.text_input("Pasta de imagens (opcional)", value="")
+vision_limit = st.slider("Qtd. max de imagens", min_value=1, max_value=200, value=50, step=1)
+if st.button("Executar inferencia Fase 6"):
+    st.json(run_fase6_vision(images_dir=images_dir or None, limit=vision_limit))
+
 st.subheader("Health Check")
 if st.button("Atualizar status"):
     st.json(collect_health())
@@ -78,6 +84,8 @@ st.code(
     "python cli.py monitor-fase3 --limit 20 --send-alerts\n"
     "python cli.py train-fase4 --limit 120\n"
     "python cli.py predict-fase4 --temperatura 30 --umidade-solo 22 --ph-solo 6\n"
+    "python cli.py run-fase6 --limit 50\n"
+    "python cli.py run-fase6 --images-dir data/images --limit 20\n"
     "python cli.py alert-test --value 15 --threshold 20",
     language="bash",
 )
