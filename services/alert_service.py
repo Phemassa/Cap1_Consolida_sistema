@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from app.config import settings
+from services.history import append_history
 
 try:
     import boto3
@@ -24,11 +25,13 @@ class AlertService:
         )
 
         if not self.enabled:
-            return {
+            result = {
                 "status": "dry-run",
                 "message": "AWS SNS nao configurado. Alerta simulado.",
                 "payload": payload,
             }
+            append_history({"type": "alert", **result})
+            return result
 
         client = boto3.client("sns", region_name=settings.aws_region)
         result = client.publish(
@@ -36,4 +39,6 @@ class AlertService:
             Subject="FarmTech - Alerta de Sensor",
             Message=message,
         )
-        return {"status": "sent", "message_id": result.get("MessageId"), "payload": payload}
+        response = {"status": "sent", "message_id": result.get("MessageId"), "payload": payload}
+        append_history({"type": "alert", **response})
+        return response

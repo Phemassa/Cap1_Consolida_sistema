@@ -4,7 +4,7 @@ import streamlit as st
 
 from services.alert_service import AlertService
 from services.healthcheck import collect_health
-from services.orchestrator import infer_fase4, monitor_fase3, run_fase6_vision, run_phase, train_fase4
+from services.orchestrator import alerts_history, infer_fase4, monitor_fase3, monitor_now, run_fase6_vision, run_phase, train_fase4
 
 
 st.set_page_config(page_title="FarmTech Fase 7", layout="wide")
@@ -76,6 +76,15 @@ if st.button("Disparar alerta de teste"):
     }
     st.json(service.send_alert(payload))
 
+st.subheader("Fase 5 - Monitoramento e Mensageria AWS")
+monitor_limit = st.slider("Janela de monitoramento", min_value=5, max_value=200, value=20, step=5)
+if st.button("Monitorar agora e disparar alertas"):
+    st.json(monitor_now(limit=monitor_limit))
+
+history_limit = st.slider("Historico de alertas", min_value=5, max_value=200, value=20, step=5)
+if st.button("Atualizar historico"):
+    st.json(alerts_history(limit=history_limit))
+
 st.subheader("Exemplo CLI")
 st.code(
     "python cli.py health\n"
@@ -86,6 +95,8 @@ st.code(
     "python cli.py predict-fase4 --temperatura 30 --umidade-solo 22 --ph-solo 6\n"
     "python cli.py run-fase6 --limit 50\n"
     "python cli.py run-fase6 --images-dir data/images --limit 20\n"
+    "python cli.py monitor-now --limit 20\n"
+    "python cli.py alerts-history --limit 20\n"
     "python cli.py alert-test --value 15 --threshold 20",
     language="bash",
 )

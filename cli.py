@@ -3,7 +3,7 @@ import json
 
 from services.alert_service import AlertService
 from services.healthcheck import collect_health
-from services.orchestrator import create_area, delete_area, infer_fase4, monitor_fase3, run_fase6_vision, run_phase, train_fase4, update_area
+from services.orchestrator import alerts_history, create_area, delete_area, infer_fase4, monitor_fase3, monitor_now, run_fase6_vision, run_phase, train_fase4, update_area
 
 
 def main() -> None:
@@ -49,6 +49,12 @@ def main() -> None:
 
     area_delete = sub.add_parser("area-delete", help="Remove area (Fase 1-2)")
     area_delete.add_argument("--id", type=int, required=True)
+
+    monitor_now_parser = sub.add_parser("monitor-now", help="Executa monitoramento com envio de alertas (Fase 5)")
+    monitor_now_parser.add_argument("--limit", type=int, default=20)
+
+    alerts_history_parser = sub.add_parser("alerts-history", help="Lista historico de alertas")
+    alerts_history_parser.add_argument("--limit", type=int, default=20)
 
     args = parser.parse_args()
 
@@ -108,6 +114,16 @@ def main() -> None:
 
     if args.command == "area-delete":
         result = delete_area(area_id=args.id)
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return
+
+    if args.command == "monitor-now":
+        result = monitor_now(limit=args.limit)
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return
+
+    if args.command == "alerts-history":
+        result = alerts_history(limit=args.limit)
         print(json.dumps(result, indent=2, ensure_ascii=True))
 
 

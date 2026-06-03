@@ -62,6 +62,8 @@ python cli.py monitor-fase3 --limit 20 --send-alerts
 python cli.py train-fase4 --limit 120
 python cli.py predict-fase4 --temperatura 30 --umidade-solo 22 --ph-solo 6
 python cli.py run-fase6 --images-dir data/images --limit 20
+python cli.py monitor-now --limit 20
+python cli.py alerts-history --limit 20
 python cli.py alert-test --value 15
 ```
 
@@ -73,3 +75,8 @@ python cli.py alert-test --value 15
 - Fase 3 com Oracle + fallback CSV e regras de alerta operacional implementada.
 - Fase 4 com treino de modelos, metricas e predicao inicial integrada.
 - Fase 6 com inferencia baseline por pasta de imagens integrada no app e CLI.
+- Fase 5 com monitoramento pontual + historico de alertas integrado.
+
+## AWS Alerts
+
+Guia completo de configuracao e evidencias: ver [docs/AWS_ALERT_SETUP.md](docs/AWS_ALERT_SETUP.md).

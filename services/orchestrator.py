@@ -6,6 +6,7 @@ from phases.fase3.service import run as run_fase3
 from phases.fase4.service import predict as predict_fase4
 from phases.fase4.service import run as run_fase4
 from phases.fase6.service import run as run_fase6
+from services.monitoring import monitor_and_alert_once, read_history
 
 
 def run_phase(phase: str) -> dict:
@@ -46,3 +47,15 @@ def update_area(area_id: int, nome: str | None, cultura: str | None, hectares: f
 
 def delete_area(area_id: int) -> dict:
     return remove_fase1_2(area_id=area_id)
+
+
+def monitor_now(limit: int = 20) -> dict:
+    return monitor_and_alert_once(limit=limit)
+
+
+def alerts_history(limit: int = 50) -> dict:
+    return {
+        "status": "ok",
+        "total": limit,
+        "items": read_history(limit=limit),
+    }
