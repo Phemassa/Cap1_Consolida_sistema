@@ -14,13 +14,13 @@ Projeto consolidado da Fase 7 para integrar as fases 1 a 6 em uma base unica Pyt
 ```text
 Cap1_Consolida_sistema/
   app/                     # Streamlit principal e configuracoes
+    pages/                 # Paginas separadas por fase
   phases/                  # Modulos por fase
     fase1_2/
     fase3/
     fase4/
     fase6/
   services/                # Orquestracao, health check e alertas
-  dashboard/pages/         # Reservado para expansao de paginas
   docs/                    # Documentacao e planejamento
   tests/                   # Testes
   cli.py                   # Comandos de terminal
@@ -80,3 +80,9 @@ python cli.py alert-test --value 15
 ## AWS Alerts
 
 Guia completo de configuracao e evidencias: ver [docs/AWS_ALERT_SETUP.md](docs/AWS_ALERT_SETUP.md).
+
+## Fechamento de entrega
+
+- Checklist de barema: [docs/BAREMA_CHECKLIST.md](docs/BAREMA_CHECKLIST.md)
+- Roteiro de video (10 min): [docs/VIDEO_SCRIPT_10MIN.md](docs/VIDEO_SCRIPT_10MIN.md)
+- Script de demonstracao CLI: [scripts/demo_flow.sh](scripts/demo_flow.sh)
