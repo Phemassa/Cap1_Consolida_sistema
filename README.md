@@ -126,12 +126,52 @@ Use as imagens em [assets/evidencias/README.md](assets/evidencias/README.md) e a
 - [ ] AWS SNS topic + subscription
 - [ ] E-mail de alerta recebido
 
+### Galeria de evidencias (substituir conforme prints)
+
+#### Dashboard - Fase 1-2 (CRUD)
+
+![Fase 1-2 CRUD](assets/evidencias/fase1_2_crud.png)
+
+#### Dashboard - Fase 3 (Snapshot de sensores)
+
+![Fase 3 Snapshot](assets/evidencias/fase3_snapshot.png)
+
+#### Dashboard - Fase 4 (Treino e metricas)
+
+![Fase 4 Treino](assets/evidencias/fase4_treino_metricas.png)
+
+#### Dashboard - Fase 4 (Predicao)
+
+![Fase 4 Predicao](assets/evidencias/fase4_predicao.png)
+
+#### Dashboard - Fase 5 (SNS Topic)
+
+![Fase 5 SNS Topic](assets/evidencias/fase5_sns_topic.png)
+
+#### Dashboard - Fase 5 (E-mail de alerta recebido)
+
+![Fase 5 Email](assets/evidencias/fase5_email_recebido.png)
+
+#### Dashboard - Fase 6 (Inferencia)
+
+![Fase 6 Inferencia](assets/evidencias/fase6_inferencia.png)
+
+#### Dashboard - Home
+
+![Dashboard Home](assets/evidencias/dashboard_home.png)
+
 ### Video demonstrativo
 
-- Link YouTube (nao listado): PENDENTE
+- Link YouTube (nao listado): https://youtu.be/SEU_LINK_AQUI
 
 ### Comandos usados na gravacao
 
 ```bash
 ./scripts/demo_flow.sh
 ```
+
+### Checklist final rapido
+
+- [ ] Todos os prints acima inseridos e abrindo corretamente
+- [ ] Link do video atualizado
+- [ ] README revisado sem placeholders pendentes
