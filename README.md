@@ -55,6 +55,8 @@ python cli.py health
 python cli.py run fase3
 python cli.py monitor-fase3 --limit 20
 python cli.py monitor-fase3 --limit 20 --send-alerts
+python cli.py train-fase4 --limit 120
+python cli.py predict-fase4 --temperatura 30 --umidade-solo 22 --ph-solo 6
 python cli.py alert-test --value 15
 ```
 
@@ -63,4 +65,5 @@ python cli.py alert-test --value 15
 - Scaffold de consolidacao criado.
 - Orquestracao hibrida inicial pronta (dashboard + CLI).
 - Fase 3 com Oracle + fallback CSV e regras de alerta operacional implementada.
-- Integracoes de modelos ML e YOLO seguem como wrappers para proxima etapa.
+- Fase 4 com treino de modelos, metricas e predicao inicial integrada.
+- Integracao da Fase 6 segue como wrapper para proxima etapa.

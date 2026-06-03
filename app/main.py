@@ -4,7 +4,7 @@ import streamlit as st
 
 from services.alert_service import AlertService
 from services.healthcheck import collect_health
-from services.orchestrator import monitor_fase3, run_phase
+from services.orchestrator import infer_fase4, monitor_fase3, run_phase, train_fase4
 
 
 st.set_page_config(page_title="FarmTech Fase 7", layout="wide")
@@ -35,6 +35,22 @@ send_alerts = st.checkbox("Enviar alertas AWS ao monitorar", value=False)
 if st.button("Coletar snapshot Fase 3"):
     st.json(monitor_fase3(limit=limit, send_alerts=send_alerts))
 
+st.subheader("Fase 4 - Pipeline ML")
+train_limit = st.slider("Amostras para treino Fase 4", min_value=20, max_value=300, value=120, step=10)
+if st.button("Treinar Fase 4"):
+    st.json(train_fase4(limit=train_limit, force_train=True))
+
+col_p1, col_p2, col_p3 = st.columns(3)
+with col_p1:
+    p_temp = st.number_input("Temperatura", value=30.0)
+with col_p2:
+    p_umidade = st.number_input("Umidade do solo", value=22.0)
+with col_p3:
+    p_ph = st.number_input("pH do solo", value=6.0)
+
+if st.button("Prever necessidade de irrigacao"):
+    st.json(infer_fase4(temperatura=p_temp, umidade_solo=p_umidade, ph_solo=p_ph))
+
 st.subheader("Health Check")
 if st.button("Atualizar status"):
     st.json(collect_health())
@@ -60,6 +76,8 @@ st.code(
     "python cli.py run fase3\n"
     "python cli.py monitor-fase3 --limit 20\n"
     "python cli.py monitor-fase3 --limit 20 --send-alerts\n"
+    "python cli.py train-fase4 --limit 120\n"
+    "python cli.py predict-fase4 --temperatura 30 --umidade-solo 22 --ph-solo 6\n"
     "python cli.py alert-test --value 15 --threshold 20",
     language="bash",
 )

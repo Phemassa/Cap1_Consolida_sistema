@@ -3,7 +3,7 @@ import json
 
 from services.alert_service import AlertService
 from services.healthcheck import collect_health
-from services.orchestrator import monitor_fase3, run_phase
+from services.orchestrator import infer_fase4, monitor_fase3, run_phase, train_fase4
 
 
 def main() -> None:
@@ -22,6 +22,15 @@ def main() -> None:
     monitor_parser = sub.add_parser("monitor-fase3", help="Coleta snapshot da Fase 3")
     monitor_parser.add_argument("--limit", type=int, default=20)
     monitor_parser.add_argument("--send-alerts", action="store_true")
+
+    train_parser = sub.add_parser("train-fase4", help="Treina pipeline ML da Fase 4")
+    train_parser.add_argument("--limit", type=int, default=120)
+    train_parser.add_argument("--no-force", action="store_true")
+
+    predict_parser = sub.add_parser("predict-fase4", help="Predicao com modelo da Fase 4")
+    predict_parser.add_argument("--temperatura", type=float, required=True)
+    predict_parser.add_argument("--umidade-solo", type=float, required=True)
+    predict_parser.add_argument("--ph-solo", type=float, required=True)
 
     args = parser.parse_args()
 
@@ -47,6 +56,20 @@ def main() -> None:
 
     if args.command == "monitor-fase3":
         result = monitor_fase3(limit=args.limit, send_alerts=args.send_alerts)
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return
+
+    if args.command == "train-fase4":
+        result = train_fase4(limit=args.limit, force_train=not args.no_force)
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return
+
+    if args.command == "predict-fase4":
+        result = infer_fase4(
+            temperatura=args.temperatura,
+            umidade_solo=args.umidade_solo,
+            ph_solo=args.ph_solo,
+        )
         print(json.dumps(result, indent=2, ensure_ascii=True))
 
 

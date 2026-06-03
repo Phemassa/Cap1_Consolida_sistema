@@ -1,5 +1,6 @@
 from phases.fase1_2.service import run as run_fase1_2
 from phases.fase3.service import run as run_fase3
+from phases.fase4.service import predict as predict_fase4
 from phases.fase4.service import run as run_fase4
 from phases.fase6.service import run as run_fase6
 
@@ -18,3 +19,11 @@ def run_phase(phase: str) -> dict:
 
 def monitor_fase3(limit: int = 20, send_alerts: bool = False) -> dict:
     return run_fase3(limit=limit, send_alerts=send_alerts)
+
+
+def train_fase4(limit: int = 120, force_train: bool = True) -> dict:
+    return run_fase4(limit=limit, force_train=force_train)
+
+
+def infer_fase4(temperatura: float, umidade_solo: float, ph_solo: float) -> dict:
+    return predict_fase4(temperatura=temperatura, umidade_solo=umidade_solo, ph_solo=ph_solo)
