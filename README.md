@@ -52,6 +52,10 @@ streamlit run app/main.py
 
 ```bash
 python cli.py health
+python cli.py run fase1_2
+python cli.py area-add --nome "Talhao C" --cultura soja --hectares 12
+python cli.py area-update --id 1 --hectares 11
+python cli.py area-delete --id 2
 python cli.py run fase3
 python cli.py monitor-fase3 --limit 20
 python cli.py monitor-fase3 --limit 20 --send-alerts
@@ -65,6 +69,7 @@ python cli.py alert-test --value 15
 
 - Scaffold de consolidacao criado.
 - Orquestracao hibrida inicial pronta (dashboard + CLI).
+- Fase 1-2 com CRUD de areas em CSV integrado na CLI.
 - Fase 3 com Oracle + fallback CSV e regras de alerta operacional implementada.
 - Fase 4 com treino de modelos, metricas e predicao inicial integrada.
 - Fase 6 com inferencia baseline por pasta de imagens integrada no app e CLI.

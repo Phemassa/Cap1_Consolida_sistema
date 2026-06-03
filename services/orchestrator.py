@@ -1,3 +1,6 @@
+from phases.fase1_2.service import add as add_fase1_2
+from phases.fase1_2.service import edit as edit_fase1_2
+from phases.fase1_2.service import remove as remove_fase1_2
 from phases.fase1_2.service import run as run_fase1_2
 from phases.fase3.service import run as run_fase3
 from phases.fase4.service import predict as predict_fase4
@@ -31,3 +34,15 @@ def infer_fase4(temperatura: float, umidade_solo: float, ph_solo: float) -> dict
 
 def run_fase6_vision(images_dir: str | None = None, limit: int = 50) -> dict:
     return run_fase6(images_dir=images_dir, limit=limit)
+
+
+def create_area(nome: str, cultura: str, hectares: float) -> dict:
+    return add_fase1_2(nome=nome, cultura=cultura, hectares=hectares)
+
+
+def update_area(area_id: int, nome: str | None, cultura: str | None, hectares: float | None) -> dict:
+    return edit_fase1_2(area_id=area_id, nome=nome, cultura=cultura, hectares=hectares)
+
+
+def delete_area(area_id: int) -> dict:
+    return remove_fase1_2(area_id=area_id)

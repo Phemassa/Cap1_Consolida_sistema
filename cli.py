@@ -3,7 +3,7 @@ import json
 
 from services.alert_service import AlertService
 from services.healthcheck import collect_health
-from services.orchestrator import infer_fase4, monitor_fase3, run_fase6_vision, run_phase, train_fase4
+from services.orchestrator import create_area, delete_area, infer_fase4, monitor_fase3, run_fase6_vision, run_phase, train_fase4, update_area
 
 
 def main() -> None:
@@ -35,6 +35,20 @@ def main() -> None:
     vision_parser = sub.add_parser("run-fase6", help="Executa inferencia da Fase 6 em pasta de imagens")
     vision_parser.add_argument("--images-dir", type=str, default=None)
     vision_parser.add_argument("--limit", type=int, default=50)
+
+    area_add = sub.add_parser("area-add", help="Cria area (Fase 1-2)")
+    area_add.add_argument("--nome", required=True)
+    area_add.add_argument("--cultura", required=True)
+    area_add.add_argument("--hectares", type=float, required=True)
+
+    area_update = sub.add_parser("area-update", help="Atualiza area (Fase 1-2)")
+    area_update.add_argument("--id", type=int, required=True)
+    area_update.add_argument("--nome", default=None)
+    area_update.add_argument("--cultura", default=None)
+    area_update.add_argument("--hectares", type=float, default=None)
+
+    area_delete = sub.add_parser("area-delete", help="Remove area (Fase 1-2)")
+    area_delete.add_argument("--id", type=int, required=True)
 
     args = parser.parse_args()
 
@@ -79,6 +93,21 @@ def main() -> None:
 
     if args.command == "run-fase6":
         result = run_fase6_vision(images_dir=args.images_dir, limit=args.limit)
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return
+
+    if args.command == "area-add":
+        result = create_area(nome=args.nome, cultura=args.cultura, hectares=args.hectares)
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return
+
+    if args.command == "area-update":
+        result = update_area(area_id=args.id, nome=args.nome, cultura=args.cultura, hectares=args.hectares)
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return
+
+    if args.command == "area-delete":
+        result = delete_area(area_id=args.id)
         print(json.dumps(result, indent=2, ensure_ascii=True))
 
 
