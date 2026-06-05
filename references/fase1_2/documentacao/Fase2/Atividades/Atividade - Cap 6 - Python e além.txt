@@ -1,0 +1,140 @@
+ATIVIDADE AVALIATIVA - CAP 6: PYTHON E ALÉM
+===========================================
+
+GESTÃO DO AGRONEGÓCIO EM PYTHON (Capítulos 3 ao 6)
+Período: 18/09/2025 a 15/10/2025
+Status: Entrega pendente
+
+ATENÇÃO: Atividades entregues até 3 dias após o prazo receberão até 70% da nota.
+
+CONTEXTO TEÓRICO
+---------------
+
+AGRONEGÓCIO:
+- Conjunto de atividades econômicas da produção agrícola e comércio
+- Pilar da economia brasileira
+- Sistema integrado: insumos → produção → processamento → distribuição → apoio
+- Setor que mais emprega no mundo
+- Sinônimo de inovação e tecnologia
+
+5 SETORES DO AGRONEGÓCIO:
+1. Insumos (sementes, fertilizantes, defensivos)
+2. Produção (culturas, pecuária)  
+3. Processamento (transformação)
+4. Distribuição (marketing, vendas)
+5. Serviços de Apoio (financeiro, seguros, consultoria)
+
+AGROTECH:
+- Startups com soluções tecnológicas para produtores rurais
+- Diferencial: ferramentas especializadas vs consultoria tradicional
+- Softwares para logística e gestão agrícola
+- Autonomia para o produtor (não dependência de presença física)
+- Monitoramento automatizado de processos
+
+CASO PRÁTICO - CANA-DE-AÇÚCAR:
+- Brasil: líder mundial (~620 milhões toneladas/safra)
+- PROBLEMA: Perdas na colheita
+  * Manual: até 5% de perdas
+  * Mecânica: até 15% de perdas
+  * Prejuízo: ~R$ 20 milhões/ano (SP)
+- SOLUÇÕES: planejamento integrado, timing ideal, otimização de máquinas
+
+DEFINIÇÃO DA ATIVIDADE
+---------------------
+
+OBJETIVO: Desenvolver solução Python para área do agronegócio
+LIBERDADE: Grupo escolhe problema/área de atuação
+DICA: Problema sólido e claro (não abrir leque demais)
+
+REQUISITOS TÉCNICOS OBRIGATÓRIOS (Cap 3-6):
+
+1. SUBALGORITMOS:
+   - Funções com passagem de parâmetros
+   - Procedimentos com passagem de parâmetros
+
+2. ESTRUTURAS DE DADOS:
+   - Listas
+   - Tuplas  
+   - Dicionários
+   - Tabelas de memória
+
+3. MANIPULAÇÃO DE ARQUIVOS:
+   - Arquivos texto
+   - Arquivos JSON
+
+4. BANCO DE DADOS:
+   - Conexão Oracle
+
+ÁREAS SUGERIDAS:
+- Gestão de cultivos/safras
+- Controle de estoque/insumos
+- Monitoramento climático/irrigação
+- Análise produtividade
+- Gestão financeira rural
+- Rastreabilidade produtos
+- Otimização logística
+
+CRITÉRIOS DE AVALIAÇÃO
+---------------------
+
+ASPECTOS TÉCNICOS:
+✓ Linha lógica clara e objetiva
+✓ Relevância com solicitado
+✓ Inovação na proposta
+✓ Consistência dos dados entrada
+✓ Validação tipos de dados
+✓ Usabilidade (interface limpa)
+
+DOCUMENTAÇÃO:
+✓ README claro (área agronegócio tratada)
+✓ Código bem documentado
+✓ Template GitHub seguido
+✓ Explicação do problema/solução
+
+INTEGRAÇÃO:
+✓ Uso completo capítulos 3-6
+✓ Conexão Oracle efetiva
+✓ Manipulação arquivos/estruturas
+✓ Tratamento erros adequado
+
+ENTREGÁVEIS
+-----------
+
+REPOSITÓRIO GITHUB:
+- Seguir template fornecido
+- NÃO alterar código após entrega
+- Manter integridade da versão
+
+ARQUIVOS OBRIGATÓRIOS:
+- Código Python principal
+- Scripts banco Oracle
+- Arquivos dados (texto/JSON)
+- README.md detalhado
+- Documentação técnica
+
+ESTRUTURA README:
+# [Nome Projeto]
+## Área Agronegócio
+## Problema Identificado  
+## Solução Proposta
+## Tecnologias Utilizadas
+## Como Executar
+
+OBSERVAÇÕES IMPORTANTES
+----------------------
+
+DIRETRIZES ENTREGA:
+⚠️ Verificar upload correto (não pode reenviar após fechamento)
+⏰ NÃO deixar para últimos minutos
+🚫 NÃO compartilhar em grupos WhatsApp/Discord (plágio)
+📅 15 dias para revisão após nota
+
+SUPORTE TÉCNICO:
+- Dúvidas conteúdo: consultar Tutor na live
+
+PRINCIPAIS REFERÊNCIAS:
+- EMBRAPA: https://www.embrapa.br/visao-de-futuro
+- FAO FAOSTAT: http://www.fao.org/faostat/en/#data
+- COMEX STAT: http://comexstat.mdic.gov.br/pt/home
+- CONAB: http://www3.ceasa.gov.br/prohortweb/
+- AGROTOOLS: https://agrotools.com.br/blog/

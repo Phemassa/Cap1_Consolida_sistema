@@ -1,0 +1,113 @@
+# Cap 3 - Utilização de algoritmos e fluxogramas
+
+## Sumário
+
+# Cap 3 - Utilização de algoritmos e fluxogramas
+
+Utilização de algoritmos e fluxogramas2.5Operadores de associaçãoOs operadores de associação são utilizados para averiguarse um objeto está contido em uma sequência.
+
+Por exemplo,podemos verificar se uma letra ou palavra está contida em um texto ou ainda se um número está em uma lista.
+
+OperadorExemploin"s"inrespostanotin"s"not inrespostaQuadro 5–Operadores de associaçãoFonte: Elaborado pelo autor (2021)resposta = "sim"texto = "Brasil"print("s" in resposta)print("n" not in resposta)print("b"intexto)print("B"intexto)Código-fonte11–Utilização deoperadores de associaçãoFonte: Elaborado pelo autor (2021)2.6Operadores de identidadeQuando  precisamos  comparar  se  dois  objetos  utilizam  a  mesma  posição  de memória no Python,usamosos operadores de identidade: is e not is.
+
+O operador de identidade  é  diferente  do  operador  relacional  de  igualdade  ==,  pois  o  operador  de identidade analisa o endereço e o de igualdade analisa o valor.
+
+OperadorExemploisn1 isn2is notn1 is notn2Quadro 6–Operadores de identidadeFonte: Elaborado pelo autor (2021)O método id() retorna o endereço de memória de um objeto, podemos utilizá-lo em conjunto com o comando print para exibir este endereço em tela.cidade_p1 = "São Paulo"cidade_p2 = "São Paulo"cidade_p3 = "Rio de Janeiro"print(id(cidade_p1))print(id(cidade_p2))print(id(cidade_p3))print(cidade_p1is cidade_p2)
+Utilização de algoritmos e fluxogramasprint(cidade_p1is not cidade_p3)print(cidade_p1is cidade_p3)Código-fonte12–Utilização deoperadores de identidadeFonte: Elaborado pelo autor (2021)2.7Precedência dos operadoresPara  realizar  as  operações,a  linguagem  de  programação  segue  um  padrão parecido com o da Matemática para definir qual operação será realizada primeiro.
+
+O operador que   possui   maior   prioridade será executadoprimeiro.
+
+Emcaso   de operadores  com  a  mesma  prioridade  (precedência),a  operação  é  realizada  da esquerda para a direitana expressão.
+
+OperadorFunçãoPrecedência()ParêntesesMaior prioridade**Exponenciação+x, -xSinal*,/,//,%Multiplicação, divisão, divisão inteira e módulo+,-Soma e subtração<,<=,>,>=Relacionais==,!=Igual e diferenteis,is notIdentidadein,not inAssociaçãonotNãoandEorOu=, +=, -=, *=, /=, %=AtribuiçãoMenor prioridadeQuadro 7–Precedência dos operadoresFonte: Elaborado pelo autor (2021)
+Utilização de algoritmos e fluxogramas2.8Hora de exercitarAgora  que  aprendemos  alguns  comandos básicos  da  linguagem Python  e  já temos  o nosso  ambiente  configurado  e  funcionando,  que  tal  fazermos  alguns exercícios e aprendermos a lidar com números?2.8.1A calculadora!
+
+Nossa  missão  é  simples:  criar  a  mais  incrível  calculadora  de  todos  os tempos!
+
+Ela deve receber dois valores do usuário e realizar as 4 operações básicas: soma, subtração, divisão e multiplicação.
+
+O algoritmo que realiza essas operações deve se aproximar do fluxograma e pseudocódigo a seguir:Figura 16–Fluxograma para o algoritmo de calculadoraFonte:Elaborado pelo autor(2019)
+Utilização de algoritmos e fluxogramasalgoritmo "Soma"variáveisvalor1,    valor2,    soma,    divisao,    subtracao, multiplicacao: realinícioEscreva "Digite o primeiro valor"Leia valor1Escreva "Digite o segundo valor"Leia valor2soma = valor1 + valor2Escreva "A soma é ", somasubtracao = valor1 -valor2Escreva "A soma é ", subtracaodivisao = valor1 / valor2Escreva "A soma é ", divisaomultiplicacao = valor1 * valor2Escreva "A soma é ", multiplicacaoFimCódigo-fonte13–Pseudocódigo para o algoritmo de calculadoraFonte: Elaborado pelo autor (2019)Como  aprendizado  e  corrida  são  coisas  diferentes,  vamos  tentar  resolver esse  problema  por  partes?
+
+No  PyCharm,  em  um  script  chamado calculadora.py, vamos criar primeiro a parte do código que fará a soma entre dois valores:valor1 = input("Por favor, digite o primeiro valor: ")valor2 = input("Por favor, digite o segundo valor: ")soma = valor1 + valor2print("A soma entre os valores é " + soma)Código-fonte14–Código em Python para implementar parte do algoritmo de calculadoraFonte: Elaborado pelo autor (2019)Executar o código pode ser um pouco decepcionante!
+
+Afinal de contas, veja o resultado:Figura 17–Execução da soma em PythonFonte: Elaborado pelo autor(2019)
+Utilização de algoritmos e fluxogramasPor alguma razão,o Python parece consideraras variáveis como textoe não como número.
+
+Para validar essa suspeita,podemos tentar printarna tela o tipo das variáveis valor1e valor2.
+
+Isso pode ser feito com ocomando type.
+
+Veja:valor1 = input("Por favor, digite o primeiro valor: ")valor2 = input("Por favor, digite o segundo valor: ")soma = valor1 + valor2print("A soma entre os valores é " + soma)print(type(valor1))print(type(valor2))Código-fonte15–Uso do comando typepara verificar o tipo das variáveisFonte: Elaborado pelo autor (2019)A execução desse script nos mostra que as variáveis valor1e valor2estão sendo tratadas como strings(str), ou seja, como texto.
+
+Para  que  elas  passem  a  ser  tratadas  como  números,temos  que  convertê-las,podendo  usar  os  tipos int(números  inteiros), float(números  com  casas decimais) e complex(números complexos).
+
+Tipos BásicosDescriçãoExemplointNúmeros inteiros1, 2, 100floatNúmeros reais (ponto flutuante)1.5, 2.07, 50.29complexNúmeros complexos4j, 5+2j, 15jboolValores lógicosTrue, False, 1, 0stringTextos"Texto", "a", "10"Quadro 8–Tipos de dados básicosFonte: Elaborado pelo autor (2021)Para  fazer  a  conversão,  devemos  escrever  o  tipo  de  dado  e  colocar  a variável  entre  parênteses.
+
+Portanto,  para  que  as  variáveis valor1e valor2sejam variáveis  que  aceitam  números  decimais,  no  momento  da  soma,podemos  fazer  a conversão.
+
+Ao  fazer  isso, porém,  a  variável somapassará  a  ser  do  tipo float,  então,temos  duas  alternativas: precisamos  converter  essa  variável  para  texto  na  hora  de exibi-lanovamenteou  usar  um  recurso  do  Python  que  nos  permite  escrever  um texto,indicando os locais onde incluiremos valores de variáveis.
+
+A  segunda  alternativa  utiliza  melhor  a  linguagem  Python  e  evita  que  o programador  faça  uma  série  de  conversões  manualmente.
+
+No  nossocaso,  para exibir  a  mensagem: “A  soma  entre  os  valores  é”e  incluir  a  variável  soma,
+Utilização de algoritmos e fluxogramasindicaremos o texto da seguinte forma: “A soma entre os valores é {}” e usaremos a função formatpara indicar que as chaves devem ser substituídas por uma variável.
+
+O código final da soma será:valor1 = input("Por favor, digite o primeiro valor: ")valor2 = input("Por favor, digite o segundo valor: ")soma = float(valor1) + float(valor2)print("A soma entre os valores é {}".format(soma))Código-fonte16–Conversão de tipos de dados em PythonFonte: Elaborado pelo autor (2019)Se implementarmos as demais partes do nosso algoritmo, teremos:valor1 = input("Por favor, digite o primeiro valor: ")valor2 = input("Por favor, digite o segundo valor:")soma = float(valor1) + float(valor2)print("A soma entre os valores é {}".format(soma))subtracao = float(valor1) -float(valor2)print("A     subtração     entre     os     valores     é {}".format(subtracao))divisao = float(valor1) / float(valor2)print("A     divisão     entre     os     valores     é {}".format(divisao))multiplicacao = float(valor1) * float(valor2)print("A    multiplicação    entre    os    valores    é {}".format(multiplicacao)))Código-fonte17–Calculadora totalmente implementada em PythonFonte: Elaborado pelo autor (2019)
+Utilização de algoritmos e fluxogramas3 O PATINETE ELÉTRICO!
+
+A   cidade   de   São   Paulo   conta   com   centenas   de   patinetes   elétricos espalhados  em  pontos  estratégicos.
+
+Vez  por  outra,surge  algum  incidente  leve  ou acidente grave que faz as pessoas questionarem a velocidade desses veículos.
+
+Mais do que a velocidade máxima, nos interessa a velocidade média! É por isso  que  criaremos  um  algoritmo  capaz  de  calcular  a  velocidade  média apartir  de duas informações: a distância que o patinete percorreue o tempo que demorou para isso.
+
+Lembrando   das   aulas   de Física   que   tivemos   na   escola,   é   possível compreender  que  o  algoritmo  consiste  em  armazenar  a  distância  e  o  tempo  em variáveis  numéricas  e  realizar  a  divisão,  exibindo  o  cálculo  ao  final.
+
+Portanto, faremos a implementação em Python:print("Esse programa calcula a  velocidade média de um patinete")distancia  =  input("Qual  foi  a  distância  em  metros percorrida pelo patinete? ")tempo = input("Quantos minutos o patinete demorou para percorrer essa distância? ")velocidade_media = float(distancia) / float(tempo)print("O   patinete   atingiu   uma   velocidade   de   {} m/min".format(velocidade_media))Código-fonte18–Calculadora totalmente implementada em PythonFonte: Elaborado pelo autor (2019)O algoritmo está correto e o programa foi bem implementado, mas um bom programador  busca  sempre  o  melhor.
+
+Nesteprograma,  o  usuário  pode  digitar valores que geremum resultado com muitos dígitos decimais.
+
+Podemos limitar essa exibiçãode dígitos com um pequeno truque de formatação!
+
+Dentro  das  chaves  que apontamonde  a  variável velocidade_mediaserá exibida, podemos indicar quantas casas devem ser mostradasapós a vírgula.
+
+Para exibir 2 casas,indicaremos {0:.2f}, para exibir 1 casa {0:.1f} e assim por diante.
+
+Vejamos o código final:print("Esse programa calcula a  velocidade média de um patinete")distancia  =  input("Qual  foi  a  distância  em  metros
+Utilização de algoritmos e fluxogramaspercorrida pelo patinete? ")tempo = input("Quantos minutos o patinete demorou para percorrer essa distância? ")velocidade_media = float(distancia) / float(tempo)print("O  patinete  atingiu  uma  velocidade  de  {0:.2f} m/min".format(velocidade_media))Código-fonte19–Calculadora totalmente implementada em Python com arredondamento de valoresFonte: Elaborado pelo autor (2019)3.1Vamos trocar?
+
+Uma  das  partes  mais  legais  de  começar  a  programar  é  resolver  pequenos problemas algorítmicos que servem para exercitar a lógica, muito mais do que para resolver um problema real.
+
+Veja  esse  caso:  imagine  um  caso  em  que  o  usuário  digite  um  valor  na variável A e outro valor na variável B, e o algoritmo deve inverter os conteúdos das variáveis!
+
+Como  fazer  isso  sem  que,logo  na  primeira  troca,o  valor  de  uma  das variáveis não seja perdido?
+
+Para   resolver   esse   problema,   como   tantos   em   programação,   existem inúmeras  alternativas.
+
+A  mais  simples  delas  é  a  criação  de  uma  terceira  variável temporária.
+
+A ideia é simples: assim como quando estamos com um prato de comida em  cada  mãonecessitamosde  uma  terceira  pessoa  para  nos  ajudar  na  inversão, precisaremos de uma terceira variável aqui.
+
+Logo teremos:print("Esse  programa  inverte  os  conteúdos  de  duas variáveis")A = input("Digite o conteúdo da variável 1: ")B = input("Digite o conteúdoda variável 2: ")troca = AA = BB = trocaprint("Agora que trocamos, a variável A contém {} e a variável B contém {}".format(A, B))Código-fonte20–Calculadora totalmente implementada em Python com arredondamento de valoresFonte: Elaborado pelo autor (2019)
+Utilização de algoritmos e fluxogramasChegamos ao finaldo capítulo conhecendo como um software é criado, quais técnicas  utilizar em  seu desenvolvimento  e  começamos  a  conhecer  um  pouco  de programação.
+
+Prepare-se!
+
+Em breveteremos mais programaçãoe design.
+
+Até lá!
+
+Utilização de algoritmos e fluxogramas## Referências
+
+PUGA,  S..;  RISSETTI,  G.
+
+Lógica  de programação  e  estrutura  de  dados.
+
+São Paulo: Pearson Prentice Hall, 2009.
+
+RAMALHO, L..
+
+Python fluente:  programação  clara,  concisa  e  eficaz.
+
+São  Paulo: Novatec, 2015.

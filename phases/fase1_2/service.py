@@ -1,3 +1,4 @@
+# Origem: https://github.com/Phemassa/FarmTechSolutions (Fases 1 e 2)
 from datetime import datetime
 
 from phases.fase1_2.repository import create_area, delete_area, list_areas, update_area

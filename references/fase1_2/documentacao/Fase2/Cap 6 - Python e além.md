@@ -1,0 +1,94 @@
+# Cap 6 - Python e além
+
+## Sumário
+
+# Cap 6 - Python e além
+
+Python e além5.7EXCLUIR TODOS OS PETSApesar  de atualmente nãosercomuma  exclusão  de  registros,  elapode  ser feita.
+
+Estamos focandono aprendizado do CRUD, então “Deletar” registros faz parte das  operações  fundamentais  em  tabelas.
+
+Primeiramente, vamos  observaro  status inicial da Tabela Petshop:Figura 22-Visualização de todos os registros na tabelaFonte: Elaborado pelo autor (2022)Na tabela temostrês registros adicionados.
+
+Vamos considerar,então,que a escolha do usuário foi o item ‘5 –EXCLUIR TODOS OS PETS’.
+
+Depois da escolha da opção 5, pela operação ser delicada, por segurança,o ideal é perguntarmos para o usuário a confirmação da exclusão de todos os registrosou permitir que ele desista.
+
+EXECUÇÃO:
+Python e alémFigura 23-Visualizaçãoda confirmação da exclusão de todos os registrosFonte: Elaborado pelo autor (2023)Com a escolha do item 5 será executada arotina:PYTHON:
+```python
+# EXCLUIR TODOS OS REGISTROScase 5:print("\n!!!!!
+
+EXCLUI TODOS OS DADOS TABELA !!!!!\n")confirma = input(margem + "CONFIRMA A EXCLUSÃO DE TODOS OS PETS?\n[S]im ou [N]ÃO?")if confirma.upper() == "S":# Apaga todos os registrosexclusao = "DELETE FROM petshop"inst_exclusao.execute(exclusao)conn.commit()# Depoisde excluir todos os registros ele zera o IDdata_reset_ids = """ ALTER TABLE petshop MODIFY(ID GENERATED AS IDENTITY (START WITH 1)) """inst_exclusao.execute(data_reset_ids)conn.commit()print("\nTodos os registros foramexcluídos!")else:print("Operação cancelada pelo usuário!")input("Pressione ENTER")  # Pausa o loop para a leitura da mensagemCódigo-fonte 21-Rotina de exclusão de todos os registrosFonte: Elaborado pelo autor (2023)
+Python e alémDepois de lida a resposta do usuário (‘S’ ou ‘N’) sobre excluir os registros, o if confirma.upper()analisa se foi digitado ‘S’[im],se positivo,entãoé construída a instrução SQL  DELETE  *  FROMpetshope  jogada  na  variável exclusao.
+
+Na sequência,é executada a instrução de exclusãode todos os registros na tabelae a mensagem ‘Todos os registros foram excluídos!’ aparecerá para o usuário.
+
+Agora,  se  o  usuário  digitar  ‘N’[ão],  a  operação écancelada  e  aparece  a mensagem: ‘Operação cancelada pelo usuário!’.
+
+Considerandoque a tabela possuía3 registros, foi gerado automaticamente até o ID 3.
+
+Depois de excluídos os registros, os IDs não são ‘zerados’.
+
+Assim,se alguém incluir umnovoregistro, ele iniciará do 4 e não do 1, como seria o esperado.
+
+Para solucionarmoseste  problema,adicionamos  a  instrução ALTER  TABLE petshop  MODIFY(ID  GENERATED  AS  IDENTITY  (START  WITH  1))que simplesmente faz com queo ID seja gerado automaticamente a partir do ID 1.
+
+Depois de executada esta rotina,observeque a tabela ficou vazia:Figura 24-Visualização da tabela vaziaFonte: Elaborado pelo autor (2023)
+Python e alémNo modelo atual, dificilmente as aplicações excluem registros.
+
+Elascolocam campos ‘flags’ como ‘Ativo’.
+
+Se este campo estiver com o conteúdoTrue, quer dizer que o registro está disponível na aplicação, agora se o conteúdo for False, a aplicação não o “enxerga”.
+
+De qualquer forma, o registropermanece na Base para ser trabalhado posteriormente se houver necessidade.5.8Código-fonte da AplicaçãoPara explicar a aplicação,foram utilizadasas rotinas separadas.
+
+Neste tópico colocarei o código-fonte completo.
+
+Lembre-se apenas que você deve ter o seu acesso ao Oracle e criar uma tabela idêntica (siga o script passado) na sua base para o código funcionarplenamente.
+
+Por motivos óbvios apaguei meu usuário e senha da conexão.
+
+Lembre-se   também   que   o   objetivo   deste   capítulo   é   tratar   os   novos conhecimentos sobre conexão com Oracle, portanto, não fui cuidadoso em relação a consistências diversas, como vazio, não númerosporque já vimos este assunto em outros momentos.
+
+Segue o código:PYTHON:# Importação dos módulosimport osimport oracledbimport pandas as pd# Try para tentativa de Conexão com o Banco de Dadostry:# Efetua a conexão com o Usuáriono servidorconn = oracledb.connect(user='USUARIO', password="SENHA", dsn='oracle.fiap.com.br:1521/ORCL')# Cria as instruções para cada móduloinst_cadastro = conn.cursor()inst_consulta = conn.cursor()inst_alteracao = conn.cursor()inst_exclusao = conn.cursor()except Exception as e:# Informa o erroprint("Erro: ", e)# Flag para não executar a Aplicaçãoconexao = Falseelse:
+```
+
+Python e além
+```python
+# Flag para executar a Aplicaçãoconexao = Truemargem = ' ' * 4 # Define uma margem para a exibição da aplicação# Enquanto o flag conexao estiver apontado com Truewhile conexao:# Limpa a tela via SOos.system('cls')# Apresenta o menuprint("-------CRUD -PETSHOP -------")print("""1 -Cadastrar Pet2 -Listar Pets3 -Alterar Pet4 -Excluir Pet5 -EXCLUIRTODOS OS PETS6 -SAIR""")# Captura a escolha do usuárioescolha = input(margem + "Escolha -> ")# Verifica se o número digitado é um valor numéricoif escolha.isdigit():escolha = int(escolha)else:escolha= 6print("Digite um número.\nReinicie a Aplicação!")os.system('cls')  # Limpa a tela via SO# VERIFICA QUAL A ESCOLHA DO USUÁRIOmatch escolha:# CADASTRAR UM PETcase 1:try:print("-----CADASTRAR PET -----\n")# Recebe os valores para cadastrotipo = input(margem + "Digite o tipo....: ")nome = input(margem + "Digite o nome....: ")idade = int(input(margem + "Digite a idade...: "))# Monta a instrução SQL de cadastro em uma stringcadastro = f""" INSERT INTO petshop (tipo_pet, nome_pet, idade)VALUES ('{tipo}', '{nome}', {idade}) """
+Python e além# Executa e grava o Registro na Tabelainst_cadastro.execute(cadastro)conn.commit()except ValueError:# Erro de número não digitar um número na idadeprint("Digite um número na idade!")except:# Caso ocorra algum erro de conexão ou no BDprint("Erro na transação do BD")else:# Caso haja sucesso na gravaçãoprint("\n##### Dados GRAVADOS #####")# LISTAR TODOS OS PETScase 2:print("-----LISTAR PETs -----\n")lista_dados = []  # Lista para captura de dados do Banco# Monta a instrução SQL de seleção de todos os registros da tabelainst_consulta.execute('SELECT * FROM petshop')# Captura todos os registros da tabela e armazena no objeto datadata = inst_consulta.fetchall()# Insere os valores da tabela na Listafor dt in data:lista_dados.append(dt)# ordena a listalista_dados = sorted(lista_dados)# Gera um DataFrame com os dados da lista utilizando o Pandasdados_df = pd.
+
+DataFrame.from_records(lista_dados, columns=['Id', 'Tipo', 'Nome', 'Idade'], index='Id')# Verifica se não há registro através do dataframeif dados_df.empty:print(f"Não há um Pets cadastrados!")else:print(dados_df) # Exibe os dados selecionados da tabelaprint("\n##### LISTADOS! #####")# ALTERAR OS DADOS DE UM REGISTROcase 3:try:
+```
+
+Python e além
+```python
+# ALTERANDO UM REGISTROprint("-----ALTERAR DADOS DO PET -----\n")lista_dados = []  # Lista para captura de dados da tabelapet_id = int(input(margem + "Escolha um Id: "))  # Permite o usuário escolher um Pet pelo id# Constrói a instrução de consulta para verificar a existência ou não do idconsulta = f""" SELECT * FROM petshop WHERE id = {pet_id}"""inst_consulta.execute(consulta)data = inst_consulta.fetchall()# Preenche a lista com o registro encontrado (ou não)for dt in data:lista_dados.append(dt)# analisa se foi encontrado algoif len(lista_dados) == 0: # se não há o idprint(f"Não há um pet cadastrado com o ID = {pet_id}")input("\nPressione ENTER")else:# Captura os novos dadosnovo_tipo = input(margem + "Digite um novo tipo: ")novo_nome = input(margem + "Digite um novo nome: ")nova_idade = input(margem + "Digite uma nova idade: ")# Constrói a instrução de edição do registro com os novos dadosalteracao = f"""UPDATE petshop SET tipo_pet='{novo_tipo}', nome_pet='{novo_nome}', idade='{nova_idade}' WHERE id={pet_id}"""inst_alteracao.execute(alteracao)conn.commit()except ValueError:print("Digite um número na idade!")except:print(margem + "Erro na transação do BD")else:print("\n##### Dados ATUALIZADOS! #####")# EXCLUIR UM REGISTRO
+Python e alémcase 4:print("-----EXCLUIR PET -----\n")lista_dados = []  # Lista para captura de dados da tabelapet_id = input(margem + "Escolha um Id: ")  # Permite o usuário escolher um Pet pelo IDif pet_id.isdigit():pet_id = int(pet_id)consulta = f""" SELECT * FROM petshop WHERE id = {pet_id}"""inst_consulta.execute(consulta)data = inst_consulta.fetchall()# Insere os valores da tabela na listafor dt in data:lista_dados.append(dt)# Verifica se o registro está cadastradoif len(lista_dados) == 0:print(f"Não há um pet cadastrado com o ID = {pet_id}")else:# Cria a instrução SQL de exclusão pelo IDexclusao = f"DELETE FROM petshop WHERE id={pet_id}"# Executa a instrução e atualiza a tabelainst_exclusao.execute(exclusao)conn.commit()print("\n##### Pet APAGADO! #####")  # Exibe mensagem caso haja sucessoelse:print("O Id não é numérico!")# EXCLUIR TODOS OS REGISTROScase 5:print("\n!!!!!
+
+EXCLUI TODOS OS DADOS TABELA !!!!!\n")confirma = input(margem + "CONFIRMA A EXCLUSÃO DE TODOS OS PETS? [S]im ou [N]ÃO?")if confirma.upper() == "S":# Apaga todos os registrosexclusao = "DELETE FROM petshop"inst_exclusao.execute(exclusao)conn.commit()# Depois de excluir todos os registros ele zera o IDdata_reset_ids = """ ALTER TABLE petshop MODIFY(ID GENERATED AS IDENTITY (START WITH 1)) """inst_exclusao.execute(data_reset_ids)conn.commit()
+```
+
+Python e alémprint("
+```python
+##### Todos os registros foram excluídos! #####")else:print(margem + "Operação cancelada pelo usuário!")# SAI DA APLICAÇÃOcase 6:# Modificando o flag da conexãoconexao = False# CASO O NUMERO DIGITADO NÃO SEJA UM DO MENUcase _:input(margem + "Digite um número entre 1 e 6.")# Pausa o fluxo da aplicação para a leitura das informaçõesinput(margem + "Pressione ENTER")else:print("Obrigado por utilizar a nossa aplicação! :)")Código-fonte 22-Código fonte completo da aplicaçãoFonte: Elaborado pelo autor (2023)Utilizando   todos   os   conteúdos   até esta   fase,   tente   fazer   a   aplicação modularizada com subalgoritmos.
+
+Queridos alunos, com este assunto,encerramos o capítulo.
+
+Espero que tenham gostado!
+
+Python e alémGLOSSÁRIOScriptSequência de comandos.
+
+Banco de dadosLocal em queos dados são organizados.
+
+RegistroLinha da tabela.
+
+CampoColuna da Tabela.
+
+TabelaJunção dos campos com os registros.
+
+CRUDAs quatro operações fundamentais em banco de dados: Cadastro, consulta, alteração e exclusão.
+
+Tratamento de errosPrever todas as possibilidades onde pode ocorrer um erro de operação do usuário.
+```

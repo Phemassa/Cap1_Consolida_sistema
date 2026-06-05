@@ -1,0 +1,772 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Sistema de Irrigação Inteligente{% endblock %}
+
+{% block content %}
+<!-- Layout em 2 Colunas: Info + Irrigação à Esquerda | Área à Direita -->
+<div class="row mb-4">
+    <!-- Coluna Esquerda: Cultura + Irrigação -->
+    <div class="col-md-7">
+        <!-- Informações da Cultura Atual -->
+        <div class="card culture-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title mb-2">
+                    <i class="bi bi-flower1"></i>
+                    Cultura Atual: {{ culture.name }}
+                </h5>
+                <p class="mb-2">
+                    <strong>pH Ideal:</strong> {{ culture.ph_min }} - {{ culture.ph_max }} |
+                    <strong>Umidade:</strong> {{ culture.humidity_min }}% - {{ culture.humidity_max }}% |
+                    <strong>NPK:</strong> 
+                    {% if culture.nitrogen_required %}N{% endif %}
+                    {% if culture.phosphorus_required %}P{% endif %}
+                    {% if culture.potassium_required %}K{% endif %}
+                </p>
+                <small class="text-muted">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Dados baseados em:</strong> 
+                    <a href="https://www.embrapa.br" target="_blank" class="text-decoration-none">EMBRAPA</a> • 
+                    <a href="https://www.conab.gov.br" target="_blank" class="text-decoration-none">CONAB</a> • 
+                    <a href="https://www.ibge.gov.br" target="_blank" class="text-decoration-none">IBGE</a> • 
+                    <a href="https://www.cepea.esalq.usp.br" target="_blank" class="text-decoration-none">CEPEA</a> • 
+                    <a href="https://www.gov.br/agricultura" target="_blank" class="text-decoration-none">MAPA</a>
+                </small>
+            </div>
+        </div>
+
+        <!-- Status da Irrigação -->
+        <div class="card">
+            <div class="card-body">
+                <div class="irrigation-status {{ 'irrigation-active pulse' if sensor_data.irrigation_active else 'irrigation-inactive' }}">
+                    <h4>
+                        <i class="bi bi-{{ 'droplet-fill' if sensor_data.irrigation_active else 'droplet' }}"></i>
+                        Sistema de Irrigação
+                    </h4>
+                    <p class="mb-0">
+                        {% if sensor_data.irrigation_active %}
+                            <strong>ATIVO</strong> - Irrigação em andamento
+                        {% else %}
+                            <strong>INATIVO</strong> - Condições adequadas
+                        {% endif %}
+                    </p>
+                    <small class="text-muted">
+                        Última atualização: {{ sensor_data.timestamp }}
+                    </small>
+                </div>
+                
+                <!-- Controle Manual -->
+                <div class="mt-3 text-center">
+                    <button class="btn btn-primary me-2" onclick="manualIrrigation(15)">
+                        <i class="bi bi-play-fill"></i> Irrigar 15min
+                    </button>
+                    <button class="btn btn-outline-primary me-2" onclick="manualIrrigation(30)">
+                        <i class="bi bi-play-fill"></i> Irrigar 30min
+                    </button>
+                    <button class="btn btn-outline-secondary" onclick="refreshData()">
+                        <i class="bi bi-arrow-clockwise"></i> Atualizar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Coluna Direita: Área de Plantio -->
+    <div class="col-md-5">
+        <div class="card border-success" style="height: calc(100% - 0px);">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-map"></i> Área de Plantio
+                </h5>
+                {% if current_area %}
+                <div class="text-center mb-2">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: #28a745;">
+                        {{ "%.2f"|format(current_area.area) }} m²
+                    </div>
+                    <small class="text-muted">Área #{{ current_area.id }}</small>
+                </div>
+                <hr>
+                <p class="mb-1">
+                    <i class="bi bi-droplet-fill text-info"></i> 
+                    <strong>Insumo:</strong> {{ current_area.insumo }}
+                </p>
+                <p class="mb-1">
+                    <i class="bi bi-calculator"></i> 
+                    <strong>Quantidade:</strong> {{ "%.2f"|format(current_area.qtd_insumo) }} {{ current_area.unidade }}
+                </p>
+                <p class="mb-2">
+                    <i class="bi bi-rulers"></i> 
+                    <strong>Dimensões:</strong> {{ current_area.get_dimensions_text() }}
+                </p>
+                <div class="text-center">
+                    <a href="{{ url_for('areas') }}" class="btn btn-sm btn-outline-success">
+                        <i class="bi bi-arrow-left-right"></i> Trocar Área
+                    </a>
+                </div>
+                {% else %}
+                <div class="text-center text-muted py-3">
+                    <i class="bi bi-exclamation-circle" style="font-size: 2rem;"></i>
+                    <p class="mb-2">Nenhuma área selecionada</p>
+                    <a href="{{ url_for('areas') }}" class="btn btn-sm btn-success">
+                        <i class="bi bi-plus-circle"></i> Selecionar Área
+                    </a>
+                </div>
+                {% endif %}
+                
+                <!-- Estatísticas da Cultura -->
+                {% if culture_stats.count > 0 %}
+                <hr>
+                <small class="text-muted">
+                    <i class="bi bi-bar-chart"></i> 
+                    <strong>{{ culture.name }}:</strong> {{ culture_stats.count }} áreas • 
+                    {{ "%.2f"|format(culture_stats.total_area) }} m² total
+                </small>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Destaque: Integração Meteorológica (Atividade Opcional 1) -->
+<div class="row mb-3">
+    <div class="col-12">
+        <div class="alert alert-warning border-warning" role="alert">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h6><i class="bi bi-trophy-fill"></i> <strong>🌤️ NOVO: Integração Meteorológica "IR ALÉM"</strong></h6>
+                    <small>
+                        Sistema agora integra <strong>API meteorológica pública</strong> para economia de água!<br>
+                        • <strong>Suspende irrigação</strong> automaticamente com previsão de chuva<br>
+                        • <strong>Economia de recursos</strong> baseada em dados meteorológicos reais
+                    </small>
+                </div>
+                <div class="col-md-4 text-end">
+                    <a href="{{ url_for('weather') }}" class="btn btn-warning btn-sm">
+                        <i class="bi bi-cloud-sun"></i> Ver Meteorologia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Informações sobre o Sistema -->
+<div class="row mb-3">
+    <div class="col-12">
+        <div class="alert alert-info" role="alert">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h6><i class="bi bi-lightbulb"></i> <strong>Como funciona o sistema:</strong></h6>
+                    <small>
+                        • <strong>NPK →</strong> Verde = Aplicado ✓ | Vermelho = Não Aplicado ✗<br>
+                        • <strong>LDR →</strong> Sensor detecta pH alterado pelos fertilizantes NPK<br>
+                        • <strong>Irrigação →</strong> Ativada automaticamente por pH/NPK inadequados<br>
+                        • <strong>Simulação →</strong> Baseada em química agrícola real (EMBRAPA)<br>
+                        • <strong>Dica:</strong> Aplicar NPK → LDR detecta mudança pH automaticamente
+                    </small>
+                </div>
+                <div class="col-md-4 text-end">
+                    <small class="text-muted">
+                        <i class="bi bi-shield-check"></i> Sistema baseado em<br>
+                        <strong>dados científicos oficiais</strong>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Aplicação de Fertilizantes NPK -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card sensor-card">
+            <div class="card-header bg-success text-white">
+                <h6 class="mb-0">
+                    <i class="bi bi-plus-circle-fill"></i>
+                    Aplicação de Fertilizantes NPK
+                </h6>
+                <small>Botões simulam adição de nutrientes no solo (afeta pH automaticamente)</small>
+            </div>
+            <div class="card-body text-center">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="me-4">
+                        <button class="npk-indicator {{ 'npk-active' if sensor_data.nitrogen else 'npk-inactive' }}" 
+                                onclick="applyFertilizer('nitrogen')" 
+                                title="{{ 'Nitrogênio APLICADO - Clique para remover' if sensor_data.nitrogen else 'Nitrogênio NÃO APLICADO - Clique para aplicar' }}">
+                            N
+                        </button>
+                        <div class="mt-2">
+                            <small><strong>Nitrogênio {{ '(Necessário)' if culture.nitrogen_required else '(Opcional)' }}</strong></small><br>
+                            <span class="badge {{ 'bg-success' if sensor_data.nitrogen else 'bg-danger' }}">
+                                {{ 'APLICADO ✓' if sensor_data.nitrogen else 'NÃO APLICADO ✗' }}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="me-4">
+                        <button class="npk-indicator {{ 'npk-active' if sensor_data.phosphorus else 'npk-inactive' }}"
+                                onclick="applyFertilizer('phosphorus')"
+                                title="{{ 'Fósforo APLICADO - Clique para remover' if sensor_data.phosphorus else 'Fósforo NÃO APLICADO - Clique para aplicar' }}">
+                            P
+                        </button>
+                        <div class="mt-2">
+                            <small><strong>Fósforo {{ '(Necessário)' if culture.phosphorus_required else '(Opcional)' }}</strong></small><br>
+                            <span class="badge {{ 'bg-success' if sensor_data.phosphorus else 'bg-danger' }}">
+                                {{ 'APLICADO ✓' if sensor_data.phosphorus else 'NÃO APLICADO ✗' }}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button class="npk-indicator {{ 'npk-active' if sensor_data.potassium else 'npk-inactive' }}"
+                                onclick="applyFertilizer('potassium')"
+                                title="{{ 'Potássio APLICADO - Clique para remover' if sensor_data.potassium else 'Potássio NÃO APLICADO - Clique para aplicar' }}">
+                            K
+                        </button>
+                        <div class="mt-2">
+                            <small><strong>Potássio {{ '(Necessário)' if culture.potassium_required else '(Opcional)' }}</strong></small><br>
+                            <span class="badge {{ 'bg-success' if sensor_data.potassium else 'bg-danger' }}">
+                                {{ 'APLICADO ✓' if sensor_data.potassium else 'NÃO APLICADO ✗' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sensores Analógicos -->
+<div class="row mb-4">
+    <!-- pH do Solo -->
+    <div class="col-md-3 mb-3">
+        <div class="card sensor-card h-100 border-warning">
+            <div class="card-header bg-warning text-dark py-2">
+                <h6 class="mb-0">
+                    <i class="bi bi-droplet-half"></i>
+                    pH do Solo
+                </h6>
+            </div>
+            <div class="card-body text-center">
+                <div class="metric-value text-warning">{{ sensor_data.ph_level }}</div>
+                <div class="metric-label">
+                    <small>🔬 Sensor LDR (Analog A0)</small><br>
+                    <em>pH detectado via ESP32</em>
+                </div>
+                <div class="mt-2">
+                    {% if culture.ph_min <= sensor_data.ph_level <= culture.ph_max %}
+                        <span class="badge bg-success">✓ Ideal para {{ culture.name }}</span>
+                    {% else %}
+                        <span class="badge bg-danger">⚠ Fora do ideal</span>
+                    {% endif %}
+                </div>
+                <div class="mt-2">
+                    <small class="text-muted">
+                        Ideal: {{ culture.ph_min }} - {{ culture.ph_max }}
+                    </small>
+                </div>
+                
+                <!-- Controle manual do LDR -->
+                <div class="mt-3">
+                    <small><strong>Sensor LDR (pH):</strong></small>
+                    <input type="range" class="form-range" 
+                           id="phRange" 
+                           min="0" max="14" step="0.1" 
+                           value="{{ sensor_data.ph_level }}"
+                           onchange="adjustPH(this.value)">
+                    <small class="text-info">📡 LDR lê pH alterado pelos fertilizantes NPK</small>
+                    <br><small class="text-warning">🎮 Ou use slider para ajuste manual</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Umidade do Solo -->
+    <div class="col-md-3 mb-3">
+        <div class="card sensor-card h-100">
+            <div class="card-body text-center">
+                <h6 class="card-title">
+                    <i class="bi bi-moisture"></i>
+                    Umidade Solo
+                </h6>
+                <div class="metric-value">{{ sensor_data.soil_humidity }}%</div>
+                <div class="metric-label">
+                    <small>💧 Calculada a partir do DHT22</small><br>
+                    <em>(Umidade Ar × 0.8)</em>
+                </div>
+                <div class="mt-2">
+                    {% if sensor_data.soil_humidity >= culture.humidity_min %}
+                        <span class="badge bg-success">Adequada</span>
+                    {% else %}
+                        <span class="badge bg-danger">Baixa</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Temperatura do Ar -->
+    <div class="col-md-3 mb-3">
+        <div class="card sensor-card h-100">
+            <div class="card-body text-center">
+                <h6 class="card-title">
+                    <i class="bi bi-thermometer"></i>
+                    Temperatura Ar
+                </h6>
+                <div class="metric-value">{{ sensor_data.air_temperature }}°C</div>
+                <div class="metric-label">
+                    <small>🌡️ Sensor DHT22 (D21)</small><br>
+                    <em>Temperatura ambiente</em>
+                </div>
+                <div class="mt-2">
+                    {% if 18 <= sensor_data.air_temperature <= 30 %}
+                        <span class="badge bg-success">Ideal</span>
+                    {% else %}
+                        <span class="badge bg-warning">Atenção</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Umidade do Ar -->
+    <div class="col-md-3 mb-3">
+        <div class="card sensor-card h-100">
+            <div class="card-body text-center">
+                <h6 class="card-title">
+                    <i class="bi bi-cloud-drizzle"></i>
+                    Umidade Ar
+                </h6>
+                <div class="metric-value">{{ sensor_data.air_humidity }}%</div>
+                <div class="metric-label">
+                    <small>💨 Sensor DHT22 (D21)</small><br>
+                    <em>Umidade relativa do ar</em>
+                </div>
+                <div class="mt-2">
+                    {% if 40 <= sensor_data.air_humidity <= 70 %}
+                        <span class="badge bg-success">Ideal</span>
+                    {% else %}
+                        <span class="badge bg-info">Normal</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gráfico em Tempo Real -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="bi bi-graph-up"></i>
+                    Monitoramento em Tempo Real
+                </h6>
+            </div>
+            <div class="card-body">
+                <canvas id="sensorChart" width="400" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Container de alertas no final para evitar piscar -->
+<div id="alertContainer" style="position: fixed; bottom: 20px; right: 20px; z-index: 1050; max-width: 400px;"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Configuração do gráfico
+const ctx = document.getElementById('sensorChart').getContext('2d');
+const sensorChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [
+            {
+                label: 'pH do Solo',
+                data: [],
+                borderColor: '#7cb342',
+                backgroundColor: 'rgba(124, 179, 66, 0.1)',
+                tension: 0.4
+            },
+            {
+                label: 'Umidade Solo (%)',
+                data: [],
+                borderColor: '#2196f3',
+                backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                tension: 0.4
+            },
+            {
+                label: 'Temperatura (°C)',
+                data: [],
+                borderColor: '#ff9800',
+                backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                tension: 0.4
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'top'
+            }
+        }
+    }
+});
+
+// Função para mostrar alertas (apenas para erros e ações importantes)
+function showAlert(message, type = 'info') {
+    const alertContainer = document.getElementById('alertContainer');
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show shadow-lg`;
+    alertDiv.style.marginBottom = '10px';
+    alertDiv.innerHTML = `
+        <div class="d-flex align-items-center">
+            <i class="bi ${type === 'success' ? 'bi-check-circle' : type === 'danger' ? 'bi-exclamation-triangle' : 'bi-info-circle'} me-2"></i>
+            <span>${message}</span>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+    
+    // Adiciona animação de entrada
+    alertDiv.style.opacity = '0';
+    alertDiv.style.transform = 'translateX(100%)';
+    alertContainer.appendChild(alertDiv);
+    
+    // Anima entrada
+    setTimeout(() => {
+        alertDiv.style.transition = 'all 0.3s ease-in-out';
+        alertDiv.style.opacity = '1';
+        alertDiv.style.transform = 'translateX(0)';
+    }, 10);
+    
+    // Remove o alerta após 4 segundos
+    setTimeout(() => {
+        if (alertDiv.parentNode) {
+            alertDiv.style.opacity = '0';
+            alertDiv.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 300);
+        }
+    }, 4000);
+}
+
+// Função para irrigação manual
+function manualIrrigation(duration) {
+    fetch('/manual_irrigation', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `duration=${duration}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert(`<i class="bi bi-droplet-fill"></i> ${data.message}`, 'success');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showAlert('Erro ao ativar irrigação manual', 'danger');
+    });
+}
+
+// Função para atualizar dados
+function refreshData() {
+    fetch('/api/sensor_data')
+    .then(response => response.json())
+    .then(data => {
+        // Atualiza o gráfico
+        const now = new Date().toLocaleTimeString();
+        sensorChart.data.labels.push(now);
+        sensorChart.data.datasets[0].data.push(data.ph_level);
+        sensorChart.data.datasets[1].data.push(data.soil_humidity);
+        sensorChart.data.datasets[2].data.push(data.air_temperature);
+        
+        // Mantém apenas os últimos 20 pontos
+        if (sensorChart.data.labels.length > 20) {
+            sensorChart.data.labels.shift();
+            sensorChart.data.datasets.forEach(dataset => {
+                dataset.data.shift();
+            });
+        }
+        
+        sensorChart.update();
+        
+        // Atualiza valores na interface sem recarregar
+        updateUIValues(data);
+        
+        // Log silencioso para debug
+        console.log('📊 Dados atualizados:', {
+            pH: data.ph_level,
+            umidade: data.soil_humidity,
+            temperatura: data.air_temperature,
+            irrigação: data.irrigation_active
+        });
+    })
+    .catch(error => {
+        console.error('❌ Erro ao buscar dados:', error);
+        showAlert('Erro de conexão com o servidor', 'danger');
+    });
+}
+
+// Função para atualizar valores na interface
+function updateUIValues(data) {
+    // Atualiza apenas os valores que mudaram, sem recarregar a página
+    const elements = {
+        ph: document.querySelector('.metric-value'),
+        temperature: document.querySelectorAll('.metric-value')[1],
+        humidity: document.querySelectorAll('.metric-value')[2],
+        irrigation: document.querySelector('.irrigation-status')
+    };
+    
+    // Atualiza valores se os elementos existirem
+    if (elements.ph) elements.ph.textContent = data.ph_level?.toFixed(2) || '7.0';
+    if (elements.temperature) elements.temperature.textContent = `${data.air_temperature?.toFixed(1) || '25.0'}°C`;
+    if (elements.humidity) elements.humidity.textContent = `${data.soil_humidity?.toFixed(1) || '60.0'}%`;
+}
+
+// Atualização automática mais inteligente - a cada 15 segundos
+setInterval(refreshData, 15000);
+
+// Função para aplicar fertilizantes (alterna status NPK no solo)
+function applyFertilizer(nutrient) {
+    const button = event.target;
+    const isActive = button.classList.contains('npk-active');
+    
+    // Feedback visual imediato
+    button.style.transform = 'scale(0.9)';
+    button.disabled = true;
+    
+    // Faz chamada para API para alternar status
+    fetch(`/api/apply_fertilizer/${nutrient}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Atualiza visual do botão imediatamente
+            if (data.status) {
+                button.classList.remove('npk-inactive');
+                button.classList.add('npk-active');
+                button.title = `${data.nutrient.charAt(0).toUpperCase() + data.nutrient.slice(1)} APLICADO - Clique para remover`;
+            } else {
+                button.classList.remove('npk-active');
+                button.classList.add('npk-inactive');
+                button.title = `${data.nutrient.charAt(0).toUpperCase() + data.nutrient.slice(1)} NÃO APLICADO - Clique para aplicar`;
+            }
+            
+            // Atualiza badge do nutriente
+            const badges = button.parentElement.querySelectorAll('.badge');
+            badges.forEach(badge => {
+                if (badge.textContent.includes('APLICADO') || badge.textContent.includes('NÃO APLICADO')) {
+                    badge.className = `badge ${data.status ? 'bg-success' : 'bg-danger'}`;
+                    badge.textContent = data.status ? 'APLICADO ✓' : 'NÃO APLICADO ✗';
+                }
+            });
+            
+            // Efeito no pH do solo se aplicado
+            if (data.status) {
+                simulateNPKEffect(nutrient);
+            }
+            
+            // Mensagem detalhada com quantidade calculada
+            let alertMessage = `🌱 ${data.message}`;
+            
+            if (data.calculation && data.calculation.amount > 0 && data.status) {
+                alertMessage = `
+                    <strong>${data.message}</strong><br>
+                    <small>
+                        📊 Área: ${data.calculation.area} m²<br>
+                        💊 Dosagem: ${data.calculation.dosage_per_m2} g/m²<br>
+                        📦 Total aplicado: <strong>${data.calculation.amount} ${data.calculation.unit}</strong>
+                    </small>
+                `;
+                
+                console.log(`🧪 NPK Aplicado:`);
+                console.log(`   Nutriente: ${nutrient.toUpperCase()}`);
+                console.log(`   Área: ${data.calculation.area} m²`);
+                console.log(`   Dosagem: ${data.calculation.dosage_per_m2} g/m²`);
+                console.log(`   Total: ${data.calculation.amount} ${data.calculation.unit}`);
+            } else if (!data.calculation || data.calculation.amount === 0) {
+                alertMessage = `⚠️ ${data.message}<br><small>Selecione uma área de plantio primeiro</small>`;
+            }
+            
+            showAlert(alertMessage, data.status ? 'success' : 'warning');
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao aplicar fertilizante:', error);
+        showAlert('Erro ao aplicar fertilizante', 'danger');
+    })
+    .finally(() => {
+        // Restaura botão
+        setTimeout(() => {
+            button.style.transform = 'scale(1)';
+            button.disabled = false;
+        }, 150);
+        
+        // Atualiza dados após 1 segundo
+        setTimeout(() => {
+            refreshData();
+        }, 1000);
+    });
+}
+
+// Simula efeito REAL dos NPK no pH do solo (como na agricultura real)
+function simulateNPKEffect(nutrient) {
+    const phRange = document.getElementById('phRange');
+    if (!phRange) return;
+    
+    let currentPH = parseFloat(phRange.value);
+    let newPH = currentPH;
+    let chemicalEffect = "";
+    
+    // Efeitos químicos REAIS dos fertilizantes no pH
+    switch(nutrient) {
+        case 'nitrogen':
+            // Ureia e Sulfato de Amônio → Processo de nitrificação libera H+ (ácido)
+            const acidification = 0.3 + Math.random() * 0.4;
+            newPH = Math.max(4.0, currentPH - acidification);
+            chemicalEffect = `🧪 Nitrificação NH4+ → NO3- + H+ (acidifica -${acidification.toFixed(2)})`;
+            break;
+        case 'phosphorus':
+            // Superfosfato neutraliza acidez do solo
+            const neutralization = 0.2 + Math.random() * 0.3;
+            newPH = Math.min(8.0, currentPH + neutralization);
+            chemicalEffect = `🧪 Fosfatos consomem H+ (neutraliza +${neutralization.toFixed(2)})`;
+            break;
+        case 'potassium':
+            // KCl neutro, K2CO3 ligeiramente alcalino
+            const stabilization = 0.1 + Math.random() * 0.2;
+            newPH = Math.min(7.5, currentPH + stabilization);
+            chemicalEffect = `🧪 Íons K+ estabilizam pH (alcaliniza +${stabilization.toFixed(2)})`;
+            break;
+    }
+    
+    // Simula delay do sensor LDR detectando a mudança química
+    const phDisplay = document.querySelector('.text-warning.metric-value');
+    if (phDisplay) {
+        // Efeito visual de "detectando mudança"
+        phDisplay.style.transition = 'all 0.5s ease';
+        phDisplay.style.color = '#ff9800';
+        phDisplay.textContent = 'Lendo...';
+    }
+    
+    setTimeout(() => {
+        // Atualiza o sensor LDR com novo pH
+        phRange.value = newPH.toFixed(1);
+        adjustPH(newPH, 'automatic');
+        
+        if (phDisplay) {
+            phDisplay.style.color = '#ffc107';
+            phDisplay.textContent = newPH.toFixed(2);
+        }
+        
+        // Log científico detalhado
+        console.log(`� SENSOR LDR detectou mudança de pH:`);
+        console.log(`   Antes: ${currentPH.toFixed(2)} | Depois: ${newPH.toFixed(2)}`);
+        console.log(`   ${chemicalEffect}`);
+        
+        // Alerta visual para o usuário
+        showAlert(
+            `📡 LDR detectou: pH ${currentPH.toFixed(2)} → ${newPH.toFixed(2)} (${nutrient.toUpperCase()})`,
+            newPH > currentPH ? 'info' : 'warning'
+        );
+    }, 800); // Simula tempo do sensor processar
+}
+
+// Função para ajustar pH (automático via NPK ou manual via slider)
+function adjustPH(value, source = 'manual') {
+    const phValue = parseFloat(value);
+    
+    // Atualiza display visual
+    const phDisplay = document.querySelector('.text-warning.metric-value');
+    if (phDisplay) {
+        phDisplay.textContent = phValue.toFixed(2);
+    }
+    
+    // Atualiza badge de status
+    updatePHStatus(phValue);
+    
+    if (source === 'manual') {
+        console.log(`🎛️ Ajuste MANUAL do LDR - pH: ${phValue.toFixed(2)}`);
+        showAlert(`🔧 pH ajustado manualmente para ${phValue.toFixed(2)}`, 'secondary');
+    }
+    // Para ajustes automáticos via NPK, o log já é feito na função simulateNPKEffect
+}
+
+// Atualiza status do pH baseado na cultura atual
+function updatePHStatus(phValue) {
+    // Obtém valores ideais da cultura (hardcoded para demo)
+    const cultureRanges = {
+        tomate: {min: 6.0, max: 6.8},
+        milho: {min: 6.0, max: 7.0},
+        soja: {min: 6.0, max: 7.0},
+        banana: {min: 5.5, max: 6.5},
+        cafe: {min: 6.0, max: 6.5}
+    };
+    
+    // Para demo, usa tomate como padrão
+    const range = cultureRanges.tomate;
+    const isIdeal = phValue >= range.min && phValue <= range.max;
+    
+    const badges = document.querySelectorAll('.badge');
+    badges.forEach(badge => {
+        if (badge.textContent.includes('Ideal') || badge.textContent.includes('Fora do ideal')) {
+            badge.className = `badge ${isIdeal ? 'bg-success' : 'bg-danger'}`;
+            badge.textContent = isIdeal ? '✓ Ideal para cultura' : '⚠ Fora do ideal';
+        }
+    });
+}
+
+// Inicialização quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🌱 Dashboard Sistema de Irrigação carregado');
+    console.log('💡 Use os botões NPK para aplicar fertilizantes no solo');
+    console.log('🎛️ Ajuste o pH manualmente para simular sensor LDR');
+    
+    // Primeira atualização após 3 segundos (da tempo da página renderizar)
+    setTimeout(() => {
+        refreshData();
+    }, 3000);
+    
+    // Adiciona botão de atualização manual
+    addRefreshButton();
+});
+
+// Adiciona botão para atualização manual
+function addRefreshButton() {
+    const header = document.querySelector('.card-header h6');
+    if (header && !document.getElementById('manualRefresh')) {
+        const refreshBtn = document.createElement('button');
+        refreshBtn.id = 'manualRefresh';
+        refreshBtn.className = 'btn btn-sm btn-outline-primary ms-2';
+        refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Atualizar';
+        refreshBtn.onclick = () => {
+            refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise spin"></i> Atualizando...';
+            refreshData();
+            setTimeout(() => {
+                refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Atualizar';
+            }, 1000);
+        };
+        header.appendChild(refreshBtn);
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,68 @@
+# ✅ Checklist Rápido - Sincronização Git
+ 
+## 🚀 Antes de Começar a Trabalhar
+- [ ] `git pull origin main`
+- [ ] `git status` (verificar se está limpo)
+- [ ] Verificar se está na branch correta: `git branch`
+ 
+## 💻 Durante o Trabalho
+- [ ] Fazer commits pequenos e frequentes
+- [ ] Testar código antes de commit
+- [ ] Usar mensagens descritivas: `feat:`, `fix:`, `docs:`, etc.
+ 
+## 📤 Antes de Sair/Trocar de Máquina
+- [ ] `git status` (ver mudanças)
+- [ ] `git add .` (adicionar mudanças)
+- [ ] `git commit -m "mensagem clara"`
+- [ ] `git push origin main`
+- [ ] Verificar se push foi bem-sucedido
+ 
+## 🔄 Ao Trocar de Ambiente
+- [ ] 'git checkout phellype-dev'
+- [ ] `git pull origin main`
+- [ ] `git pull origin phellype-dev`
+- [ ] `git pull origin carlos-dev`
+- [ ] `git pull origin cesar-dev`
+- [ ] `git status` (confirmar sincronização)
+- [ ] Testar se aplicação funciona
+- [ ] Continuar desenvolvimento
+ 
+## ⚠️ Em Caso de Conflitos
+- [ ] `git status` (ver arquivos conflituosos)
+- [ ] Editar arquivos manualmente (remover `<<<`, `===`, `>>>`)
+- [ ] `git add arquivo-resolvido.py`
+- [ ] `git commit -m "merge: resolve conflitos"`
+- [ ] `git push origin main`
+ 
+## 🆘 Verificações de Emergência
+- [ ] Commits não enviados: `git log origin/main..HEAD`
+- [ ] Commits não baixados: `git log HEAD..origin/main`
+- [ ] Diferenças: `git diff HEAD origin/main --name-only`
+- [ ] Status geral: `git status`
+ 
+---
+ 
+## 🔥 Comandos Mais Usados
+ 
+```bash
+# Trio básico diário
+git pull origin main
+git add . && git commit -m "sua mensagem"
+git push origin main
+ 
+# Verificação rápida
+git status
+git log --oneline -5
+ 
+# Em caso de problemas
+git stash
+git pull origin main
+git stash pop
+```
+ 
+## 🎯 Metas de Boas Práticas
+- ✅ Nunca trabalhar sem fazer pull primeiro
+- ✅ Sempre fazer push antes de trocar de máquina
+- ✅ Commits com mensagens claras e descritivas
+- ✅ Resolver conflitos imediatamente
+- ✅ Manter .gitignore atualizado

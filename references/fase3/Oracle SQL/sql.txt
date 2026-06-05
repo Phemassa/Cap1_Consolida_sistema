@@ -1,0 +1,44 @@
+5) Estabeleça uma conexão com o banco de dados Oracle:
+•	No campo Nome informe um nome qualquer, por exemplo, FIAP.
+•	No campo Nome do Usuário informe o seu RM, incluindo as letras RM, por exemplo: RM12345.
+•	No campo Senha informe a sua data de nascimento com seis dígitos no formato DDMMYY, por exemplo, se sua data de nascimento for 07 de setembro de 2005 sua senha será 070905.
+•	Em Nome do Host, informe oracle.fiap.com.br.
+•	Em Porta, mantenha o número 1521 que já está lá.
+•	Em SID, informe ORCL.
+•	Clique em Testar. Se receber uma mensagem dizendo que sua conta está bloqueada, entre em contato com o suporte pedindo que desbloqueiem a sua conta. Se receber uma mensagem dizendo que seu usuário ou senha estão inválido, verifique se digitou o seu RM no formato RM12345 (sem espaços e com as letras RM no início) caso esteja correto, entre em contato com o suporte para que resetem sua senha.
+
+ 
+
+6) Uma vez conectado ao banco, localize o ícone “Tabelas (Filtrado)”.
+ 
+
+7) Clique com o botão direito do mouse em “Tabelas (Filtrado)” e selecione “Importa Dados”.
+  
+8) Clique em “Procurar” e carregue os dados dos seus sensores.
+ 
+
+9) Clique em “Próximo”. No campo “Nome da Tabela”, defina um nome para sua tabela. O nome não pode conter espaços, caracteres especiais, deve começar por uma letra e não deve ter mais que 30 dígitos.
+
+ 
+
+10) Clique em “Próximo”. Selecione os campos que deseja que sejam importados para o banco de dados, não altere nada caso queira importar todos os dados.
+
+ 
+
+11) Clique em “Próximo”. Caso seja necessário, altere o nome das colunas.
+
+ 
+
+12) Clique em próximo.
+ 
+
+13) Clique em “Finalizar” e aguarde a mensagem informando que os dados foram importados com sucesso.
+
+14) Clique em OK e consulte os dados da sua tabela executando o comando SELECT * FROM NOME_DA_SUA_TABELA; onde NOME_DA_SUA_TABELA é o nome que escolheu para a sua tabela. Ctrl+Enter executa o comando.
+
+Query Evidência:
+ 
+
+
+Tabela sensores.Evidência: 
+tabela sensores.jpg

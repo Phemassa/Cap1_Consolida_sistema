@@ -1,0 +1,62 @@
+ATIVIDADE AVALIATIVA - CAP 1: UM MAPA DO TESOURO
+================================================================
+
+PROJETO 2: Iniciando a coleta de Dados
+Período: 18/09/2025 a 15/10/2025
+Status: Entrega pendente
+
+ATENÇÃO: Atividades entregues até 3 dias após o prazo receberão até 70% da nota.
+
+INTRODUÇÃO
+----------
+Você e seu grupo estão na Startup FarmTech Solutions, trabalhando na equipe de desenvolvedores.
+Podem utilizar ChatGPT, Gemini ou outras IAs, mas com olhar crítico e resposta autoral.
+
+CUIDADO: "Copy-paste" do GPT caracteriza plágio e os grupos não terão nota.
+
+DESCRIÇÃO DO PROJETO
+-------------------
+Objetivo: Construir/simular dispositivo eletrônico para coletar dados agrícolas.
+Base: Fase anterior (cálculo de área, monitoramento climático).
+Foco: Sistema de irrigação inteligente baseado em NPK (Nitrogênio, Fósforo, Potássio).
+
+COMPONENTES (Simulação Wokwi.com):
+- Sensores NPK → 3 Botões Verdes (true/false)
+- Sensor pH → LDR (Light Dependent Resistor)
+- Umidade Solo → DHT22 (umidade do ar)
+- Bomba d'Água → Relé Azul
+
+LÓGICA: Grupo define quando ligar/desligar irrigação baseado em NPK, pH e umidade.
+Escolher cultura agrícola e pesquisar necessidades reais de nutrientes.
+
+OPCIONAIS - IR ALÉM
+------------------
+1. INTEGRAÇÃO PYTHON + API (OpenWeather)
+   - Previsão de chuva → suspender irrigação
+   - Usar Serial.available() e Serial.read() se necessário
+
+2. ANÁLISE EM R
+   - Análise estatística para decisão de irrigação
+   - Conhecimento em Data Science
+
+ENTREGÁVEIS
+-----------
+1. GitHub organizado: meugit/cursotiaor/pbl/fase3/pastas
+2. README.MD em markdown (funcionamento completo)
+3. Imagens do circuito Wokwi.com
+4. Código C/C++ do ESP32
+5. Códigos opcionais (se desenvolvidos)
+6. Vídeo YouTube (até 5 minutos, sem listagem)
+
+OBSERVAÇÕES IMPORTANTES
+----------------------
+- Reforçando: Não temos sensor de pH, altere manualmente o LDR quando mexer no NPK
+- Fontes de dados: EMBRAPA, CONAB, IBGE, CEPEA, MAPA
+- NÃO altere GitHub após entrega da FIAP (desconto na nota)
+- Grupo: 1 a 5 alunos
+
+BENEFÍCIOS
+----------
+- Conhecimentos: Sensoriamento, IoT, APIs, Data Science
+- Visão prática: IoT e IA para otimização agrícola
+- FarmTech Solutions: Fazenda inteligente, uso eficiente da água

@@ -1,0 +1,178 @@
+[33mcommit b815d75086826df01613780c2412f75c845858fd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcesar-dev[m[33m)[m
+Merge: 662e932 b590343
+Author: Cesar-Azeredo <ceceu2212@gmail.com>
+Date:   Fri Oct 3 07:20:43 2025 -0300
+
+    Merge branch 'main' of https://github.com/Phemassa/FarmTechSolutions into cesar-dev
+
+[33mcommit 662e9323058ed9cc255b1b5f76ca6ebd72874293[m[33m ([m[1;31morigin/cesar-dev[m[33m)[m
+Author: Cesar-Azeredo <ceceu2212@gmail.com>
+Date:   Thu Oct 2 21:28:57 2025 -0300
+
+    fix: Corrige completamente 'Trapézio' para 'Triângulo' em toda interface
+    
+    - Atualiza template areas.html para mostrar 'Triângulo' na interface
+    - Corrige comentário em planting_areas.py (trapezio  triangulo)
+    - Resolve bug visual onde ainda aparecia Trapézio nas áreas de plantio
+    - Agora interface mostra corretamente: Retângulo, Triângulo, Círculo
+
+[33mcommit 69894bca8cfa99458e9d141a880b54903f269032[m
+Author: Cesar-Azeredo <ceceu2212@gmail.com>
+Date:   Thu Oct 2 21:09:44 2025 -0300
+
+    fix: Corrige forma geométrica de 'Trapézio' para 'Triângulo' nas áreas de plantio
+    
+    - Atualiza planting_areas.py para usar 'Triângulo' em vez de 'Trapézio'
+    - Correção na função get_shape_text() para definição correta das formas
+    - Agora as formas são: 1=Retângulo, 2=Triângulo, 3=Círculo
+
+[33mcommit b5903433010b284d7cf48d940ce7868c8c4207aa[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Thu Oct 2 20:59:43 2025 -0300
+
+    feat: adiciona página de consulta de dosagens NPK e corrige integração meteorológica
+    
+    - Cria página '/npk-dosages' com informações detalhadas de NPK por cultura
+    - Implementa sistema de cálculo de dosagens baseado em área
+    - Adiciona cards interativos para Banana e Milho com dosagens específicas
+    - Corrige endpoint /api/weather_check para retornar reason e confidence corretos
+    - Simplifica cabeçalho do site para 'FarmTech Solutions'
+    - Reorganiza layout do dashboard (7-col esquerda + 5-col direita)
+    - Adiciona documentação técnica de dosagens NPK
+
+[33mcommit 26cc6c7129f196d3085968509a645cb12b20b6c2[m[33m ([m[1;32mmain[m[33m)[m
+Merge: a90f4ae 31da265
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Thu Oct 2 20:29:18 2025 -0300
+
+    Merge branch 'phellype-dev'
+
+[33mcommit 31da265cb49ed3ffd664cd4cd7bbf4fde1302f48[m[33m ([m[1;31morigin/phellype-dev[m[33m)[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Thu Oct 2 20:28:12 2025 -0300
+
+    feat: integra dados CSV Fase 1 com seleção de áreas de plantio Banana e Milho
+    
+    - Cria módulo planting_areas.py para gerenciar CSVs (30 áreas banana, 21 milho)
+    - Adiciona página áreas.html com seleção visual de áreas por cultura
+    - Remove culturas Tomate/Soja/Café, mantém apenas Banana e Milho conforme CSVs
+    - Exibe tamanho de área, insumos, dimensões e forma geométrica no dashboard
+    - Adiciona estatísticas de área total e média por cultura
+    - Implementa APIs: /api/select_area e /api/get_areas
+    - Adiciona menu 'Áreas de Plantio' com badge CSV
+    - Corrige bloco de scripts em areas.html para funcionar corretamente
+
+[33mcommit a90f4ae715e341808c2c557683da663b6e94a29f[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Thu Oct 2 20:02:32 2025 -0300
+
+    feat: adiciona requirements.txt com todas as dependências do projeto
+
+[33mcommit 91da6fa9dfdf7db162e9837337401d0026e31db0[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Thu Oct 2 19:54:11 2025 -0300
+
+    docs: atualiza git_rules para branch main e adiciona guia de workflow para time de 3 devs
+
+[33mcommit aa0b3a65a855869d728cf34915665d6d2156e5f3[m
+Merge: 9196209 06bc8c5
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Thu Oct 2 19:49:36 2025 -0300
+
+    feat: add scripts for starting and restarting Flask server with improved error handling and user feedback
+
+[33mcommit 91962092045be103bfae155ba6f5b3fcc149394d[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Thu Oct 2 19:43:37 2025 -0300
+
+    docs: corrige git_rules para usar branch main e extensões .py
+
+[33mcommit ea8c93519d53a8e129576bd136ed39a3b39f6762[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Thu Oct 2 19:36:40 2025 -0300
+
+    v251002_script_server
+
+[33mcommit 06bc8c5c79b15206311cd4ffdc179d009a7c862a[m
+Author: Cesar-Azeredo <ceceu2212@gmail.com>
+Date:   Thu Oct 2 19:34:22 2025 -0300
+
+    docs: adiciona checklist Git personalizado para FarmTechSolutions
+
+[33mcommit 0a2b8fcc193d30d9100e653480a4046f6815f5eb[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Tue Sep 30 20:53:24 2025 -0300
+
+    250930_v2
+
+[33mcommit 0a89c11b1ad8cb11ddc811d7446fb010226e6859[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Tue Sep 30 20:36:04 2025 -0300
+
+    250930
+
+[33mcommit 80346ba259e21d35157f3bb08a18881a2b32545a[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Tue Sep 30 20:33:26 2025 -0300
+
+    250930
+
+[33mcommit 3576f119ff2a24503900f5fbdddd2dd99aa0fb71[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Sun Sep 28 13:57:07 2025 -0300
+
+    V1_fase2_terça_25_09_30
+
+[33mcommit a2aadbf745eb4a65190225ccae2823c2d106abf1[m[33m ([m[1;31morigin/carlos-dev[m[33m)[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Tue Sep 23 19:33:15 2025 -0300
+
+    v7.1
+
+[33mcommit d94203ec943a56ecc27457c324a4b123fdcc86b4[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Sat Sep 6 17:56:00 2025 -0300
+
+    v7
+
+[33mcommit 40f7214b98a1a65c138d7b32aa3b5261682034a5[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Sat Sep 6 17:38:18 2025 -0300
+
+    v6
+
+[33mcommit f145a8f10fdf20480f1e8adada20adf113be142d[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Sat Sep 6 16:11:26 2025 -0300
+
+    v5
+
+[33mcommit 820e732479914cde6652e948898962963e46b402[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Wed Sep 3 18:46:53 2025 -0300
+
+    v3
+
+[33mcommit 5827e6a11784596b93634b33a001d8bab65497ca[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Wed Sep 3 18:15:38 2025 -0300
+
+    v3
+
+[33mcommit c8ff6579c4528b6b026dbe26b3014583b5c76ea2[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Wed Sep 3 18:15:29 2025 -0300
+
+    v2
+
+[33mcommit 3f327efae028657cdf5a5a2665d08c57dfe68a56[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Tue Sep 2 20:54:39 2025 -0300
+
+    requeriments
+
+[33mcommit 336d16c8b6b32d4536133a65fe53190170988003[m
+Author: Phemassa <99605190+Phemassa@users.noreply.github.com>
+Date:   Tue Sep 2 20:05:10 2025 -0300
+
+    Initial commit

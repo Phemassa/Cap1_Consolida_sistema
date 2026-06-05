@@ -22,10 +22,23 @@ Cap1_Consolida_sistema/
     fase4/
     fase6/
   services/                # Orquestracao, health check e alertas
+  references/              # Artefatos de origem das fases 1-6
   docs/                    # Documentacao e planejamento
   tests/                   # Testes
   cli.py                   # Comandos de terminal
 ```
+
+## Origem das Fases
+
+A Fase 7 consolida os entregaveis das fases anteriores. Cada modulo em `phases/` e `services/` indica seu repositorio de origem no cabecalho do arquivo. Indice consolidado em [references/README.md](references/README.md).
+
+| Fase | Tema | Repositorio original | Modulo na Fase 7 |
+|------|------|----------------------|------------------|
+| 1 e 2 | Areas, insumos e BD | https://github.com/Phemassa/FarmTechSolutions | [phases/fase1_2](phases/fase1_2) |
+| 3 | IoT ESP32 e sensores | https://github.com/Phemassa/fiap-farmtech-fase3 | [phases/fase3](phases/fase3) |
+| 4 | ML e Dashboard | https://github.com/Phemassa/fiap-farmtech-fase4 | [phases/fase4](phases/fase4) |
+| 5 | Cloud e Alertas AWS | https://github.com/Phemassa/FarmTech-FASE-5-cap1-2026 | [services/alert_service.py](services/alert_service.py) |
+| 6 | Visao computacional | https://github.com/Phemassa/Cap_1_Rede_Neural | [phases/fase6](phases/fase6) + [references/fase6](references/fase6) |
 
 ## Arquitetura consolidada
 

@@ -1,0 +1,370 @@
+{% extends "base.html" %}
+
+{% block title %}Dosagens NPK - FarmTech Solutions{% endblock %}
+
+{% block extra_css %}
+<style>
+    .culture-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 2px solid transparent;
+    }
+    
+    .culture-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        border-color: var(--accent-green);
+    }
+    
+    .culture-card.active {
+        border-color: var(--accent-green);
+        background-color: rgba(124, 179, 66, 0.05);
+    }
+    
+    .nutrient-badge {
+        font-size: 2.5rem;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+        margin: 0 auto;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .nutrient-n { background: linear-gradient(135deg, #2196F3, #1565C0); }
+    .nutrient-p { background: linear-gradient(135deg, #FF9800, #E65100); }
+    .nutrient-k { background: linear-gradient(135deg, #9C27B0, #6A1B9A); }
+    
+    .dosage-value {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--accent-green);
+    }
+    
+    .importance-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+    
+    .importance-critica { background-color: #dc3545; color: white; }
+    .importance-alta { background-color: #ff9800; color: white; }
+    .importance-media { background-color: #17a2b8; color: white; }
+    
+    .observation-item {
+        padding: 0.75rem;
+        margin: 0.5rem 0;
+        background-color: #f8f9fa;
+        border-left: 4px solid var(--accent-green);
+        border-radius: 4px;
+    }
+    
+    .effect-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+    
+    .calculator-card {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+    }
+    
+    .formula-box {
+        background-color: rgba(255,255,255,0.1);
+        padding: 1rem;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 1.1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2>🧪 Dosagens de NPK por Cultura</h2>
+                    <p class="text-muted">Consulte as recomendações técnicas de adubação</p>
+                </div>
+                <div>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Voltar ao Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seletor de Cultura -->
+    <div class="row mb-4">
+        {% for culture_key, culture_data in npk_info.items() %}
+        <div class="col-md-6 mb-3">
+            <div class="card culture-card {% if current_culture == culture_key %}active{% endif %}" 
+                 onclick="showCulture('{{ culture_key }}')">
+                <div class="card-body text-center">
+                    <div style="font-size: 4rem;">{{ culture_data.icon }}</div>
+                    <h3 class="mt-2">{{ culture_data.name }}</h3>
+                    <small class="text-muted">Clique para ver detalhes</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Detalhes das Culturas -->
+    {% for culture_key, culture_data in npk_info.items() %}
+    <div class="culture-details" id="culture-{{ culture_key }}" style="display: {% if current_culture == culture_key %}block{% else %}none{% endif %};">
+        
+        <!-- Header da Cultura -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <h3>
+                            <span style="font-size: 2.5rem;">{{ culture_data.icon }}</span>
+                            Dosagens para {{ culture_data.name }}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dosagens NPK -->
+        <div class="row mb-4">
+            <!-- Nitrogênio -->
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="nutrient-badge nutrient-n mb-3">N</div>
+                        <h4>Nitrogênio</h4>
+                        <div class="dosage-value">{{ culture_data.dosages.nitrogen.amount }} {{ culture_data.dosages.nitrogen.unit }}</div>
+                        <span class="importance-badge importance-{{ culture_data.dosages.nitrogen.importance.lower() }}">
+                            {{ culture_data.dosages.nitrogen.importance }}
+                        </span>
+                        <hr>
+                        <div class="effect-card">
+                            <small><strong>Efeito no pH:</strong></small><br>
+                            <small>{{ culture_data.effects.nitrogen }}</small>
+                        </div>
+                        <small class="text-muted mt-2 d-block">
+                            <strong>Processo:</strong> NH₄⁺ → NO₃⁻ + H⁺
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fósforo -->
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="nutrient-badge nutrient-p mb-3">P</div>
+                        <h4>Fósforo</h4>
+                        <div class="dosage-value">{{ culture_data.dosages.phosphorus.amount }} {{ culture_data.dosages.phosphorus.unit }}</div>
+                        <span class="importance-badge importance-{{ culture_data.dosages.phosphorus.importance.lower() }}">
+                            {{ culture_data.dosages.phosphorus.importance }}
+                        </span>
+                        <hr>
+                        <div class="effect-card">
+                            <small><strong>Efeito no pH:</strong></small><br>
+                            <small>{{ culture_data.effects.phosphorus }}</small>
+                        </div>
+                        <small class="text-muted mt-2 d-block">
+                            <strong>Processo:</strong> Fosfatos consomem H⁺
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Potássio -->
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="nutrient-badge nutrient-k mb-3">K</div>
+                        <h4>Potássio</h4>
+                        <div class="dosage-value">{{ culture_data.dosages.potassium.amount }} {{ culture_data.dosages.potassium.unit }}</div>
+                        <span class="importance-badge importance-{{ culture_data.dosages.potassium.importance.lower() }}">
+                            {{ culture_data.dosages.potassium.importance }}
+                        </span>
+                        <hr>
+                        <div class="effect-card">
+                            <small><strong>Efeito no pH:</strong></small><br>
+                            <small>{{ culture_data.effects.potassium }}</small>
+                        </div>
+                        <small class="text-muted mt-2 d-block">
+                            <strong>Processo:</strong> K₂CO₃ alcaliniza
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Observações Técnicas -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">
+                            <i class="bi bi-lightbulb"></i> Observações Técnicas
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% for observation in culture_data.observations %}
+                        <div class="observation-item">
+                            <i class="bi bi-check-circle text-success"></i>
+                            {{ observation }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculadora de Exemplo -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-calculator"></i> Como o Sistema Calcula
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <h6 class="mb-2">📐 Fórmula Utilizada:</h6>
+                            <div style="background-color: #e3f2fd; padding: 1rem; border-radius: 8px; border-left: 4px solid #2196F3;">
+                                <code style="font-size: 1.1rem; color: #0d47a1;">
+                                    <strong>Quantidade Total = Área (m²) × Dosagem (kg/m²)</strong>
+                                </code>
+                            </div>
+                        </div>
+                        
+                        <h6 class="mt-4">📊 Exemplo Prático:</h6>
+                        <div class="row mt-3">
+                            <div class="col-md-4 mb-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <strong class="text-primary">Área Exemplo:</strong><br>
+                                        <span style="font-size: 1.5rem; color: var(--accent-green); font-weight: bold;">500 m²</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8 mb-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <strong class="text-primary">Cálculos:</strong><br>
+                                        <div class="mt-2" style="line-height: 2;">
+                                            <span class="badge bg-primary">N</span> Nitrogênio: 500 × {{ culture_data.dosages.nitrogen.amount / 1000 }} = <strong style="color: #2196F3;">{{ (500 * culture_data.dosages.nitrogen.amount / 1000)|round(2) }} kg</strong><br>
+                                            <span class="badge bg-warning text-dark">P</span> Fósforo: 500 × {{ culture_data.dosages.phosphorus.amount / 1000 }} = <strong style="color: #FF9800;">{{ (500 * culture_data.dosages.phosphorus.amount / 1000)|round(2) }} kg</strong><br>
+                                            <span class="badge bg-purple text-white" style="background-color: #9C27B0;">K</span> Potássio: 500 × {{ culture_data.dosages.potassium.amount / 1000 }} = <strong style="color: #9C27B0;">{{ (500 * culture_data.dosages.potassium.amount / 1000)|round(2) }} kg</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Fontes Científicas -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="bi bi-book"></i> Fontes Científicas
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>📚 Instituições de Pesquisa</h6>
+                            <ul>
+                                <li><strong>EMBRAPA</strong> - Recomendações de Adubação</li>
+                                <li><strong>IAC</strong> - Instituto Agronômico de Campinas</li>
+                                <li><strong>CEPEA/ESALQ-USP</strong> - Dados econômicos</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>📖 Referências Técnicas</h6>
+                            <ul>
+                                <li>Boletins Técnicos de Nutrição Mineral</li>
+                                <li>Manuais de Boas Práticas Agrícolas</li>
+                                <li>Análises de Solo e Foliar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-success border-success">
+                <h5>
+                    <i class="bi bi-lightbulb-fill"></i> Como Usar no Sistema
+                </h5>
+                <ol class="mb-0">
+                    <li>Selecione uma <strong>área de plantio</strong> na página "Áreas de Plantio"</li>
+                    <li>Vá para o <strong>Dashboard</strong></li>
+                    <li>Clique nos <strong>botões NPK</strong> (N, P, K)</li>
+                    <li>O sistema calculará automaticamente a quantidade necessária baseada nestas dosagens!</li>
+                </ol>
+                <div class="text-center mt-3">
+                    <a href="{{ url_for('areas') }}" class="btn btn-success me-2">
+                        <i class="bi bi-map"></i> Ir para Áreas de Plantio
+                    </a>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-success">
+                        <i class="bi bi-speedometer2"></i> Ir para Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function showCulture(cultureKey) {
+    // Esconde todos os detalhes
+    document.querySelectorAll('.culture-details').forEach(el => {
+        el.style.display = 'none';
+    });
+    
+    // Remove classe active de todos os cards
+    document.querySelectorAll('.culture-card').forEach(el => {
+        el.classList.remove('active');
+    });
+    
+    // Mostra detalhes da cultura selecionada
+    const selectedDetails = document.getElementById(`culture-${cultureKey}`);
+    if (selectedDetails) {
+        selectedDetails.style.display = 'block';
+        
+        // Adiciona classe active ao card clicado
+        event.currentTarget.classList.add('active');
+        
+        // Scroll suave para os detalhes
+        setTimeout(() => {
+            selectedDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
+}
+</script>
+{% endblock %}

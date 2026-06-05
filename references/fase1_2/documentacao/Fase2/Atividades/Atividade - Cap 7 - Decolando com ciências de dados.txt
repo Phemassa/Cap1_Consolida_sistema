@@ -1,0 +1,180 @@
+ATIVIDADE AVALIATIVA - CAP 7: DECOLANDO COM CIÊNCIAS DE DADOS
+==============================================================
+
+ANÁLISE ESTATÍSTICA DE DADOS DO AGRO
+Período: 18/09/2025 a 15/10/2025
+Status: Entrega pendente
+
+ATENÇÃO: Atividades entregues até 3 dias após o prazo receberão até 70% da nota.
+
+CONTEXTUALIZAÇÃO: AGRONEGÓCIO
+----------------------------
+
+DEFINIÇÃO:
+Setor econômico que engloba todas as atividades relacionadas à produção, 
+comercialização e distribuição de produtos agrícolas. Vital para economia global.
+
+COMPONENTES DO AGRONEGÓCIO:
+1. PRODUÇÃO AGRÍCOLA: cultivo de plantas + criação de animais
+2. AGROINDÚSTRIA: processamento, transformação, industrialização
+3. DISTRIBUIÇÃO E LOGÍSTICA: transporte, armazenamento, distribuição
+4. COMERCIALIZAÇÃO: venda e compra (mercado interno + internacional)
+
+IMPORTÂNCIA:
+- Segurança alimentar: abastecimento populacional global
+- Geração de empregos: maior empregador em muitas regiões
+- Contribuição econômica: significativa para PIB nacional
+- Desenvolvimento regional: motor do desenvolvimento rural
+- Inovação e tecnologia: agricultura de precisão, biotecnologia
+
+DESAFIOS E TENDÊNCIAS:
+- Sustentabilidade: práticas sustentáveis, conservação recursos
+- Globalização: comércio internacional, padrões globais
+- Digitalização: tecnologias digitais, automação, análise de dados
+
+FONTES DE DADOS PÚBLICOS
+------------------------
+
+OBRIGATÓRIAS PARA PESQUISA:
+
+1. CONAB - Companhia Nacional de Abastecimento
+   https://www.conab.gov.br/
+   (Dados: safras, preços, estoques)
+
+2. IBGE - Instituto Brasileiro de Geografia e Estatística
+   https://www.ibge.gov.br/
+   (Dados: censos agropecuários, produção municipal)
+
+3. MAPA - Ministério da Agricultura, Pecuária e Abastecimento
+   https://www.gov.br/agricultura/pt-br
+   (Dados: políticas, regulamentações, registros)
+
+4. EMBRAPA - Empresa Brasileira de Pesquisa Agropecuária
+   https://www.embrapa.br/
+   (Dados: pesquisas, inovações, estudos técnicos)
+
+5. INPE - Instituto Nacional de Pesquisas Espaciais
+   https://www.gov.br/inpe/pt-br
+   (Dados: satélite, desmatamento, queimadas, clima)
+
+6. CNA BRASIL - Confederação da Agricultura e Pecuária do Brasil
+   https://www.cnabrasil.org.br/
+   (Dados: indicadores econômicos, estudos setoriais)
+
+METODOLOGIA DA ATIVIDADE
+------------------------
+
+ETAPA 1: PESQUISA DE DADOS
+- Explorar todas as 6 fontes oficiais
+- Identificar datasets relevantes
+- Selecionar dados atuais e de qualidade
+- Documentar fontes utilizadas
+
+ETAPA 2: CRIAÇÃO BASE DE DADOS EXCEL
+ESPECIFICAÇÕES OBRIGATÓRIAS:
+- Formato: Excel (.xlsx)
+- Dimensões: MÍNIMO 30 linhas × 4 colunas
+
+ESTRUTURA DAS 4 COLUNAS:
+┌─────────────────────────────────────────────────────────────────┐
+│ COLUNA 1: VARIÁVEL QUANTITATIVA DISCRETA                       │
+│ (números inteiros contáveis)                                    │
+│ Exemplos: nº propriedades, qtd animais, nº funcionários        │
+├─────────────────────────────────────────────────────────────────┤
+│ COLUNA 2: VARIÁVEL QUANTITATIVA CONTÍNUA                      │
+│ (números reais com decimais)                                    │
+│ Exemplos: área plantada (ha), produção (ton), preço (R$/kg)    │
+├─────────────────────────────────────────────────────────────────┤
+│ COLUNA 3: VARIÁVEL QUALITATIVA NOMINAL                        │
+│ (categorias sem ordem)                                          │
+│ Exemplos: Região, Tipo cultura, Estado                         │
+├─────────────────────────────────────────────────────────────────┤
+│ COLUNA 4: VARIÁVEL QUALITATIVA ORDINAL                        │
+│ (categorias com ordem)                                          │
+│ Exemplos: Porte (Pequena/Média/Grande), Classificação (A/B/C) │
+└─────────────────────────────────────────────────────────────────┘
+
+ETAPA 3: ANÁLISE ESTATÍSTICA EM R
+
+PARTE A - ANÁLISE VARIÁVEL QUANTITATIVA (escolher 1):
+✓ MEDIDAS DE TENDÊNCIA CENTRAL:
+  - Média aritmética: mean()
+  - Mediana: median()
+  - Moda: função personalizada
+
+✓ MEDIDAS DE DISPERSÃO:
+  - Variância: var()
+  - Desvio padrão: sd()
+  - Amplitude: range()
+  - Coeficiente de variação: CV = σ/μ × 100
+
+✓ MEDIDAS SEPARATRIZES:
+  - Quartis: quantile()
+  - Percentis: quantile(probs = c(...))
+  - Análise de outliers
+
+✓ ANÁLISE GRÁFICA:
+  - Histograma: hist()
+  - Boxplot: boxplot()
+  - Gráfico densidade: density() + plot()
+  - Gráfico Q-Q: qqnorm() + qqline()
+
+PARTE B - ANÁLISE VARIÁVEL QUALITATIVA (escolher 1):
+✓ ANÁLISE GRÁFICA OBRIGATÓRIA:
+  - Gráfico de barras: barplot()
+  - Gráfico de pizza: pie()
+  - Análise frequências: table()
+
+ESTRUTURA CÓDIGO R:
+# NomeCompleto_RMXXXXX_fase2_cap7
+# Exemplo: JoaoSantos_RM76332_fase2_cap7
+
+# Carregamento dos dados
+dados <- read.xlsx("caminho/para/arquivo.xlsx")
+# [resto do código...]
+
+ENTREGÁVEIS
+-----------
+
+ARQUIVOS OBRIGATÓRIOS:
+1. 📊 dados_agronegocio_[RMXXXXX].xlsx
+   - Base de dados com 30+ linhas e 4 colunas específicas
+   - Dados reais das fontes oficiais
+
+2. 📈 analise_[RMXXXXX].R
+   - Primeira linha: # NomeCompleto_RMXXXXX_fase2_cap7
+   - Códigos análise estatística completa
+   - Comentários explicativos
+
+FORMATO IDENTIFICAÇÃO:
+# NomeCompleto_RMXXXXX_fase2_cap7
+Exemplo: # JoaoSantos_RM76332_fase2_cap7
+
+CRITÉRIOS DE QUALIDADE:
+BASE EXCEL:
+✓ Mínimo 30 linhas dados reais
+✓ 4 colunas tipos corretos
+✓ Dados consistentes
+✓ Fonte identificada
+
+ANÁLISE R:
+✓ Identificação na primeira linha
+✓ Código funcional e estruturado
+✓ Análises completas conforme especificado
+✓ Comentários explicativos
+✓ Gráficos bem formatados
+
+OBSERVAÇÕES IMPORTANTES
+----------------------
+
+DIRETRIZES ENTREGA:
+⚠️ Verificar upload correto (não pode reenviar após fechamento)
+⏰ NÃO deixar para últimos minutos
+🚫 NÃO compartilhar em grupos WhatsApp/Discord (plágio)
+📅 15 dias para revisão após nota
+
+ASPECTOS TÉCNICOS:
+✓ Uso correto funções estatísticas
+✓ Interpretação adequada resultados
+✓ Visualizações informativas
+✓ Código reproduzível

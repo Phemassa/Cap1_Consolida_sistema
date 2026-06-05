@@ -1,0 +1,8 @@
+# Wokwi Project Configuration
+# FarmTech Solutions - Sistema de Irrigação Inteligente
+
+# Este arquivo lista as bibliotecas Arduino necessárias
+# O Wokwi baixará automaticamente durante a simulação
+
+DHT sensor library
+ArduinoJson

@@ -1,0 +1,130 @@
+# Cap 8 - Linguagem R e sua especialidade
+
+## Sumário
+
+# Cap 8 - Linguagem R e sua especialidade
+
+Linguagem R e sua especialidade
+```python
+# Atribuição de valores a variáveisidade <-2# Renomear variáveis em um data framedata_frame <-data.frame(var_antiga = c(1, 2, 3, 4, 5))colnames(data_frame)[colnames(data_frame)              == "var_antiga"] <-"var_nova"#  Criação  de  uma  nova  variável  com  base  em  valores existentesidade_em_meses <-idade * 12Código-fonte 7-Atribuição de valores, renomear variáveis em uma data frame e criação de uma novas variáveis e seleção de colunas específicas em RFonte: Elaborado pelo autor (2024)Na sintaxe descrita, a lógicautilizada foi:•Ovalor 25 foi atribuído à variável "idade".•Foi  renomeada uma  coluna  em  um  data  frame  de  "var_antiga"  para "var_nova".•A nova   variável   "idade_em_meses" foi   criada calculando   a   idade multiplicada por 12.•As colunas  "nome"  e  "idade"  de  um  data  frameforam  selecionadas  e armazenadas em "colunas_selecionadas".
+
+Linguagem R e sua especialidade2 LIDANDO COM VALORES AUSENTESValores ausentes em conjuntos de dados desempenham um papel crítico na manipulação e análise de dados, pois indicam informações ausentes em um conjunto de  dados.
+
+Esses  valores  podem  impactar  significativamente  a  qualidade  e a confiabilidade    das    análises    e dos resultados.
+
+Assim,    ignorar    ou    tratar inadequadamente  valores  ausentes  pode resultaremconclusões  incorretas  ou enviesadas.
+
+O primeiro passo é identificar os valores ausentes.
+
+Saber onde estão e quantos são é fundamental para tomar decisões sobre como abordar.
+
+O tratamento adequado envolve estratégias como preenchimento com valores válidos, remoção de linhas ou colunas afetadas ou imputação estatística.
+
+Além do tratamento de valores ausentes, a limpeza de dados inclui a detecção e correção de erros, a remoção de duplicatas e a  garantia  de  que  os  dados  estejam  em  um  formato  consistente.
+
+A  importância  da limpeza de dados se estende a todas as etapas de um projeto de análise de dados, desde a coleta até a apresentação dos resultados.
+
+Dessa forma,aqualidade dos resultados em qualquer análise de dados está diretamente   relacionada   à   qualidade   dos   dados   subjacentes.
+
+Dados   sujos, inconsistentes ou com valores ausentes podem introduzir vieses, erros e imprecisões em  análises  estatísticas  e  modelos  de  Machine  Learning,  que  serão  discutidosna sequência.
+
+A  limpeza  de  dados  capacita  analistas  e  cientistas  de  dados  a  tomar decisões mais informadas e confiáveis(Fávero, Belfiore e Souza, 2023).
+
+Dados limpos e bem tratados são a base para a geração de insights precisose conclusões válidas.
+
+Na linguagem R, osvalores ausentes são frequentemente representados como NA (Not Available) ou NULL.
+
+Para identificá-los em um data frame ou vetor é utilizada a função is.na():
+Linguagem R e sua especialidade# Identificação de valores ausentes em um vetorvetor <-c(1, 2, NA, 4, 5)valores_ausentes <-is.na(vetor)# Identificação de valores ausentes em um data framedata_frame <-data.frame(idade = c(25, NA, 30, 35),salario  =  c(50000,  55000,  NA, 60000))valores_ausentes <-is.na(data_frame)print(valores_ausentes)Código-fonte 8-Valores ausentesFonte: Elaborado pelo autor (2024)O  tratamento  de  valores  ausentes  é  essencial  para  garantir  a  qualidade  e  a precisão de suas análises.
+
+Existem várias estratégias para lidar com valores ausentes, como:•Remoção   de   linhas   ou   colunas   com   valores   ausentes:é   uma abordagem válida quando os dados ausentes não podem ser imputados de forma significativa.
+
+Exemplo: considereum data frame chamado "dados" e o  objetivo  seria remover  todas  as  linhas  que  contenham  pelo  menos  um valor ausente:# data frame de exemplodados <-data.frame(A = c(1, 2, NA, 4),B = c(NA, 2, 3, 4))# Remover linhas com valores ausentesdados_limpos <-na.omit(dados)# Mostrar o data frame após a remoçãoprint(dados_limpos)Código-fonte 9-Remoção de linhas ou colunas com valores ausentesFonte: Elaborado pelo autor (2024)•Preenchimento de valores ausentes com médias, medianas ou outros valores  relevantes:usar estatísticas  resumidas,  como  a  média  ou  a mediana dos valores da coluna.
+
+A mediana é uma medida robusta que não é afetada por valores extremos (outliers) e pode ser uma escolha adequada para o preenchimento de valores ausentes quando a distribuição dos dados
+```
+
+Linguagem R e sua especialidadeé assimétrica.
+
+Exemplo: preencher valores ausentes na coluna "A" com a medianados valores existentes:
+```python
+# data frame de exemplodados <-data.frame(A = c(1, 2, NA, 4, 5),B = c(NA, 2, 3, 4, 5))# Calcular a mediana da coluna "A"mediana <-median(dados$A, na.rm = TRUE)# Preencher valores ausentes com a medianadados$A[is.na(dados$A)] <-mediana# Mostrar o data frame apóso preenchimentoprint(dados)Código-fonte 10-Preenchimento de valores ausentes com médias, medianas ou outros valores relevantesFonte: Elaborado pelo autor (2024)•Utilização  de  técnicas  avançadas  de  imputação:técnicas  avançadas, como imputação com modelos de Machine Learning, podem ser utilizadas para preencher valores ausentes de forma mais sofisticada.
+
+Exemplo: usar o pacote mice para imputação de valores ausentes utilizando a regressão linear:
+Linguagem R e sua especialidade# Instalar e carregar o pacote miceinstall.packages("mice")library(mice)# Carregar o data frame de dados# O dataframenhanes é um dataframe de dados de saúde que contém valores ausentesdata(nhanes)# Visualizar o data frame de dadoshead(nhanes)# Definir o método de imputação# O método pmm é um método de imputação por regressão linear que usa uma média ponderada das variáveis não ausentes para estimar os valores ausentes.impute_method <-"pmm"# Realizar a imputação#  Este  passo  realiza  a  imputação  de  valores  ausentes usando # o método especificado em impute_method.nhanes_imputed <-mice(nhanes, method = impute_method)# Visualizar os dados imputadoscompleted_data <-complete(nhanes_imputed)head(completed_data)Código-fonte 11-Utilização de técnicas avançadas de imputaçãoFonte: Elaborado pelo autor (2024)2.1 Pacotes do R para manipulação de dadosOs  dois  pacotes  mais  populares  para  a  manipulação  de  dadossão dplyre tidyr.
+
+Essas bibliotecas são utilizadas por cientistas de dados para simplificar tarefas de manipulação de dados e transformar conjuntos de dados de maneira eficiente.
+
+O dplyr é uma biblioteca R que fornece um conjunto de funções simples e consistentes para  realizar  operações  de  manipulação  de  dados  em  data  frames(Jockers,et  al., 2020).
+
+Entre as principais funções do dplyr estão:•filter():filtra linhas com base em condições específicas.•select():seleciona colunas específicas.•mutate():cria   novas   colunas   com   base   em operações   em   colunas existentes.
+```
+
+Linguagem R e sua especialidade•group_by():agrupa os dados por uma ou mais variáveis.•summarize():calcula estatísticas resumidas em grupos de dados.
+
+Exemplo de uso do dplyr para filtrar e resumir dados:# Carregar a biblioteca dplyrlibrary(dplyr)# Criar dados# mulheres -0# homens -1data_frame <-data.frame(idade = c(30, 25, 35, 50, 15, 20),genero = c(0, 0, 1, 1, 0, 1))# Filtrar dados: selecionar apenas linhas onde a idade seja maior que 25dados_filtrados <-data_frame %>% filter(idade >25)# Agrupar dados por gênero e calcular a média de salário por grupodados_agrupados <-data_frame %>%group_by(genero) %>%summarize(media_idade = mean(idade))# Visualizar resultadoPrint(dados_agrupados)Código-fonte 12-Exemplo do uso do dplyr para filtrar e resumir dadosFonte: Elaborado pelo autor (2024)O  tidyr  é  uma  biblioteca  R  que  se  concentra  na  organização  de  dados, principalmente na transformação entre formatos de dados "largos"e "longos".2.2 Formato de dados largoUm  formato  de  dados  largo  é  aquele  em  que  cada  coluna  representa  uma variável.
+
+Por exemplo, um data frame com as colunas id, data, valor1 e valor2 está no formato  largo.
+
+Cada  coluna  representa  uma  variável  diferente:id  representa  o identificador do registro, data representa a data do registro, valor1 representa o valor da variável 1 e valor2 representa o valor da variável 2.
+
+Linguagem R e sua especialidade2.3 Formato de dados longoUm formato de dados longo é aquele em que cada linha representa umregistro.
+
+Por exemplo, um data frame com as colunas id, variável, valor está no formato longo.
+
+Cada linha representa um registro diferente, e a coluna variávelrepresenta o nome da variável cujo valor está na coluna valor.2.4 Vantagens de cada formatoCada  formato  de  dados possuisuas  vantagens  e  desvantagens.
+
+O  formato largo é geralmente mais compactado, pois as colunas são independentes.
+
+O formato longo é geralmente mais flexível, pois permite a análise de dados multivariados.
+
+Neste sentido, o tidyr fornece as funções gather() e spread() para transformar dados de um formato para outro.
+
+A função gather() transforma dados de formato largo para  formato  longo,  e  a  função  spread()  transforma  dados  de  formato  longo  para formato largo.# Instalar e carregar o pacote dplyr e tidyrinstall.packages("tidyr", "dplyr")library(tidyr)library(dplyr)# Vamos usar os comandos gather() e spread() do pacote tidyr para converter # um dataframe de formato "largo" para "longo" e vice-versa.# dataframe largo# id: Identificador do registro# data: Data do registro# valor1: Valor da variável 1# valor2: Valor da variável 2# Criar um data frame de formato "largo"dados <-data.frame(id= c(1, 2, 3, 4, 5),data  =  c("2023-07-20",  "2023-07-21",  "2023-07-22", "2023-07-23", "2023-07-24"),valor1 = c(10, 20, 30, 40, 50),valor2 = c(20, 40, 60, 80, 100))
+Linguagem R e sua especialidade
+```python
+# Convertendo de formato "largo" para "longo"#  Para  converter  o  data  frame  de  formato  "largo"  para "longo", podemos usar o # comando gather().
+
+O comando gather() usa as seguintes especificações:# key: Nome da coluna que conterá os nomes das variáveis#  value:  Nome  da  coluna  que  conterá  os  valores  das variáveis#  id:  Colunas  que  não  devem  ser  incluídas  no  formato "longo"# Convertendo de formato "largo" para "longo"dados_longos <-dados %>%gather(key = variavel, value = valor, -id, -data)#   Visualizar   as   primeiras   linhas   do   dataframe "dados_longos" head(dados_longos)# Convertendo de formato "longo" para "largo"#  Para  converter  o  data  frame  de  formato  "longo"  para "largo", podemos usar # o comando spread().
+
+O comando spread() usa as seguintes especificações:# key: Nome da coluna que contém os nomes das variáveis#  value:  Nome  da  coluna  que  contém  os  valores  das variáveisdados_largos <-dados_longos %>%spread(key = variavel, value = valor)#   Visualizar   as   primeiras   linhas   do   dataframe "dados_largos" head(dados_largos)Código-fonte 13-Formato de dados Fonte: Elaborado pelo autor (2024)Os pacotes não apenas simplificam as tarefas de manipulação de dados, mas também tornam o código mais claro e eficiente.
+
+Dominar as bibliotecas dplyr e tidyr permitirá que  você  realize  operações  de  manipulação  de  dados  com  facilidade  no ambiente R.
+
+Para  ilustrar  como  abordar  valores  ausentes  e  usar  esses  pacotes  de manipulação  de  dados, vamos  considerar um  conjunto  de  dados  que  contém informações  sobre  vendas  em  uma  loja,  mas  que  apresenta  valores  ausentes  que precisam ser tratados.
+
+Em seguida, demonstraremoscomo o pacote dplyr pode ser
+Linguagem R e sua especialidadeutilizado  para  realizar  manipulações  nos  dados.
+
+Suponha  um  conjunto  de  dados chamado   "vendas_loja"   com   as   seguintes   colunas:   "data_venda","produto","quantidade" e "receita".
+
+No entanto, este conjunto de dados possuivalores ausentes.
+
+O primeiro passo será lidar com os valores ausentes.# Carregue a biblioteca dplyrlibrary(dplyr)# Crie um data frame com valores ausentesvendas_loja <-data.frame(data_venda  =  c("2023-01-01",  "2023-01-02",  "2023-01-03", "2023-01-04", "2023-01-05"),produto = c("A", "B", "A", NA, "C"),quantidade = c(10, 15, NA, 20, 25),receita = c(100, 150, 200, NA, 250))# Identifique e conte os valores ausentes em cada colunavalores_ausentes <-colSums(is.na(vendas_loja))print(valores_ausentes)Código-fonte 14-Valores ausentesFonte: Elaborado pelo autor (2024)No  próximo  passo,o  pacote  dplyr  será utilizadopara  realizar  operações  de manipulação de dados no conjunto de dados "vendas_loja".# 1.
+
+Remova as linhas com valores ausentesvendas_limpas <-vendas_loja %>%drop_na()# 2.
+
+Calcule a média da quantidade vendidamedia_quantidade <-vendas_loja %>%summarize(media_quantidade  =  mean(quantidade,  na.rm  = TRUE))#  3.
+
+Crie  uma  nova  coluna  chamada  "valor_total" multiplicando a quantidade pela receitavendas_com_valor_total <-vendas_loja %>%mutate(valor_total = quantidade * receita)# 4.
+
+Selecione apenas as colunas "data_venda" e "produto"colunas_selecionadas <-vendas_loja %>%select(data_venda, produto)Código-fonte 15-Operações de manipulação de dadosFonte: Elaborado pelo autor (2024)
+```
+
+Linguagem R e sua especialidade## Referências
+
+JOCKERS, M..
+
+L.; THALKEN, R.
+
+Text Analysis with R. : For Students of Literature.
+
+Cham: Springer International Publishing, 2020.
+
+LUIZ  PAULO  FAVERO.;  BELFIORE,  P.;  RAFAEL.
+
+Data  Science,  Analytics  and Machine Learning with R. [s.l.] Academic Press, 2023.
+
+WICKHAM, H..; MINE ÇETINKAYA-RUNDEL; GROLEMUND, G.
+
+R for Data Science. [s.l.] O’Reilly Media, 2023.

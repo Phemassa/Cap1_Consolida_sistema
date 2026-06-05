@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="700" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#f8f9fa"/>
+  
+  <!-- Título -->
+  <text x="500" y="35" font-size="28" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    Arquitetura do Circuito — ESP32 + Sensores
+  </text>
+  
+  <!-- Seção 1: ESP32 -->
+  <g id="esp32-board">
+    <!-- Placa ESP32 -->
+    <rect x="350" y="100" width="300" height="180" fill="#2196F3" stroke="#1976D2" stroke-width="2" rx="5"/>
+    <text x="500" y="135" font-size="18" font-weight="bold" text-anchor="middle" fill="white">ESP32 DevKit</text>
+    
+    <!-- GPIO labels -->
+    <text x="370" y="160" font-size="12" fill="white" font-family="monospace">GPIO 4 (DHT22)</text>
+    <text x="370" y="185" font-size="12" fill="white" font-family="monospace">GPIO 34 (ADC - Solo)</text>
+    <text x="370" y="210" font-size="12" fill="white" font-family="monospace">3.3V (VCC)</text>
+    <text x="370" y="235" font-size="12" fill="white" font-family="monospace">GND (Terra)</text>
+    <text x="370" y="260" font-size="12" fill="white" font-family="monospace">Wi-Fi integrado</text>
+  </g>
+  
+  <!-- Seção 2: DHT22 -->
+  <g id="dht22-sensor">
+    <!-- Sensor -->
+    <rect x="80" y="150" width="140" height="100" fill="#FF9800" stroke="#F57C00" stroke-width="2" rx="3"/>
+    <text x="150" y="180" font-size="14" font-weight="bold" text-anchor="middle" fill="white">DHT22</text>
+    <text x="150" y="205" font-size="11" text-anchor="middle" fill="white">Temp + Umidade</text>
+    <text x="150" y="225" font-size="10" text-anchor="middle" fill="white">do Ar</text>
+    
+    <!-- Pinos -->
+    <circle cx="95" cy="270" r="4" fill="#FFD700"/>
+    <text x="85" y="290" font-size="10" fill="#333">VCC</text>
+    
+    <circle cx="135" cy="270" r="4" fill="#FF69B4"/>
+    <text x="120" y="290" font-size="10" fill="#333">DATA</text>
+    
+    <circle cx="175" cy="270" r="4" fill="#000"/>
+    <text x="165" y="290" font-size="10" fill="#333">GND</text>
+    
+    <!-- Conexões DHT22 → ESP32 -->
+    <line x1="95" y1="270" x2="95" y2="320" stroke="#FFD700" stroke-width="2"/>
+    <line x1="95" y1="320" x2="380" y2="320" stroke="#FFD700" stroke-width="2"/>
+    <line x1="380" y1="320" x2="380" y2="210" stroke="#FFD700" stroke-width="2"/>
+    <text x="300" y="335" font-size="10" fill="#FF6600">3.3V</text>
+    
+    <line x1="135" y1="270" x2="135" y2="340" stroke="#FF69B4" stroke-width="2"/>
+    <line x1="135" y1="340" x2="360" y2="340" stroke="#FF69B4" stroke-width="2"/>
+    <line x1="360" y1="340" x2="360" y2="160" stroke="#FF69B4" stroke-width="2"/>
+    <text x="220" y="355" font-size="10" fill="#FF0080">GPIO 4</text>
+    
+    <line x1="175" y1="270" x2="175" y2="360" stroke="#000" stroke-width="2"/>
+    <line x1="175" y1="360" x2="400" y2="360" stroke="#000" stroke-width="2"/>
+    <line x1="400" y1="360" x2="400" y2="260" stroke="#000" stroke-width="2"/>
+    <text x="260" y="375" font-size="10" fill="#333">GND</text>
+  </g>
+  
+  <!-- Seção 3: Sensor de Umidade do Solo -->
+  <g id="soil-sensor">
+    <!-- Sensor -->
+    <rect x="780" y="150" width="140" height="100" fill="#8BC34A" stroke="#689F38" stroke-width="2" rx="3"/>
+    <text x="850" y="180" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Sensor Umidade</text>
+    <text x="850" y="205" font-size="11" text-anchor="middle" fill="white">do Solo</text>
+    <text x="850" y="225" font-size="10" text-anchor="middle" fill="white">(Analógico)</text>
+    
+    <!-- Pinos -->
+    <circle cx="795" cy="270" r="4" fill="#FFD700"/>
+    <text x="775" y="290" font-size="10" fill="#333">VCC</text>
+    
+    <circle cx="835" cy="270" r="4" fill="#4CAF50"/>
+    <text x="820" y="290" font-size="10" fill="#333">AOUT</text>
+    
+    <circle cx="875" cy="270" r="4" fill="#000"/>
+    <text x="860" y="290" font-size="10" fill="#333">GND</text>
+    
+    <!-- Conexões Solo → ESP32 -->
+    <line x1="795" y1="270" x2="795" y2="320" stroke="#FFD700" stroke-width="2"/>
+    <line x1="795" y1="320" x2="600" y2="320" stroke="#FFD700" stroke-width="2"/>
+    <line x1="600" y1="320" x2="600" y2="210" stroke="#FFD700" stroke-width="2"/>
+    <text x="650" y="335" font-size="10" fill="#FF6600">3.3V</text>
+    
+    <line x1="835" y1="270" x2="835" y2="340" stroke="#4CAF50" stroke-width="2"/>
+    <line x1="835" y1="340" x2="620" y2="340" stroke="#4CAF50" stroke-width="2"/>
+    <line x1="620" y1="340" x2="620" y2="185" stroke="#4CAF50" stroke-width="2"/>
+    <text x="680" y="355" font-size="10" fill="#4CAF50">GPIO 34 (ADC)</text>
+    
+    <line x1="875" y1="270" x2="875" y2="360" stroke="#000" stroke-width="2"/>
+    <line x1="875" y1="360" x2="620" y2="360" stroke="#000" stroke-width="2"/>
+    <line x1="620" y1="360" x2="620" y2="260" stroke="#000" stroke-width="2"/>
+    <text x="680" y="375" font-size="10" fill="#333">GND</text>
+  </g>
+  
+  <!-- Seção 4: Comunicação Wi-Fi -->
+  <g id="wifi-communication">
+    <rect x="300" y="400" width="400" height="120" fill="#E3F2FD" stroke="#1976D2" stroke-width="2" rx="5"/>
+    
+    <text x="500" y="425" font-size="14" font-weight="bold" text-anchor="middle" fill="#1976D2">
+      Comunicação Wi-Fi
+    </text>
+    
+    <!-- Setas e descrição -->
+    <line x1="500" y1="100" x2="500" y2="400" stroke="#1976D2" stroke-width="2" marker-end="url(#arrowhead)"/>
+    
+    <text x="500" y="460" font-size="12" text-anchor="middle" fill="#333">
+      Envio HTTP POST em JSON
+    </text>
+    
+    <text x="500" y="485" font-size="11" text-anchor="middle" fill="#555" font-family="monospace">
+      {"temperatura": 28.5, "umidade_ar": 65.0, "umidade_solo": 2500}
+    </text>
+    
+    <!-- Seta para AWS -->
+    <line x1="500" y1="520" x2="500" y2="580" stroke="#1976D2" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- Seção 5: AWS Cloud -->
+  <g id="aws-cloud">
+    <ellipse cx="500" cy="630" rx="150" ry="40" fill="#FF9900" stroke="#FF6600" stroke-width="2"/>
+    <text x="500" y="635" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+      AWS (sa-east-1) — São Paulo
+    </text>
+    <text x="500" y="655" font-size="11" text-anchor="middle" fill="white">
+      API HTTP → Banco de Dados
+    </text>
+  </g>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <polygon points="0 0, 10 5, 0 10" fill="#1976D2"/>
+    </marker>
+  </defs>
+  
+  <!-- Legenda -->
+  <g id="legend">
+    <text x="50" y="580" font-size="12" font-weight="bold" fill="#1a1a1a">Especificações:</text>
+    
+    <text x="50" y="605" font-size="11" fill="#333">• DHT22: -40°C a 80°C, 0-100% umidade</text>
+    <text x="50" y="625" font-size="11" fill="#333">• Sensor Solo: 0-4095 ADC (10 bits)</text>
+    <text x="50" y="645" font-size="11" fill="#333">• Intervalo coleta: 10 segundos</text>
+    <text x="50" y="665" font-size="11" fill="#333">• Protocolo: HTTP POST + JSON</text>
+  </g>
+</svg>

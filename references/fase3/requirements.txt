@@ -1,0 +1,98 @@
+# ============================================
+# FarmTech Solutions - Dependências Completas
+# FIAP - Fase 2 - Sistema IoT de Irrigação
+# ============================================
+
+# Este arquivo instala todas as dependências do projeto
+
+# Framework Web - Flask
+Flask==3.0.0
+Werkzeug==3.0.1
+
+# Requisições HTTP - API OpenWeatherMap
+requests==2.31.0
+
+# Utilitários necessários pelo Flask
+click==8.1.7
+itsdangerous==2.1.2
+Jinja2==3.1.2
+MarkupSafe==2.1.3
+python-dateutil==2.8.2
+
+# ============================================
+# INSTALAÇÃO RÁPIDA
+# ============================================
+
+# 1. Criar ambiente virtual (recomendado):
+#    python -m venv .venv
+
+# 2. Ativar ambiente virtual:
+#    Windows:   .venv\Scripts\activate
+#    Linux/Mac: source .venv/bin/activate
+
+# 3. Instalar dependências:
+#    pip install -r requirements.txt
+
+# 4. Verificar instalação:
+#    pip list
+
+# ============================================
+# INICIAR SERVIDOR
+# ============================================
+
+# Opção 1 - Usar scripts prontos (recomendado):
+#    Windows Batch:     start_server.bat
+#    PowerShell:        .\start_server.ps1
+
+# Opção 2 - Manual:
+#    cd fase2/web_app
+#    python app.py
+
+# ============================================
+# ESTRUTURA DO PROJETO
+# ============================================
+
+# python_app/        - Scripts Python originais
+# fase2/
+#   ├── web_app/     - Aplicação Flask (PRINCIPAL)
+#   ├── esp32_sim/   - Simulação ESP32
+#   └── api_clima/   - Integração OpenWeatherMap
+# r_app/             - Scripts R para análises
+# documentacao/      - Documentação e guias
+
+# ============================================
+# REQUISITOS DO SISTEMA
+# ============================================
+
+# Python: >= 3.8
+# pip: >= 21.0
+# SO: Windows 10/11, Linux (Ubuntu 20.04+), macOS 11+
+
+# ============================================
+# CONFIGURAÇÃO API DE CLIMA (OPCIONAL)
+# ============================================
+
+# 1. Obter chave API gratuita:
+#    https://openweathermap.org/api
+
+# 2. Configurar em fase2/api_clima/weather_integration.py:
+#    API_KEY = "sua_chave_aqui"
+
+# Nota: Sistema funciona sem API (usa dados simulados)
+
+# ============================================
+# SUPORTE
+# ============================================
+
+# Equipe: Phellype, Carlos, Cesar
+# Repositório: https://github.com/Phemassa/FarmTechSolutions
+# Consulte: documentacao/git_workflow_team.md
+
+# ============================================
+# DASHBOARD DEPENDENCIES
+# ============================================
+
+streamlit
+oracledb
+pandas
+plotly

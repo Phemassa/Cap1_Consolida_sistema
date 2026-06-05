@@ -1,0 +1,29 @@
+# 📦 FarmTech Solutions - Dependências Completas
+
+## Dashboard e Visualizações
+streamlit==1.29.0
+plotly==5.18.0
+seaborn==0.13.0
+matplotlib==3.8.2
+
+## Machine Learning
+scikit-learn==1.3.2
+joblib==1.3.2
+
+## Data Processing
+pandas==2.1.4
+numpy==1.26.2
+
+## Database
+# SQLite é built-in no Python
+
+## Statistical Analysis
+statsmodels==0.14.1
+scipy==1.11.4
+
+## Scheduling (Auto-ingestão)
+schedule==1.2.0
+
+## Utilities
+python-dateutil==2.8.2
+pytz==2024.1

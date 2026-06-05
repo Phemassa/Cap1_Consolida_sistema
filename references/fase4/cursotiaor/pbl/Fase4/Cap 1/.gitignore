@@ -1,0 +1,31 @@
+# PlatformIO build files
+.pio/
+build/
+*.bin
+*.elf
+*.map
+
+# VS Code files
+.vscode/
+*.code-workspace
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependencies cache
+.platformio
+
+# Backup files
+*.bak
+*.backup
+
+# IDE files
+*.swp
+*.swo
+*~

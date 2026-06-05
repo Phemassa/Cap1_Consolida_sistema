@@ -1,0 +1,128 @@
+# Cap 4 - Python e as tomadas de decisões com lógica
+
+## Sumário
+
+# Cap 4 - Python e as tomadas de decisões com lógica
+
+Python e as tomadas de decisões com lógica
+```python
+#solicitando os dados do alunoemail_aluno = input("Informe o e-mail do aluno")nota_semestral=  input("Informe  a  nota  semestral  do aluno: ")#convertendo a nota para o formato floatnota_semestral = float(nota_semestral)#realizando o teste lógicoif nota_semestral > 8.5:print("ENVIANDO E-MAIL PARA {}".format(email_aluno))Código-fonte 14–Solução do exercício 1 em PythonFonte: Elaborado pelo autor (2020)Vale  lembrar  que,  por  usarmos  um  número  real,  tanto  na  escrita  do  script como na hora de testar o programa, devemos utilizar um “.” (ponto) para separar as casas decimais, e não uma “,” (vírgula)como estamos acostumados.2.2.2Com que roupa eu vou?
+
+A  loja  virtual  FIAP  Wear,  que  vende  roupas  personalizadas  da  instituição, disponibilizou  no  mês  do  seu  aniversário  o  cupom  NIVER10,que  concede  10%  de desconto no valor total de uma compra feita no site.
+
+Caso  o  cliente  digite o  cupom  corretamente,  deverá  ser  informado  do  valor final da compra já com o desconto aplicado.
+
+Caso digite o cupom de maneira incorreta, deverá ser informado do valor da compra sem o desconto.
+
+Esse problema claramente pede o uso de um if composto!
+
+Afinal de contas,temos uma única condição (o cupom digitado ser igual a “NIVER10”) e duas ações, sendo uma para cada resultado da condição.
+
+Sabendo disso, podemos elaborar um script em Python desta forma:#solicitando os dados do clientevalor_compra = input("Informe o valor da compra realizada ")cupom = input("Digite o cupom de desconto ")#realizando o teste lógicoif cupom == "NIVER10":#cálculo de 10% de descontovalor_final = float(valor_compra) * 0.9else:valor_final = float(valor_compra)print("CUPOM INVÁLIDO")
+Python e as tomadas de decisões com lógica#exibindo o valor final da compraprint("O valor final da compra é {}".format(valor_final))Código-fonte 15–Solução do exercício 2 em PythonFonte: Elaborado pelo autor (2020)Ao  executar  o  script,você  pode  ficar  muito  feliz  ou  muito  triste...
+
+Tudo  vai depender da forma como digitou o cupom.
+
+Veja o que acontece quando digitamos o cupom de qualquer forma que não seja com todas as letras maiúsculas:Figura9–Execução do programa com erro no cupomFonte: Elaborado pelo autor(2020)Isso ocorre porque o Python avalia a string “NIVER10” como diferente de “niver10”.
+
+Uma solução muito interessante para esse cenário, caso seja importante considerar  ambos  os casos,  é  converter  tudo  o  que  o usuário escreveu  para  letras maiúsculas.
+
+Veja o que ocorre neste pequeno teste, feito em outro script:minusculas = "mestre yoda"#usamos a função upper para converter a string em letras maiúsculasmaiusculas = minusculas.upper()print(minusculas)print(maiusculas)Código-fonte 16–Utilização da função upper()Fonte: Elaborado pelo autor (2020)O uso da função upper(), presente no Python, permite que uma determinada string seja convertida para caracteres maiúsculos.
+```
+
+Python e as tomadas de decisões com lógicaNosso programa original pode ser melhorado, portanto, da seguinte forma:
+```python
+#solicitando os dados do clientevalor_compra = input("Informe o valor da compra realizada ")cupom = input("Digite o cupom de desconto ")#realizando o teste lógicocom o cupom em maiúsculasif cupom.upper()== "NIVER10":#cálculo de 10% de descontovalor_final = float(valor_compra) * 0.9else:valor_final = float(valor_compra)print("CUPOM INVÁLIDO")#exibindo o valor final da compraprint("O valor final da compra é {}".format(valor_final))Código-fonte 17–Solução do exercício 2 em Python com tratamento de letras maiúsculasFonte: Elaborado pelo autor (2020)2.2.3Essa eu sabia com maçãsTransporte-se no tempo e volte para a época de escola!
+
+Lembra do dia em que aprendeu a encontrar o valor de X nas equações de 2º grau?
+
+Aquelas que tinham uma carinha parecida com Ax² + Bx + C = 0?
+
+Aquela fórmula que aprendemos como fórmula de Bhaskara(masque não foi ele quem criou) deixou saudades (ou pesadelos terríveis).
+
+Vamos dar um presente ao seu “eu” do passado e criar um programa no qual o  usuário  só  tenha  que  escrever  os  valores  de  A,  B  e  C  e  nosso  programa  vai  se encarregar de fazer os cálculos.
+
+A primeira etapa que aprendemos na escola é calcular o deltapor meio da fórmula: B² -4 .
+
+A .
+
+C.
+
+Depois, caso o delta seja positivo,existem doisvalores para x.
+
+Caso seja zero, existe apenas um valor.
+
+E caso seja negativo, informamos que não há valor real para x.
+
+Logo,teremospara a solicitação dos valores e o cálculo do delta:
+Python e as tomadas de decisões com lógica#solicitando os valores de A, B e Ca = float(input("Informe o valor de A"))b = float(input("Informe o valor de B"))c = float(input("Informe o valor de C"))#cálculo do deltadelta = b * b -4 * a *cCódigo-fonte 18–Início da solução do exercício 3 em PythonFonte: Elaborado pelo autor (2020)Para fazer a verificação de cada uma das condições e, posteriormente, realizar os cálculos necessários, podemos utilizar umdesvio condicional encadeado ou utilizar o elif.
+
+Vamos dar uma olhada em como ficaria a estrutura em cada um dos casos?#solicitando os valores de A, B e Ca= float(input("Informe o valor de A"))b = float(input("Informe o valor de B"))c = float(input("Informe o valor de C"))#cálculo do deltadelta = b * b -4 * a *c# verificação das condições com if encadeadoif delta > 0.0:# cálculo de 2 valores para xelse:if delta == 0.0:# cálculo de 1 valor para xelse:# exibição da mensagemCódigo-fonte 19–Desvios da solução do exercício 3 com if encadeado em PythonFonte: Elaborado pelo autor (2020)#solicitando os valores de A, B e Ca = float(input("Informe o valor de A"))b = float(input("Informe o valor de B"))c = float(input("Informe o valor de C"))#cálculo do deltadelta = b * b -4 * a *c#verificação das condições com elifif delta>0.0:#cálculo de 2 valores para xelif delta == 0.0:#cálculo de 1 valor para xelse:#exibição da mensagemCódigo-fonte 20–Desvios da solução do exercício 3 com elif em PythonFonte: Elaborado pelo autor (2020)
+```
+
+Python e as tomadas de decisões com lógicaAgora,  dentro  dos  desvios,incluiremos  os  cálculos  de  x.
+
+A  fórmula  que aprendemos na escola é:푥=−푏±√푏2−4푎푐2푎, na qual o que está dentro da raiz é o delta que já calculamos anteriormente.
+
+E por falar em raiz, cada linguagem de programação possui sua função própria para realizar essa operação.
+
+No caso do Python,precisamos importar a classe mathe depois usar a função math.sqrt.
+
+Para importar a classe math, escrevemos na primeira linha do nosso script: import math.
+
+Para  calcular  a  raiz  de  algum  valor  depois  de  importarmos  a  classe  math, devemos escrever math.sqrt(valor).
+
+Dessa forma, nossa solução completacom o eliffica assim:import math
+```python
+#solicitando os valores de A, B e Ca = float(input("Informe o valor de A"))b = float(input("Informe o valor de B"))c = float(input("Informe o valor de C"))#cálculo do deltadelta = b * b -4 * a *c#verificação das condições com elifif delta>0.0:#cálculo de 2 valores para xx1 = (-b + math.sqrt(delta)) / (2 * a)x2 = (-b -math.sqrt(delta)) / (2 * a)print("Para a equação {}x² + {}x + {} = 0, obtivemos os seguintes valores: x1 = {} e x2 = {}".format(a,b,c,x1,x2))elif delta == 0:#cálculo de 1 valor para xx = (-b + math.sqrt(delta)) / (2 * a)print("Para a equação {}x² + {}x + {} = 0, obtivemos o seguinte valor: x = {}".format(a,b,c,x))else:#exibição da mensagemprint("Para a equação {}x² + {}x + {} = 0, não existem valores reais para x".format(a, b, c))Código-fonte 21–Soluçãodo exercício 3 com elif em PythonFonte: Elaborado pelo autor (2020)Ou assim, se usarmos o desvio condicional encadeado:
+Python e as tomadas de decisões com lógicaimport math#solicitando os valores de A, B e Ca = float(input("Informe o valor de A"))b = float(input("Informe o valor de B"))c = float(input("Informe o valor de C"))#cálculo do deltadelta = b * b -4 * a *c# verificação das condições com if encadeadoif delta > 0.0:# cálculo de 2 valores para xx1 = (-b + math.sqrt(delta)) / (2 * a)x2 = (-b -math.sqrt(delta)) / (2 * a)print("Para a equação {}x² + {}x + {} = 0, obtivemos os seguintes valores: x1 = {} e x2 = {}".format(a, b, c, x1, x2))else:if delta == 0:# cálculo de 1 valor para xx = (-b + math.sqrt(delta)) / (2 * a)print("Para  a  equação  {}x²  +  {}x  +  {}  =  0, obtivemos o seguinte valor: x = {}".format(a, b, c, x))else:# exibição da mensagemprint("Para a equação {}x² + {}x + {} = 0, não existem valores reais para x".format(a, b, c))Código-fonte 22–Solução do exercício 3 com desvio condicional encadeado em PythonFonte: Elaborado pelo autor (2020)
+```
+
+Python e as tomadas de decisões com lógicaHORA DE TREINAR 1.
+
+Verificar  se  os  batimentos  cardíacos  por  minuto  se  encontram  na  faixa adequada.
+
+Para  isso,  você  deve  solicitar ao  usuário que informe  o  seu  número  de BATIMENTOS POR MINUTO (BPM) e a IDADE.
+
+A partir disso,o script deveverificar e  exibir  uma  mensagem  informando  se  os  batimentos  do  usuário  encontram-se DENTRO  da  faixa  adequada,  ACIMA  da  faixa  adequada  ou  ABAIXO  da  faixa adequada, de acordo com o site Tua Saúde(<https://www.tuasaude.com/frequencia-cardiaca/#:~:text=At%C3%A9%202%20anos%20de%20idade,idosos%3A%2050%20a%2060%20bpm>):IDADEBPMAté 2 anos120 a 140De 8 anos até 17 anos80 a 100Adulto sedentário70 a 80Idosos50 a 602.
+
+Viajar  é  bom  demais!
+
+Uma  agência  de  viagens  está  propondo  uma estratégia para alavancar as vendas após os impactos da pandemia do coronavírus.
+
+A   empresa   ofertará   descontos   progressivos   na   compra   de   pacotes, dependendo do número de viajantes que estão no mesmo grupo e moram na mesma residência.
+
+Para  ajudar  a  tornar  esse  projeto  real,  você  deve  criar  um  algoritmo  que receba  o  VALOR  BRUTO  do  pacote,  a  CATEGORIA  DOS  ASSENTOS  no voo e  a QUANTIDADE  DE  VIAJANTES  que  moram  em  uma  mesma  casa  e  calcule  os descontos de acordo com a tabela aseguir:
+Python e as tomadas de decisões com lógicaCategoriaDESCONTOSEconômica2 viajantes3%3 viajantes4%4 viajantes ou mais5%Executiva2 viajantes5%3 viajantes7%4 viajantes ou mais8%Primeira classe2 viajantes10%3 viajantes15%4 viajantes ou mais20%O  programa  deverá  exibir  o  valor  BRUTO  DA  VIAGEM  (o  mesmo  que  foi digitado),  o  VALOR  DO  DESCONTO,  o VALOR  LÍQUIDO  DA VIAGEM  (valor  bruto menos os descontos) e o VALOR MÉDIO POR VIAJANTE.3.
+
+Hora  de  decidir!
+
+Os  colaboradores  da  sua equipe  foram  sorteados  para ganhar um console de última geração,cada um,em razãodo bom desempenho que tiveram nos últimos projetos.
+
+Por uma questão de logística, porém, a empresa pede que todos os cincomembros da equipe recebam o mesmo aparelho.
+
+Crie um algoritmo em queo usuário possa digitar o voto de cada um dos 5 membros da equipe e, ao final, exiba qual foi o console escolhido e com quantos votos.
+
+As opções são: PLAYSTATION, XBOX e NINTENDO.4.
+
+Você foi procurado por um aluno do curso de Produção Multimídia do FIAP ON para desenvolver um trabalho em parceria: um serviço em que as pessoas possam usar um estúdio profissional para gravar seus vídeos para o YouTube com máxima qualidade.
+
+O serviço ganha dinheiro por meio de um sistema de assinaturas e de um
+Python e as tomadas de decisões com lógicabônus  calculado  por  uma  porcentagem  sobre  o  faturamento  que  o  canal  do  cliente obteve ao longo do ano.
+
+Sua tarefa é criar um algoritmo que receba o tipo de assinatura do cliente, o faturamento anual dele e que calcule e exiba qual o valor do bônus que o cliente deve pagar a vocês.
+
+A tabela aseguirmostra a porcentagem de acordo com cada nível de assinatura:NívelPorcentagem sobre o faturamentoBasic30%Silver20%Gold10%Platinum5%
+Python e as tomadas de decisões com lógica## Referências
+
+PUGA, S.andra; RISSETTI, Gerson.
+
+Lógica de Programação e Estrutura de Dados.
+
+São Paulo: Pearson Prentice Hall, 2009.
+
+RAMALHO,  L.uciano.
+
+Python  Fluente:Programação  Clara,  Concisa  e  Eficaz.
+
+São Paulo: Novatec, 2015.

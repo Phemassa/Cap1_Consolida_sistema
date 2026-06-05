@@ -1,0 +1,46 @@
+[
+  {
+    "timestamp": "2025-10-13T21:10:53.950368",
+    "previsao": {
+      "probabilidade": 100.0,
+      "descricao": "chuva forte provável",
+      "temperatura": 24.1,
+      "horario_previsto": "2025-10-13T14:00"
+    },
+    "decisao": "SUSPENDER",
+    "motivo": "Previsão de chuva"
+  },
+  {
+    "timestamp": "2025-10-13T21:11:02.053602",
+    "previsao": {
+      "probabilidade": 75.0,
+      "descricao": "chuva moderada",
+      "temperatura": 24.5,
+      "horario_previsto": "2025-10-12 15:00:00"
+    },
+    "decisao": "SUSPENDER",
+    "motivo": "Previsão de chuva"
+  },
+  {
+    "timestamp": "2025-10-13T21:20:21.814344",
+    "previsao": {
+      "probabilidade": 100.0,
+      "descricao": "chuva forte provável",
+      "temperatura": 24.1,
+      "horario_previsto": "2025-10-13T14:00"
+    },
+    "decisao": "SUSPENDER",
+    "motivo": "Previsão de chuva"
+  },
+  {
+    "timestamp": "2025-10-13T21:31:00.036029",
+    "previsao": {
+      "probabilidade": 100.0,
+      "descricao": "chuva forte provável",
+      "temperatura": 24.1,
+      "horario_previsto": "2025-10-13T14:00"
+    },
+    "decisao": "SUSPENDER",
+    "motivo": "Previsão de chuva"
+  }
+]

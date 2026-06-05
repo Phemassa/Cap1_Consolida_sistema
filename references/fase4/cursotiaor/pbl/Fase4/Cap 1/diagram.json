@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "author": "FarmTech Solutions - FIAP",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 4.7, "left": 4.6, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_nitrogen",
+      "top": 92.6,
+      "left": -134.4,
+      "attrs": { "color": "green", "label": "N - Nitrogênio" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_phosphorus",
+      "top": 163.2,
+      "left": -134.4,
+      "attrs": { "color": "green", "label": "P - Fósforo" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_potassium",
+      "top": 230.4,
+      "left": -134.4,
+      "attrs": { "color": "green", "label": "K - Potássio" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr_ph",
+      "top": -64,
+      "left": 192.8,
+      "attrs": {}
+    },
+    { "type": "wokwi-dht22", "id": "dht22", "top": 105.9, "left": 211.8, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay_pump", "top": 230.4, "left": 240, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led_status",
+      "top": -67.2,
+      "left": -144,
+      "attrs": { "color": "blue", "label": "Status" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -38.4,
+      "left": -144,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "btn_nitrogen:1.l", "esp:D2", "green", [ "h0" ] ],
+    [ "btn_nitrogen:2.l", "esp:GND.1", "black", [ "h0" ] ],
+    [ "btn_phosphorus:1.l", "esp:D4", "green", [ "h0" ] ],
+    [ "btn_phosphorus:2.l", "esp:GND.1", "black", [ "h0" ] ],
+    [ "btn_potassium:1.l", "esp:D5", "green", [ "h0" ] ],
+    [ "btn_potassium:2.l", "esp:GND.1", "black", [ "h0" ] ],
+    [ "ldr_ph:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "ldr_ph:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "ldr_ph:AO", "esp:A0", "yellow", [ "h0" ] ],
+    [ "dht22:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "dht22:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "dht22:SDA", "esp:D21", "blue", [ "h0" ] ],
+    [ "relay_pump:VCC", "esp:VIN", "red", [ "h0" ] ],
+    [ "relay_pump:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "relay_pump:IN", "esp:D18", "orange", [ "h0" ] ],
+    [ "led_status:A", "r1:1", "blue", [ "v0" ] ],
+    [ "r1:2", "esp:D23", "blue", [ "h0" ] ],
+    [ "led_status:C", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

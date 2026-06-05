@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}Configurações - Sistema de Irrigação Inteligente{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-gear"></i>
+                    Configurações do Sistema
+                </h5>
+            </div>
+            
+            <div class="card-body">
+                <form method="POST">
+                    <!-- Seleção de Cultura -->
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-3">
+                            <i class="bi bi-flower1"></i>
+                            Configuração da Cultura
+                        </h6>
+                        
+                        <div class="mb-3">
+                            <label for="culture" class="form-label">Cultura Agrícola</label>
+                            <select class="form-select" id="culture" name="culture" required>
+                                {% for key, culture in cultures.items() %}
+                                    <option value="{{ key }}" {{ 'selected' if key == current_culture else '' }}>
+                                        {{ culture.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <div class="form-text">
+                                Escolha a cultura para otimizar os parâmetros de irrigação
+                            </div>
+                        </div>
+                        
+                        <!-- Mostrar parâmetros da cultura selecionada -->
+                        <div id="culture-info" class="alert alert-info">
+                            <strong>Parâmetros Ideais:</strong>
+                            <div class="mt-2">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <small class="text-muted">pH Ideal:</small><br>
+                                        <span id="ph-range">{{ cultures[current_culture].ph_min }} - {{ cultures[current_culture].ph_max }}</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <small class="text-muted">Umidade Ideal:</small><br>
+                                        <span id="humidity-range">{{ cultures[current_culture].humidity_min }}% - {{ cultures[current_culture].humidity_max }}%</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <small class="text-muted">NPK Necessários:</small><br>
+                                        <span id="npk-requirements">
+                                            {% if cultures[current_culture].nitrogen_required %}N {% endif %}
+                                            {% if cultures[current_culture].phosphorus_required %}P {% endif %}
+                                            {% if cultures[current_culture].potassium_required %}K{% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <!-- Configurações de Irrigação -->
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-3">
+                            <i class="bi bi-droplet"></i>
+                            Configurações de Irrigação
+                        </h6>
+                        
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="auto_irrigation" 
+                                       name="auto_irrigation" {{ 'checked' if system_settings.auto_irrigation else '' }}>
+                                <label class="form-check-label" for="auto_irrigation">
+                                    <strong>Irrigação Automática</strong>
+                                </label>
+                            </div>
+                            <div class="form-text">
+                                Ativa/desativa o controle automático baseado nos sensores
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="irrigation_duration" class="form-label">Duração da Irrigação (minutos)</label>
+                                <input type="number" class="form-control" id="irrigation_duration" 
+                                       name="irrigation_duration" value="{{ system_settings.irrigation_duration }}" 
+                                       min="5" max="120" required>
+                                <div class="form-text">Tempo padrão para cada ciclo de irrigação</div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="check_interval" class="form-label">Intervalo de Verificação (minutos)</label>
+                                <input type="number" class="form-control" id="check_interval" 
+                                       name="check_interval" value="{{ system_settings.check_interval }}" 
+                                       min="1" max="60" required>
+                                <div class="form-text">Frequência de verificação dos sensores</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <!-- Informações sobre os Sensores -->
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-3">
+                            <i class="bi bi-cpu"></i>
+                            Informações dos Sensores (Simulação Wokwi)
+                        </h6>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card border-primary">
+                                    <div class="card-header bg-primary text-white">
+                                        <small>Sensores Digitais</small>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-unstyled mb-0">
+                                            <li><i class="bi bi-circle-fill text-success"></i> <strong>3 Botões Verdes</strong> → Elementos NPK</li>
+                                            <li><small class="text-muted">Simula níveis de Nitrogênio, Fósforo e Potássio</small></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="card border-info">
+                                    <div class="card-header bg-info text-white">
+                                        <small>Sensores Analógicos</small>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-unstyled mb-0">
+                                            <li><i class="bi bi-brightness-high text-warning"></i> <strong>LDR</strong> → pH do Solo</li>
+                                            <li><i class="bi bi-thermometer text-danger"></i> <strong>DHT22</strong> → Temperatura e Umidade</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <div class="card border-success">
+                                <div class="card-header bg-success text-white">
+                                    <small>Atuadores</small>
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-0">
+                                        <i class="bi bi-toggle2-on text-primary"></i> 
+                                        <strong>Relé Azul</strong> → Controle da Bomba d'Água
+                                    </p>
+                                    <small class="text-muted">Liga/desliga o sistema de irrigação</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botões de Ação -->
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i>
+                            Voltar ao Dashboard
+                        </a>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-lg"></i>
+                            Salvar Configurações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Card com dicas -->
+        <div class="card mt-4">
+            <div class="card-header bg-warning text-dark">
+                <h6 class="mb-0">
+                    <i class="bi bi-lightbulb"></i>
+                    Dicas de Configuração
+                </h6>
+            </div>
+            <div class="card-body">
+                <ul class="mb-0">
+                    <li><strong>Tomate:</strong> Requer pH entre 6.0-6.8 e umidade alta (60-80%)</li>
+                    <li><strong>Milho:</strong> Tolera pH mais amplo (5.8-6.8) e umidade moderada (50-70%)</li>
+                    <li><strong>Soja:</strong> Prefere pH próximo ao neutro (6.0-7.0)</li>
+                    <li><strong>Banana:</strong> Necessita alta umidade (60-80%) e pH levemente ácido</li>
+                    <li><strong>Café:</strong> Cultivo em pH ácido (5.5-6.5) com umidade controlada</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Atualizar informações da cultura quando seleção mudar
+document.getElementById('culture').addEventListener('change', function() {
+    const cultures = {
+        {% for key, culture in cultures.items() %}
+            "{{ key }}": {
+                "ph_min": {{ culture.ph_min }},
+                "ph_max": {{ culture.ph_max }},
+                "humidity_min": {{ culture.humidity_min }},
+                "humidity_max": {{ culture.humidity_max }},
+                "nitrogen_required": {{ culture.nitrogen_required|lower }},
+                "phosphorus_required": {{ culture.phosphorus_required|lower }},
+                "potassium_required": {{ culture.potassium_required|lower }}
+            },
+        {% endfor %}
+    };
+    
+    const selected = cultures[this.value];
+    if (selected) {
+        document.getElementById('ph-range').textContent = `${selected.ph_min} - ${selected.ph_max}`;
+        document.getElementById('humidity-range').textContent = `${selected.humidity_min}% - ${selected.humidity_max}%`;
+        
+        let npk = '';
+        if (selected.nitrogen_required) npk += 'N ';
+        if (selected.phosphorus_required) npk += 'P ';
+        if (selected.potassium_required) npk += 'K';
+        document.getElementById('npk-requirements').textContent = npk || 'Nenhum específico';
+    }
+});
+</script>
+{% endblock %}

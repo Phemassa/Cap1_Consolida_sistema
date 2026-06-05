@@ -1,0 +1,351 @@
+# Cap 6 - A ética do Dev diante da tecnologia
+
+## Sumário
+
+# Cap 6 - A ética do Dev diante da tecnologia
+
+A ética do Dev diante da tecnologiaNaçõesUnidasAté 2030, reduzir substancialmente a geração de resíduos por meio da prevenção, redução, reciclagem e reuso.
+
+BrasilAté  2030,  reduzir substancialmente  a  geração  de  resíduos  por  meio da   Economia   Circular   e   suas   ações   de   prevenção,   redução, reciclagem e reúso de resíduos.
+
+Indicadores12.5.1 -Taxa   de   reciclagem   nacional,   toneladas   de   material reciclado. (INSTITUTO DE ECONOMIA APLICADA, 2019)Neste contexto,vamos além dos equipamentos quando são inservíveis.
+
+A TI verde profunda está completamente associada àideia da Ecologia Industrial, queé muito  simples.
+
+Apesar  de  ser  uma  área  de  estudo  relativamente  nova,  trata-se  da relação  integral  do  meio  ambiente  e  da  indústria.
+
+O  objetivo  central,  de  forma resumida, é que  todos  os  recursos utilizados  na  indústria  se mantenham dentro do ciclo produtivo.
+
+Conceito esse muito conectado àideia de economia circular, na qualnão  existem  resíduos  e  tudo  aquilo  que  seria  um  rejeito  se  torna  um  insumo  para uma nova etapa ou um novo ciclo.
+
+O  conceito  da economia circular é  muito  mais  amplo  que  apenas  o  retorno dos bens no pós-venda ou de pós-consumo ao ciclo do negócio.
+
+Aeconomia circular vai além, porque é um tratamento desde a concepção do produto com uma visão de design circular focada  em  projetar  produtos  e  sistemas  para  manter  o  valor  dos recursos.
+
+Seja por meio da longevidade, remanufatura, novos modelos de negócio e,por último,a recuperação destes materiais.
+
+Na produção mais limpa,existeo oposto, as preocupações ambientais estão em  todos  os  níveis  e as tomadas  de decisões, desde os projetos com  o  estudo  do design do produto.
+
+E este conceito do design circular é exatamente o oposto do que a grande   parte   das   indústrias   estimula   e   realiza   quanto   ao   processo   de obsolescência  programada.
+
+Porquena  atual  economia  ainda impera a  mentalidade de  reduzir  o  ciclo  de  vida  de  um  produto  para  garantir  uma  nova  compra.
+
+Isto  é, quantomais consumo,mais resíduo no meio ambiente.
+
+A ética do Dev diante da tecnologiaNa  avaliação  do  ciclo  de  vida  de  um  produto,é  necessário  considerar  os impactos ambientais em cada etapa.
+
+Desde o desenvolvimento do projeto, passando pela produção em si, transporte, comercialização e descarte.
+
+O repensar da matéria-primaque é extraída do meio ambiente,levando em contanão somente seu impacto no  momento  da  extração.
+
+Avaliarse  o  tipo  de  material  será  viável  de  reciclagem futura,reaproveitamento  ou  mesmo  uso  energético  é  parte  de  uma  complexa  e valiosa análise do ciclo de vida,etapa conhecida também como design circular.
+
+Os   processos   e os produtos   podem   ser   certificados   ou   adquirir   selos ambientais passando por avaliaçãoque utilizacritérios ambientais com o objetivodediferenciá-losno mercado.
+
+São muito conhecidos e popularizados no Brasil, como as certificações   no   Sistema   de   Gestão   Ambiental –ISO   14001   para   processos produtivos ou serviços.
+
+Como  para  os  produtos,  caso  do  Programa  Nacional  de  Conservação  de Energia Elétrica(Procel),   selo   liberado   pelo   governo   relacionado àeficiência energética de um produto.
+
+A  própria  ISO, em  sua  série  14020,  traz  o  tema  de  rotulagem  e  declarações ambientais para selos verdes ou rótulos ambientais tipo I.
+
+São aqueles voluntários ebaseados  em  critérios  múltiplosquedevemser  emitidospor  uma  entidade  terceira paraaverificação dos atendimentos dos critérios para uso do selo.
+
+Existem os selos autodeclaradosque a própria empresa se declara em algum critério  que  possa  ser  verificado.
+
+Umexemplo  é  quando  no  próprio  produto  há  o anúncio de ser “100% orgânico” ou “matéria-primaproveniente de fonte reciclável”.
+
+E o tipo III dos selos verdes é aquele com enunciado público, ou seja, o Procelé um exemplo claro.
+
+A  Apple,  em  2012,  decidiu  não  mais  fazer  uso  do  selo  de  classificação ambiental emitido pela Electronic Product Environmental Assessment Tool (EPEAT), isto é,seus equipamentos não passariam mais por avaliações para ter o selo verde EPEAT.
+
+Por  causa  de  polêmicas  entre  consumidores  e  funcionários  e  o  risco  de perder mercado, o  vice-presidente  da  Apple  voltou sua  decisãoem  menos  de uma semana.
+
+Como  exemplos  de  selos  verdes  com  o  enfoque  no  produto,  principalmente de tecnologia,são:
+A ética do Dev diante da tecnologia•O EPEATabrange 51 critérios, sendo 23 obrigatórios,e as classificações das  empresas  são  entre:ouro com  adesão  superior  a  75%;prata com adesão  superior  a  50%;e bronze.
+
+Os  critérios  passam  pelos  temas: redução/ eliminação  de matérias  sensíveis ao meio  ambiente; declaração da  lista  de  materiais  plásticos  que  compõem  o  produto; designação dos componentes para reciclagem ao final da vida útil do produto; garantias de longevidade   dos   componentes   do   produto; conservação de   energia; gerenciamento da  reciclagem  dos  componentes; avaliação  corporativa com  base  na  ISO  14001;e  o  empacotamento.
+
+Empresas  mundialmente conhecidas possuem seus registros no EPEAD, algumas delas são: Apple, Dell,  Fujitsu,  HP,  Lenovo,  LG,  NEC,  Panasonic,  Philips, Samsung,  Sony, Toshibaetc.•O  Energy  Star  é  um  padrão  internacional  para  certificar o consumo eficiente de energia em produtos eletroeletrônicos, muito similar àideia do Procel.
+
+Criado  inicialmente  em  1992  pelo  governo  dos  EUA,foi  adotado também   por   outras   nações,como   Austrália,   Canadá,   Japão,   Nova Zelândia, Taiwan (Formosa) e União Europeia.•TCO  é  um  selo  com  foco  na  avaliação  de  ciclo  de  vida  do  produto  e verificação  independente  de  responsabilidade  social  e  ambiental.
+
+São  11 categorias  de  produtos  avaliados,  entre  eles,computadores,  monitores, notebooks, tablets, datashows, fones de ouvido, data centerse outros.
+
+Foi criado   em   1992,e   tem   em   seu   escopo   de   avaliação   a   eficiência energética, a análise de substâncias perigosas e a fabricação socialmente responsável.•Restriction of Hazardous Substances Directive(RoHS) foi criada em 2003 como  uma  diretriz  ao limite  de  uso de algumas  substâncias  perigosas  na produção   de   equipamentos.
+
+Entre   as   substâncias   limitadas,estão: chumbo, mercúrio, cádmio, cromohexavalente,polibromato bifenil(PBB) e éter  difenilpolibromato  (PBDE).
+
+O  certificado  poderá  ser  obtido por intermédio de organismos certificadores com a comprovação de que todos os componentes do eletrônico sejam livres ou com quantias definidas das substânciasperigosas.
+
+A ética do Dev diante da tecnologiaDe forma prática,podemos pensar na ampla utilização de chumbo nas soldas de placas eletrônicas e seu uso se tornaum problema na exportação para a União Europeia,  por  exemplo,  justamente por  causa  da  RoHS.
+
+Uma  das maneiraspara  o cumprimento  delaé por meio do uso de soldas  ̃lead free ̃, em  outros  termos,  o chumbo sersubstituído por prata, cobre e zinco.
+
+A ética do Dev diante da tecnologiaCONCLUSÃOPorfim,   há   diversas   iniciativas   e   ações   alinhadas   com   o   conceitodedesenvolvimento sustentável na área de tecnologia da informação.
+
+O objetivo é que se  desenvolva  cada  vez  mais  a  TI verde  profunda  e  possamos  sair  das  práticas simples de mitigação de riscos ambientais.
+
+Práticas como adoção do Cloud Computingpara reduzir o usode hardware e dos  recursos  necessários  para  manter  um data  centerfuncionando,virtualização para  economizardispositivos  de  usuário  final  que  precisariam  ser  constantemente atualizados e trocados,o uso consciente da impressãoepráticas de não desperdíciosão extremamente importantes, mas precisamos ir além.
+
+Aplicar   os   conceitos   de design circular mais   amplamente   e   reduzir   a obsolescência programada.
+
+As práticas de TI verde são diversas, mas Alveset al.(2016) as sintetizamem 7 categorias principais com diversos itens abaixo mencionados:1) Conscientização:criar  ou  participar  de políticas  de  sustentabilidade  para TI;  buscar  fornecedores sustentáveis  de  TI;  promover  ou  participar  de  palestras  e eventos  paraconscientização;  fazer  videoconferências,  utilizar  FTP  e mensagens instantâneas; evitar compras de TI desnecessárias; reunir os comitês diretivos para garantia    da    sustentabilidade    em    TI;   analisar    a    eficiência    energética    dos equipamentos de TI; incentivar colegas a praticarem ações sustentáveis na área da Informática;divulgar  as  certificações  verdes  para  TI;priorizar  prédios  verdes; desligar  omonitor  na  hora  do  almoço;  desligar  os  computadores  após  o  fim  do expediente;e recusar produtos de TI que agridam o meio ambiente.2) DataCenterverde:unificação  de  servidores;  unificação  de  desktops; modernização dainfraestrutura dos DataCenterspara economia de energia; utilizar servidores   emnuvem   (Cloud Computing);   tornar   ecoeficiente   o   sistemade resfriamento dosDataCenters; checar se o ar-condicionado está regulado ao DataCenter;  virtualizarstoragee  servidores;  reavaliar  a  necessidade  de  redundâncias para pontos nãovitais do DataCenter; e avaliar o layoutfísico do DataCenterpara melhor circulaçãodo ar.
+
+A ética do Dev diante da tecnologia3) Descarte  e  reciclagem:priorizar  empresas  certificadas  em  coleta  e reciclagem de equipamentos de TI; reciclar hardwares, peças e cartuchos; descartar corretamente os hardwares com empresas especializadas na coleta dos REEE; doar equipamentos   de   TI   obsoletos;   reciclar   periféricos   de   informática;   verificar   a existência de leis de regulamentação de REEE; incentivar os colegas a entregarem seus   equipamentos   antigos   na   compra   de   um   novo   (trade-in);   realocar   os equipamentos   de   informática   obsoletos   em   outros   departamentos;   comprar equipamentos   de   TI   que   utilizam   embalagens   recicláveis   e/ou   reutilizáveis; e reaproveitar embalagens dos equipamentos de TI.4) Fontes alternativas de nergia:utilizar energias renováveis para TI.5) Hardware:utilizar  equipamentos  de  TIeficientes  e  econômicos;  utilizar monitores  LCD;  eliminar  ou  priorizar  equipamentos  de  TI  que  não  contenham componentes nocivos; preferir equipamentos de TI que foram reciclados; aumentar o ciclo  de  vida  dos  produtos  de  TI  ou  priorizar  produtos  que tenhammaior  ciclo  de vida;diminuir o brilho dos monitores LCD; programar os monitores para desligarem após  o  tempo de  inatividade;  recuperar  os equipamentos de  TI danificados em  vezde  comprar  novos;  utilizar  dispositivos  de  computação  com  o  selo Energy  Starou outros selos verdes; comparar o tempo de garantia dos equipamentos de TI; avaliar a   durabilidade   dos   equipamentos   de   TI;   ativar   o   modo   hibernação   dos computadores;  utilizar thin  clients;  trocar  desktops  por  laptops;  limpar  internamente os  computadores  e  outros  equipamentos  de  TI  para  maior  conservação;  identificar os hardwares em bom funcionamento em um computador com defeito; e inutilizar os computadores com defeito/mal funcionamento das fontes de energia.6) Impressão:monitorar   impressões;   digitalizar em   vezde   imprimir; terceirizar  o  serviço  de  impressão;  utilizar  impressões  frente  e  verso;  diminuir  a quantidade de impressoras; utilizar papéisreciclados para impressões; fazer uso de multifuncionais;  configurar  impressora  para  imprimir  em  modo  rascunho;  em  uma empresa, implantar o conceito de impressão segura (senha ou crachá para imprimir); utilizar a opção "ecofonte" nas impressõesparaaumentar a durabilidade do toner.
+
+A ética do Dev diante da tecnologia7) Software:gerenciar  o  consumo  de  energia  da  TI  através  de  softwares; utilizar  softwares  que  manipulem  os  hardwares,visandoàeficiência  energética; utilização  de  software  para  controlar  a  emissão  de  gases  e a qualidade  da  água; desenvolver   software   que   seja   capazde   projetar   equipamentos   de   TI   mais econômicos  e  eficientes; e utilizar  sites  "verdes",  com  cores  mais  escuras,  para reduziro consumo de energia elétrica.
+
+A ética do Dev diante da tecnologia## Referências
+
+ALMEIDA,  F..
+
+S.;  GARRIDO,  F.
+
+S.
+
+R.
+
+G.;  ALMEIDA,  A.
+
+A.
+
+Avaliação  de  impactos ambientais:uma  introdução  ao  tema  com  ênfase  na  atuação  do  gestor  ambiental.
+
+Diversidade  e  Gestão.  v.  1,  n.  1,  pp.  70-87,  2017.
+
+Volume  especial.
+
+Gestão Ambiental: perspectivas, conceitos e casos.
+
+ALVES.
+
+R.
+
+R.
+
+Administração  verde: o  caminho  sem  volta  da  sustentabilidade ambiental nas organizações.
+
+Rio de Janeiro: Elsevier, 2016.
+
+ASSOCIA.ÇÃO BRASILEIRA DE NORMAS TÉCNICAS.
+
+NBRISO 14001–Sistema de  gestão  ambiental: especificação  e  diretrizes  para  uso.
+
+Rio  de  Janeiro:  ABNT, 2015.
+
+ASSOCIA.ÇÃO    BRASILEIRA    DE    NORMAS    TÉCNICAS.
+
+NBRISO    26000–Diretrizes sobre ResponsabilidadeSocial.
+
+Rio de Janeiro: ABNT, 2010.
+
+ASSOCIA.ÇÃO BRASILEIRA DE NORMAS TÉCNICAS.
+
+NBRISO 45001–Sistema de gestão saúde e segurança ocupacional.
+
+Rio de Janeiro: ABNT, 2018.
+
+BRASIL.. [Constituição (1988)].
+
+Constituição da República Federativa do Brasil de 1988.
+
+Brasília,      DF:      Presidente      da      República,      [2016].
+
+Disponível em:http://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm.
+
+Acesso em: 20 fev. 2022.
+
+BRASIL..
+
+Decreto  3.956  de  8  de  outubro  de  2001.
+
+Promulga  a  Convenção Interamericana  para  a  Eliminação  de  Todas  as  Formas de  Discriminação  contra as Pessoas      Portadoras      de      Deficiência.
+
+Brasília,      DF.
+
+Disponível      em: http://www.planalto.gov.br/ccivil_03/decreto/2001/d3956.htm.
+
+Acesso   em:   20   fev. 2022.
+
+BRASIL..
+
+Lei  12.305  de 2  de  agosto  de  2010.
+
+Constitui  a  Política  Nacional  de Resíduos  Sólidos;  altera  a  Lei  no9.605,  de  12  de  fevereiro  de  1998;  e  dá  outras providências.
+
+Disponível         em: http://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12305.htm.
+
+Acesso em: 30 mar. 2022.
+
+BRASIL..
+
+Lei 6.938 de 31 de agosto de 1981.
+
+Dispõe sobre a Política Nacional do Meio  Ambiente,  seus  fins  e  mecanismos  de  formulação  e  aplicação,  e  dá  outras
+A ética do Dev diante da tecnologiaprovidências.
+
+Brasília,                  DF.
+
+Disponível                  em: http://www.planalto.gov.br/ccivil_03/leis/l6938.htm.
+
+Acesso em: 20 fev. 2022.
+
+BRASIL..
+
+Lei 8.213 de 24 de julho de 1991.
+
+Dispõe sobre os Planos de Benefícios da  Previdência  Social  e  dá  outras  providências.
+
+Brasília,  DF.
+
+Disponível  em: http://www.planalto.gov.br/ccivil_03/leis/l8213cons.htm.
+
+Acesso em:20 fev.2022.
+
+BROOKS, S..; WANG, X.; SARKER, S.
+
+Unpacking Green IT:areview of the existing literature.
+
+In: PROCEEDINGS OS THE SIXTEENTH AMERICAS CONFERENCE ON INFORMATIONSYSTEMS. 2010.
+
+Anais...
+
+Lima, 2010.
+
+CETESB.
+
+Estímulo  à  produção  mais  limpa  (P+L) –Contribuições  para  a discussãono      Estado      de      São      Paulo.      2010.
+
+Disponível      em: https://cetesb.sp.gov.br/consumosustentavel/documentos/.
+
+Acesso em: 22 fev. 2022.
+
+D’HONT,  L.
+
+Planning  towards  the  Triple  Bottom  Line.
+
+Conundra,  13  jun.  2019.
+
+Disponível  em:  <https://www.conundra.eu/blog/how-optiflow-helps-you-achieve-your-3ps>.
+
+Acesso em: 13 jul. 2022.
+
+DIAS, J..
+
+H.
+
+O et al.
+
+Gestão da responsabilidade social em empresas brasileiras?
+
+Um estudo empírico.
+
+Espacios, Caracas, v. 38, p. 9, 2017.
+
+DINO..
+
+A.gestão  de  documentos  virtuais  na  era  sustentável.
+
+Terra,  25  ou.  2019.
+
+Disponível    em:    <https://www.terra.com.br/noticias/dino/a-gestao-de-documentos-virtuais-na-era-sustentavel,888c6894fcaa2fd73176e3f4511f8122oeu8c098.html>.
+
+Acesso  em:  13  jul. 2022.
+
+INSTITUTO DE ECONOMIA APLICADA.. 12 -Consumo e Produção Sustentáveis. 2019.
+
+Disponível  em:  <https://www.ipea.gov.br/ods/ods12.html>.
+
+Acesso  em:  13 jul.2022.
+
+JOSE, L..
+
+A.
+
+F.
+
+Guia didático para o ensino de TI Verde: uma proposta integradora à luz da pedagogia histórico-crítico.
+
+Aracaju: ProfEPT / Instituto Federal de Sergipe, 2020.
+
+MINIST.ÉRIO  DO  MEIO  AMBIENTE.
+
+Declaração  do Rio  sobre  Meio  Ambiente  e Desenvolvimento.                        2013.
+
+Disponível                        em: <https://www5.pucsp.br/ecopolitica/projetos_fluxos/doc_principais_ecopolitica/Declaracao_rio_1992.pdf>.
+
+Acesso em: 13 jul. 2022.
+
+ORGANIZA.ÇÃO  DAS  NAÇÕES  UNIDAS  (ONU).
+
+Objetivos  de  Desenvolvimento Sustentável.
+
+Disponível  em:  https://brasil.un.org/pt-br/sdgs.
+
+Acesso  em:  30  mar. 2022..
+
+A ética do Dev diante da tecnologiaSCHULZ,  M.
+
+A.;  SILVA,  T.
+
+N.
+
+TI  verde  e  eficiência  energética  em data  centers.
+
+Revista de Gestão Social e Ambiental -RGSA, São Paulo, v. 6, n. 2, p. 121-133, maio/ago. 2012.
+
+SILVA..
+
+R.
+
+R.
+
+M.;  MEDEIROS,  J.
+
+I.
+
+M.;  REGIS,  P.
+
+O.
+
+A.;  MORAIS,  C.
+
+R.
+
+N.; MOREIRA,  A.
+
+C.
+
+Ecologia  Industrial: análise  de  ferramentas  e  viabilidade.
+
+In:XIII ENCONTRO   NACIONAL   DE   ENGENHARIA   E   DESENVOLVIMENTO   SOCIAL, Anais [...]. 2016.
+
+SILVEIRA,  J..
+
+L.  (Org.) Caminhos  para  a  Sustentabilidade:  Cenário  Atual  e Perspectivas para o Futuro.
+
+Formiga (MG): Editora Real Conhecer, 2021.
+
+THE        GLOBAL        E.-WASTE        MONITOR. 2020.
+
+Disponível        em: https://ewastemonitor.info/gem-2020/.
+
+Acesso em 22 fev. 2022.
+
+THESHIFTPROJECT..
+
+Lean  ICT: Towars  Digital  Sobriety. 2019.
+
+Disponível  em: https://theshiftproject.org/en/article/lean-ict-our-new-report/.
+
+Acesso   em:   30   mar. 2022.
+
+TOKARNIA, M..
+
+Brasil é  o  quinto maior  produtor  de  lixo eletrônico.
+
+Agência  Brasil, 07  out.  2021.
+
+Disponível  em:  <https://agenciabrasil.ebc.com.br/geral/noticia/2021-10/brasil-e-o-quinto-maior-produtor-de-lixo-eletronico> .
+
+Acesso em: 13 jul. 2022.

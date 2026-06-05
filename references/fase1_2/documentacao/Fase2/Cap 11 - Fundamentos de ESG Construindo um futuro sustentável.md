@@ -1,0 +1,249 @@
+# Cap 11 - Fundamentos de ESG Construindo um futuro sustentável
+
+## Sumário
+
+# Cap 11 - Fundamentos de ESG Construindo um futuro sustentável
+
+Fundamentos de ESG: Construindo um futuro sustentável5 ENTENDENDO OACRÔNIMO ESG Conforme  mencionamos,  a discussão  a  respeito  da  sustentabilidade  ganhou destaque  com a  publicação  do  relatório  "Nosso  Futuro Comum"  da  delegação Brundtland,em 1987, que denota a necessidade que para um desenvolvimento ser sustentável,   este   devepossuir   três   aspectos:   ser ecologicamente   correto, economicamente  viável  e  socialmente  justo.
+
+Esta  discussão  não  fica  apenas  no campo  teórico,  veremos  ações  de  empresas  como  a  Black  Rock  vinculadas  ao acrônimo ESG.5.1O que é ESG e sua importânciaLarry Flink, CEO da Black Rock (maior empresa de gestão de ativosno mundo, com mais de US$ 10 trilhões)demonstrou a sua preocupação em uma carta de 2020, na qual ele argumenta que estamos à beira de uma mudança estrutural nas finanças.
+
+A atitude de Larry mostra seu investimento com as mudanças climáticas, que ele vê como  um  fator  determinante  nas  perspectivas  de  longo  prazo  da  empresa  porque "risco climático é risco".
+
+Em outras palavras, Fink significa que incorpora fatores como gestão de riscos climáticos ao negócio é uma prioridade.
+
+Além  disso,  em  sua  opinião,  as  empresas  que  atendem  aos  padrões  ESG alcançarão o melhor desempenho financeiro.
+
+Dessa forma, a Black Rock passará a recomendar como ações de empresas nas carteiras que atendem aos clientes.
+
+Outra medida  proposta  pela  Black  Rock  é  complementar  uma  composição  de  fundos baseada   em   ESG,  enquanto   trabalha   para   melhorar   e   expandir   o   índice  de sustentabilidade.
+
+Fundamentos de ESG: Construindo um futuro sustentável.
+
+Figura 7–Larry Flink, CEO da BlackRockFonte: Google Imagens (2022)O  impacto  da  carta  foi  grande  semanas  após  seu  lançamento,  a Microsoft anunciou um plano para zerar a sua pega de carbono até 2030.
+
+Já aDelta Air Lines anunciou um compromisso de US$ 30 milhões parazerar as emissões de carbono.
+
+Em  2020,  com  a  eclosão  da  pandemia  de covid-19,  o movimento  ESGfinalmente  ganhou  mais  força,  confirmando  que  investir  em  verde  é  lucrativo.
+
+Os investidores  começaram  a  comprar  mais  ações  de  empresas  sustentáveis.
+
+ABlackRock, por toda a sua importância no mundo, crioufundos de índice orientados para a estabilidade, que atentam para a seleção de empresas a serem incluídas ou excluídas.5.2ESG no BrasilNo Brasil,oDecreto 10.846, de 25 de outubro de 2021,estabelece o Comitê Interministerial sobre Mudança do Clima e Crescimento Verde -CIMV, instituído pelo Decreto nº 10.845, de 25 de outubro de 2021, prestará o apoio técnico e administrativo necessário  à  implementação  do  Programa  Nacional  de  Crescimento  Verde  cujas diretrizes são:Art. 2São objetivos do Programa Nacional de Crescimento Verde:I -aliar o crescimento econômico ao desenvolvimento com iniciativas sustentáveis;
+Fundamentos de ESG: Construindo um futuro sustentávelII -aprimorar  a  gestão  de  recursos  naturais  para  incentivar  a produtividade, a inovação e a competitividade;III -criar empregos verdes;IV -promover   a   conservação   de   florestas   e   a   proteção   da biodiversidade;V -reduzir as emissões de gases de efeito estufa, com vistas a facilitar a transição para a economia de baixo carbono;VI -estimular a captação de recursos, públicos e privados, destinados ao  desenvolvimento  da  economia  verde,  provenientes  de  fontes nacionais e internacionais; eVII -incentivar a elaboração de estudos e a realização de pesquisas que contribuam para:a) o uso sustentável dos recursos naturais;b) a redução de emissões de gases de efeito estufa;c) a conservação de florestas; ed) a proteção da biodiversidade. (BRASIL, 2021).
+
+Poucos  países  criaram  políticas  públicas  como essas estabelecidaspelo decreto.
+
+Apesar  do  Brasil  ter  criado  um  decreto, sua  execução ainda não  tem  sido devidamente realizada pelas diferentes camadas da sociedade, uma vez que 24% das bolsas   mundiais   colocam   a   regulação   do   relatório   de   sustentabilidade   como obrigatória —o  Brasil  se  encaixa  entre  os  76%  que  não  preveem  a  iniciativa(KERCHER, 2022).5.3ESG estratégia de integraçãoContudo,apesar de haver poucos avanços para o desenvolvimento de atitudes sustentáveis,  esse  fato  deve  mudar.
+
+Em  dezembro  de  2021,  a  CVM  (Comissão  de Valores Mobiliários) publicou uma alteração nas regras do Formulário de Referência –documento que contém as principais informações sobre as empresas –ampliando a exigência de informações sobre fatores ESG.
+
+Fundamentos de ESG: Construindo um futuro sustentávelA exigência é de que o emissor determine quais Objetivos de Desenvolvimento Sustentável,estabelecidos pelas Nações Unidas,sãorelevantes para o seu contexto de negócios, como a aceitação do “faça ou explique”, para que os emissores que não divulgam  relatórios  de  sustentabilidade  ou  documentos  similares,  ou  que  não possuem indicadores de desempenho significativos em questões ambientais e sociais, expliquem por que não o fazem.
+
+A CVM também destaca que futuros esforços regulatórios fortes, com foco em questões  de  sustentabilidade,  não  devem  ser  descartados.
+
+Embora  o  mercado brasileiro  não  tenha  indicadores  100%  claros  e  definidos  sobre  ESG,  essa  é  a preocupação dos órgãos reguladores de todo o mundo.
+
+No entanto, existem alguns parâmetros   que   atuam   como   uma   espécie   de   "Selo   ESG".
+
+O   Índice   de Sustentabilidade Empresarial (ISE) da B3 é um deles.
+
+O novo método, aprovado em 19 de julho de 2021, entrou em vigor em janeiro deste ano.
+
+Além  disso,  as  empresas também  devem  se  atentar  às  tendências  da  pauta ESG, em especial, essas cinco: •Questões  climáticas  atreladas  à  emissão  de  gases  do  efeito estufa: a discussão ganhou força na COP26, realizada no final de 2021, e estará no centro dos debates ESG;•Créditos de Carbono: em especial no Brasil, um projeto de lei(PL nº 528/21) que visa a regulamentar o mercado de créditos de  carbono  pode  ser  aprovado.
+
+A  Câmara  dos  Deputados aprovou  o projeto  em  novembro  de  2021,  e  aguarda  análise pelo Plenário.
+
+A data, contudo, ainda não foi definida.•Diversidade e Inclusão: o pilar ‘S’ da sigla deve ganhar força;•Avanços  na  regulamentação:  as  iniciativas  promovidas  pela CVM caminham nesta direção, masnovas ações ainda devem acontecer sobre a temática;•Padronização  da  regulamentação:  seja  por  conta  própria  ou por  meio  das  novas  regulamentações,  parâmetros  definidos com  maior   clareza  e  coesão  são  uma  meta  para  2022(KERCHER, 2022).
+
+Fundamentos de ESG: Construindo um futuro sustentávelAs mudanças visam melhorar e aumentar o desempenho do índice, que serve tanto  como  uma  medida  de  investimento  ESG  quanto  uma  ferramenta  eficaz  para gerenciar a estabilidade do mercado.5.4 Cuidado com ogreenwashingGreenwashingé  uma  prática  de  falsa  sustentabilidade.
+
+A  tradução  literal  da palavraé“banho  verde”,  também  descreve  o  ato  da  empresa  de  difundir  a sustentabilidade em seus produtos e serviços, mas não de realizá-la.
+
+Figura 8–Analogia ao greenwashingFonte: Google Imagens (2022)É comum que as empresas acabem colocando seus próprios selos, mas não possuamnenhuma prova para verificar as informações.
+
+Por isso, é importante ficar atento ao que aparece na embalagem e certificar-se de que o selo ou certificado é dado por organizações de confiança.
+
+Quando o presidente de uma empresa diz em suas redes sociais que a empresa prioriza a sustentabilidade, consultar os relatórios da empresa e os indicadores disponíveis no mercado pode ser suficiente para refutar ou confirmar a afirmação.
+
+Por isso,  o  segredo  para  não  cair  em  nenhum  tipo  de  banho  é  olhar profundamente as informações.
+
+O marketing é importante para as empresas porque ajuda a divulgar os projetos relacionados a ESG, mas o sucesso precisa vir antes dos anúncios.
+
+Fundamentos de ESG: Construindo um futuro sustentável5.5Impacto no “E” de enviroment/ambienteA esfera ambiental -o “E” em inglês ou “A” em português -se refere às práticas de  uma  empresa  em  relação  à  conservação  do  meio  ambiente,  como  ela  atua  na gestão  ambiental  e  em  relação  aos  recursos  naturais.
+
+A  questão  das  mudanças climáticas tem um papel fundamental nesta esfera, porque elas têm a capacidade de afetar seriamente o financeiro das empresas.
+
+Por exemplo: se uma empresa, cuja atividades dependem do uso de recursos hídricos, enfrentar a escassez ou falta de água, o prejuízo será enorme não apenas para o negócio, mas para toda a cadeia de valor desta organização.
+
+Alguns indicadores para considerar na esfera ambiental são:•O adequado gerenciamento dos resíduos;•A eficiência energética;•A redução da emissão de gases poluentes (CO2, gás metano);•O incentivo ao uso sustentável de recursos genéticos da biodiversidade;•O uso dos recursos naturais, entre outros.5.6O planeta em agoniaÉ indiscutível que a sociedade precisa tomar uma atitude de proteção ao nosso planeta e a natureza.
+
+Alguns tópicos demonstram:•Os corais estão brancos devido ao aumento da temperatura dos oceanos.•80% do gás carbônico do planeta é absorvido pelos oceanos.•Em  50  anos  eliminamos  68%espécies  de  animais  selvagenssegundo relatório da ONGFundo Mundial para a Natureza –WWF (apud G1, 2020).
+
+E  não  são  os  únicos  problemas  que  estamos  enfrentando.
+
+Cada  vez  mais  a humanidade está se apropriando da natureza e transformado ela.
+
+De  acordo  com o  estudo  de  Elhacham  et  al.  (2020), a  massa  de  todos  os objetos feitos pelo homem no mundo em 2020 (a massa antropogênica) excedeu, pela
+Fundamentos de ESG: Construindo um futuro sustentávelprimeira  vez  na  história,  a  massa  do  conjunto  combinado:massa  antropogênicaeseres vivos (biomassa).
+
+Seu peso seco foi de 1,1 teratons, e o estudo não calculou a massa dos detritos.
+
+Só parase ter uma ideia, o peso de tudo que hoje em Nova York é  feito  pelo  homem  é  igual  ao  peso  de  todos  os  peixes  da  Terra,  enquanto  a quantidade de plástico no planeta sozinho já é o dobro do peso de todos os animais na terra.5.7 O relatório IPCCe as mudanças climáticasSegundo  a  última  edição  de  relatório  do  Painel  Intergovernamental  sobre Mudanças Climáticas (IPCC) de março 2022, pelo menos 3,3 bilhões de pessoassão altamente vulneráveisaos efeitos do aumento da temperatura do planeta.
+
+O IPCC alerta que os eventos extremos estão cada vez mais frequentes e já expuseram milhões de pessoas à insegurança alimentar e hídrica.
+
+No entanto, apesar de  ser  um  fenômeno  global,  os  maiores  impactos  são  observados  na  África,  na América Latina, na Ásia e nos pequenos países insulares e no Ártico.
+
+Além  disso,  a  mudança  do  clima  retardou  os  ganhos  de  produtividade  da agricultura   mundial   nos   últimos   50   anos.
+
+A   desnutrição   aumentou,   afetando principalmente  idosos,  crianças,  mulheres  grávidas  e  indígenas,  o  que  reforça  a necessidade de atitudes em escala mais drásticas, com financiamento e com ações contínuas. 5.8O impacto no “S” de socialO segundo este pilar do acrônimo ESG,aborda as iniciativas sociais com foco nas  pessoas  e  seus  impactos.
+
+O  mundo  caminha  para  uma  superpopulação  que demandarácada  vez  mais  comida,  água,  emprego,  trabalho,  moradia  etc.  e  que geraráum impacto cada vez maior no nosso planeta.
+
+Fundamentos de ESG: Construindo um futuro sustentável5.9Próximo desafio: conviver com os problemas ambientais e o aumento da populaçãoO termo “superpopulação” é usado quando, ao observar uma espécie, percebe-se  que  ela  aumentou  drasticamente  em  um  curto  período,  a  ponto  de  causar  um desequilíbrio no ecossistemae impactar nossas vidas e a vida do próprio planeta.
+
+A tecnologia  poderá  colaborar  com  apreservação  do  ambiente  e  melhora  de  nossa convivência na sociedade.
+
+Por  isso,  é  importante  pensar  em  novas  tecnologias  e  cidades  sustentáveis, para conseguirmos viver bem sem alterar ainda mais o nosso meio ambiente, visto que a população aumentará para 9,7 bilhões em 2050(NAÇÕES UNIDAS BRASIL, 2019).
+
+Esse  cenário,  vinculado  com  os  problemas  ambientais,  podemoriginar  um cenário terrível para a existência do ser humanos, bem como as demais espécies, por isso, a governança ambiental, social e coorporativa busca adequar a necessidade de desenvolvimento com uma vivência harmoniosa para todos, buscando o equilíbrio da nossa relação com o meio ambiente.
+
+Fundamentos de ESG: Construindo um futuro sustentável## Referências
+
+BARBIERI.; José Carlos; SILVA, Dirceu da.
+
+Desenvolvimento sustentável e educação ambiental: uma trajetória comum com muitos desafios.
+
+RAM, Rev.
+
+Adm.
+
+Mackenzie, [S.l.],            v.            12,            n.            3,            2011.
+
+Disponível            em: <https://www.scielo.br/j/ram/a/DSKVmHs8qLRFRrGcGqTKh7H/?lang=pt#>.
+
+Acesso em: 16 ago. 2022.
+
+BRASIL..
+
+Decreto nº 10.846, de 25 de outubro de 2021.
+
+Institui o Programa Nacional de Crescimento Verde.
+
+Diário Oficial [da] República Federativa do Brasil.
+
+Brasília, DF,  25  out.  2021.
+
+Disponível  em:  <http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/Decreto/D10846.htm>.
+
+Acesso em: 16 ago. 2022.
+
+BRESSAN, M.ônica.
+
+Transformações e o futuro sustentável das organizações.
+
+Notícia Sustentável,2               maio               2022.
+
+Disponível em: <https://www.noticiasustentavel.com.br/artigo-esg-futuro-sustentavel/>.
+
+Acesso   em: 16 ago. 2022.
+
+COSTA,  C.arlos  Alexandre  Gehn  da.
+
+Contabilidade  Ambiental.
+
+São  Paulo:  Atlas, 2012.
+
+ELHACHAM,  E.mily  et  al.
+
+Global  human-made  mass  exceeds  all  living  biomass.
+
+Nature, [S.l.], v. 588, 2020.
+
+Disponível em: <https://www.nature.com/articles/s41586-020-3010-5>.
+
+Acesso em: 16 ago. 2022.
+
+ESTRAT.ÉGIA     ODS.
+
+O     que     são     os     ODS?s.d.
+
+Disponível     em: <https://www.estrategiaods.org.br/o-que-sao-os-ods/>  Acesso em: 16 ago. 2022.
+
+G1.
+
+Planeta  perdeu  quase  70%  dos  animais  selvagens  em  menos  de  50  anos,  diz WWF.
+
+G1,             10             set.             2020.
+
+Disponível             em: <https://g1.globo.com/natureza/noticia/2020/09/10/planeta-perdeu-quase-70percent-dos-animais-selvagens-em-menos-de-50-anos-diz-wwf.ghtml>.
+
+Acesso  em:  16  ago. 2022.
+
+GS.1           BRASIL.
+
+Pacto           Global.           s.d.
+
+Disponível           em: <https://www.gs1br.org/sustentabilidade/governanca/pacto-global>  .
+
+Acesso  em:  16 ago.2022.
+
+KERCHER,  S.ofia.
+
+Entenda  o  que é  ESG,  tendência  para  os  investidores  em  2022.
+
+CNN             Brasil,             11 fev.             2022.
+
+Disponível             em: <https://www.cnnbrasil.com.br/business/entenda-o-que-e-esg-tendencia-para-os-investidores-em-2022/>.
+
+Acesso em: 16 ago. 2022.
+
+Fundamentos de ESG: Construindo um futuro sustentávelNAÇÕES  UNIDAS  BRASIL.
+
+População  mundial  deve  chegar  a  9,7  bilhões  de pessoas   em   2050,   diz   relatório   da   ONU. 17   JU.   2019.
+
+Disponível   em: <https://brasil.un.org/pt-br/83427-populacao-mundial-deve-chegar-97-bilhoes-de-pessoas-em-2050-diz-relatorio-da-onu>.
+
+Acesso em: 16 ago. 2022.
+
+NA.ÇÕES UNIDAS.
+
+ONU discute desafio de mobilizar financiamento para os ODS. 18  abr.  2016.
+
+Disponível  em:  <https://news.un.org/pt/story/2016/04/1547971-onu-discute-desafio-de-mobilizar-financiamento-para-os-ods>.
+
+Acesso em: 12 ago. 2022.
+
+PACTO  GLOBAL..
+
+A  iniciativa.  s.  d.
+
+Disponível  em:  <https://pactoglobal.org.br/a-iniciativa>.
+
+Acesso em: 16 ago.2022.
+
+PEREZ,  M.arcelo  Monteiro ;FAMÁ,  Rubens  .
+
+Ativos  intangíveis  e  o  desempenho empresarial.
+
+Revista  Contabilidade  Financeira  USP,  [S.l.],  v.17,  n.  40,  p.  7–24, 2006.
+
+SACHS, I.gnacy.
+
+Caminhos para o desenvolvimento sustentável.
+
+Rio de Janeiro: Garamond, 2002.
+
+SEN,A.martya Kumar.
+
+Sobre ética e economia.
+
+São Paulo, Companhia das Letras, 1999.
+
+UNITED  NATIONS  GLOBAL  COMPACT..
+
+The  Ten  Principles  of  the  UN  Global Compact. s.    d.
+
+Disponível    em: <https://www.unglobalcompact.org/what-is-gc/mission/principles>.
+
+Acesso em: 16 ago.2022

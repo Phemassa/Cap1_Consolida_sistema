@@ -1,3 +1,4 @@
+# Origem: https://github.com/Phemassa/Cap_1_Rede_Neural (Fase 6) | artefatos em references/fase6/
 from datetime import datetime
 
 from phases.fase6.pipeline import infer_folder

@@ -1,0 +1,262 @@
+# Cap 10 - A Eletrônica de uma IA
+
+## Sumário
+
+# Cap 10 - A Eletrônica de uma IA
+
+A Eletrônica de uma IA3.9.2 Programando com o LDREsse é um exemplo de código para ler os valores de luminosidade de um LDR usando o ESP32.
+
+Observeque dessa vez, mudamos para o pino GPIO 34.
+
+Lembre-se de sempre darpreferência para os pinos da esquerda do ESP32 quando quiser analisar sinais analógicos,e quando quiser analisar sinais digitais, dê preferência para os pinos da direita do ESP32.
+```python
+#define ldrPin 34  // Pino ADC conectado ao LDRvoid setup() {Serial.begin(9600);  //   Inicia   a   comunicação serial}void loop() {int  ldrValue  =  analogRead(ldrPin);    //  Lê  o  valor analógico do LDRSerial.print("Nível de Luz: ");Serial.println(ldrValue);    //  Exibe  o  valor  lido  no Monitor Serialdelay(500);  // Pequeno atraso para a próxima leitura}Código-fonte 9-Exemplo de comoprogramar o LDRFonte: Elaborado pelo autor (2024)Explicação do código:•`analogRead(ldrPin);`lê o valor analógico do pino `ldrPin`, que representa a tensão no divisor de tensão formado pelo LDR e o resistor.
+
+Este valor está relacionado à intensidade da luz que incide sobre o LDR.•`Serial.print("Nível de Luz: ");` e`Serial.println(ldrValue);`exibem o valor lido no Monitor Serial, permitindo monitorar a variação da luz ambiente em tempo real.
+
+A Eletrônica de uma IA3.9.3 Aplicação com LDR no mundo da IAO  LDR  pode  ser útilem  diversas  aplicações  inteligentes  que  requerem detecção  de  luz  ou  controle  baseado  em  luminosidade.
+
+Aseguirestão  algumas possíveis aplicações em sistemas de IA:•O  LDR  pode  ser utilizado em  sistemas  de  automação  residencial  para controlar as luzes com base na luminosidade do ambiente.
+
+Um sistema de IA  pode  aprender  os  padrões  de  uso  da  luz  em  uma  casa  e  ajustar automaticamente  a  iluminação  para  economizar  energia  ou  melhorar  o conforto dos moradores.•Em  projetos  de  agricultura  de  precisão,  o  LDR  pode  ser  usado  para monitorar os níveisde luz solar que atingem as plantas, em seguida, aIA pode analisar esses dados para ajustar sistemas de irrigação ou sombra, otimizando o crescimento das plantas.•Em  sistemas  de  segurança,  o  LDR  pode  detectar  mudanças  abruptas  na luz,  como  quando  uma  porta  ou  cortina  é  aberta,  acionando  alarmes  e notificações.
+
+Assim, aIA pode determinar se essa mudança de luz indica uma atividade normal ou uma possível intrusão.•Em robôs que navegam em ambientes com variação de luz, o LDR pode ser utilizadopara seguir aluz ou evitar áreas escuras.
+
+EnquantoaIA pode tomar decisões em tempo real com base nos dados do LDR, ajustando a rota do robô para alcançar um objetivo específico.3.10 Sensor acelerômetro MPU6040O sensor MPU6050 é um módulo que combina um acelerômetro de trêseixos e  um  giroscópio  de trêseixos  em  um  único  dispositivo.
+
+Isso  permite  a  mediçãoda aceleração e da rotação em três dimensões, tornando-o essencial em aplicações que requerem a detecção de movimento, orientação e posição.
+
+O MPU6050 é utilizado em robótica, dispositivos vestíveis, drones e sistemas de navegação.
+
+Quando integrado ao ESP32 e a sistemas de IA, o MPU6050 permite a criação de sistemas inteligentes que respondem dinamicamente aos movimentos,
+A Eletrônica de uma IAotimizando    tarefas    como    controle    de    equilíbrio,    navegação    autônoma    e reconhecimento de gestos.
+
+Como mencionado, o MPU6050 mede a aceleração e a rotação nos eixos X, Y e Z, fornecendo dados que podem ser úteispara calcular a inclinação, a velocidade angular e a orientação do dispositivo.
+
+O sensor se comunica com o ESP32 por meiodo protocolo I2C, um protocolo de   comunicação   serial   que   permite   a   transferência   eficiente   de   dados   entre dispositivos.
+
+A figura “Sensor MPU6050”mostra o MPU6050 no mundo real:Figura 27-Sensor MPU6050Fonte: Arduino Ômega Blog (2021)3.10.1 AcelerômetroMede  a  aceleração  em  três  direções,  nos  eixos  X,  Y  eZ,  podendo  detectar movimentos em qualquer direção no espaço tridimensional,e a unidade de medida da aceleração é geralmente medida em metros por segundo ao quadrado (m/s²) ou em gravidade terrestre (g).3.10.2 GiroscópioTambém mede nos eixos X, Y e Z, alémde medir arotação ao redor deles.
+
+Sendo útil para detectar mudanças de orientação e movimento angular.
+
+A rotação é medida em graus porsegundo (°/s).
+
+A Eletrônica de uma IA3.10.3 Pinagem do MPU6050Para conectar o MPU6050 ao ESP32, faça conforme ilustra a figura a“Conexão entre ESP32 e o MPU6050”.•VCC:conecte ao pino 3.3V do ESP32.•GND:conecte ao GND do ESP32.•SCL (Clock I2C):conecte ao GPIO 22 do ESP32.•SDA (Dados I2C):conecte ao GPIO 21 do ESP32.
+
+Nota: o ESP32 usa níveis lógicos de 3.3V, compatíveis com o MPU6050.
+
+Figura 28-Conexão entre ESP32 e o MPU6050Fonte: Elaborado pelo autor (2024)3.10.4 Programando com MPU6050Aqui está um exemplo de código que utiliza a biblioteca “MPU6050”para ler os valores de aceleração e rotação do sensor:
+A Eletrônica de uma IA#include <Adafruit_MPU6050.h>#include <Adafruit_Sensor.h>#include <Wire.h>Adafruit_MPU6050 mpu;void setup(void) {Serial.begin(115200);if (!mpu.begin()) {Serial.println("Falha ao encontrar o chip MPU6050");while (1) {delay(10);}}mpu.setAccelerometerRange(MPU6050_RANGE_8_G);mpu.setGyroRange(MPU6050_RANGE_250_DEG);mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);Serial.println("");delay(1000);}void loop() {/* Get new sensor events with the readings */sensors_event_t a, g, temp;mpu.getEvent(&a, &g, &temp);Serial.println("Acelerometro:");Serial.print(a.acceleration.x);Serial.print(",");Serial.print(a.acceleration.y);Serial.print(",");Serial.println(a.acceleration.z);Serial.println("");Serial.println("Giroscopio:");Serial.print(g.gyro.x);Serial.print(",");Serial.print(g.gyro.y);Serial.print(",");Serial.print(g.gyro.z);delay(10);}Código-fonte 10-Exemplo de uso do sensor giroscópioFonte: Elaborado pelo autor (2024)Explicação do código:
+```
+
+A Eletrônica de uma IA•
+```python
+#include  <Adafruit_MPU6050.h>inclui  a  biblioteca "Adafruit_MPU6050", que  contém  funções para  facilitar  a  comunicação  e a  leitura de  dados do sensor MPU6050.
+
+Esta biblioteca abstrai muitos detalhes técnicos, tornando o uso do sensor mais simples e intuitivo.•#include  <Adafruit_Sensor.h>inclui  a  biblioteca  "Adafruit_Sensor",  que fornece uma interface comum para diferentes tipos de sensores. É utilizada junto com a biblioteca do MPU6050 para lidar com os dados do sensor de forma estruturada.•#include  <Wire.h>inclui  a  biblioteca  "Wire",  que  é  necessária  para  a comunicação I2C entre o ESP32 e o MPU6050.
+
+O I2C é um protocolo de comunicação que permite a conexão de múltiplos dispositivos em dois fios: um para o clock (SCL) e outro para os dados (SDA).•Adafruit_MPU6050 mpu;cria um objeto mpu do tipo Adafruit_MPU6050, que será utilizado para interagir com o sensor MPU6050.•Serial.begin(115200);inicializa a comunicação serial a uma taxa de 115200 bits  por  segundo  (baud  rate).
+
+Isso  permite  que  o  ESP32  envie  dados  ao Monitor Serial, onde você pode visualizar as leituras do sensor.•if (!mpu.begin()) { ... }esta linha tenta inicializar o sensor MPU6050 usando o  método  begin().
+
+Se  a  inicialização  falhar  (ou  seja,  se  o  sensor  não  for encontrado), o código dentro do bloco if é executado.•Serial.println("Falha   ao   encontrar   o   chip   MPU6050"); exibe   uma mensagem de erro no Monitor Serial indicando que o sensor MPU6050 não foi encontrado.•while (1) { delay(10); } entra em um loop infinito, onde o código fica preso, com   pequenos   atrasos   de   10   milissegundos   entre   cada   ciclo.
+
+Isso interrompe o programa se o sensor não for detectado, evitando a execução de código sem o sensor presente.•mpu.setAccelerometerRange(MPU6050_RANGE_8_G); configura     o intervalo de medição do acelerômetro para ±8g (g é a unidade de gravidade, equivalente  a  aproximadamente  9,8  m/s²).
+
+Isso  define  a  sensibilidade  do acelerômetro.
+
+A Eletrônica de uma IA•mpu.setGyroRange(MPU6050_RANGE_250_DEG); configura  o  intervalo de  medição  do  giroscópio  para  ±250  graus  por  segundo.
+
+Isso  define  a sensibilidade do giroscópio.•mpu.setFilterBandwidth(MPU6050_BAND_21_HZ); define  a  largura  de banda do filtro do sensor para 21 Hz.
+
+Essa configuração ajuda a filtrar ruídos de alta frequência, tornando as leituras mais estáveis e precisas.•delay(1000);introduz um atraso de 1 segundo para garantir que todas as configurações sejam aplicadas corretamente antes de iniciar a leitura dos dados.•sensors_event_t    a,    g,    temp;declara    três    variáveis    do    tipo sensors_event_t, que são usadas para armazenar os dados de aceleração (a), giroscópio (g) e temperatura (temp) capturados pelo sensor.•mpu.getEvent(&a, &g, &temp);chama a função getEvent() para capturar os dados atuais do sensor e armazená-los nas variáveis a, g e temp.
+
+Essa função coleta os valores de aceleração, rotação e temperatura em um único passo.•Serial.println("Acelerometro:");exibe o título "Acelerometro:" no Monitor Serial  para  indicar  que  os  valores  seguintes  correspondem  à  aceleração medida pelo sensor.•Serial.print(a.acceleration.x); e Serial.print(",");exibe  os  valores  da aceleração nos eixos X, Y e Z, separados por vírgulas.
+
+Isso facilita a leitura e o registro dos dados.•Serial.println("Giroscopio:");exibe o título "Giroscopio:" no Monitor Serial para indicar que os valores seguintes correspondem à rotação medida pelo giroscópio.•Serial.print(g.gyro.x);eSerial.print(",");exibe os valores da rotação nos eixos X, Y e Z, também separados por vírgulas.•delay(10);introduz um pequeno atraso de 10 milissegundos antes de repetir o loop, garantindo que as leituras sejam estáveis e evitando sobrecarregar a comunicação serial.
+
+A Eletrônica de uma IA3.10.5 Aplicações do MPU6050 em sistemas de IAO  MPU6050  pode  ser utilizado em  diversas  aplicações  que  requerem  a detecção de movimento e orientação.
+
+Quando integrado a sistemas de IA, ele permite que dispositivos tomem  decisões  inteligentes  com base  em  dados  de movimento  e rotação.
+
+Exemplos:•Em  drones,  o  MPU6050  é  crucial  para  manter  a  estabilidade.
+
+A  IA  pode processar  os  dados  de  aceleração  e  rotação  para  ajustar  os  motores  em tempo real, garantindo um voo estável mesmo em condições adversas.•O MPU6050 pode ser usado para capturar movimentos de mão ou corpo.
+
+Enquanto  aIA  pode  reconhecer  padrões  nesses  dados,  permitindo  o controle  de  dispositivos  através  de  gestos,  como  mudar  slides  em  uma apresentação ou controlar o volume de um dispositivo.•Em  robôs  bípedes  ou  de  duas  rodas,  o  MPU6050  é útil para  manter  o equilíbrio.
+
+Enquanto aIA ajusta o posicionamento e o movimento do robô com base nos dados de inclinação e rotação fornecidos pelo sensor.•Em  dispositivos  de  realidade  aumentada  (AR)  e  realidade  virtual  (VR),  o MPU6050  é  utilizado  para  rastrear  os  movimentos  da  cabeçaou  do controlador,   permitindo   uma   experiência   imersiva.
+
+Assim,   aIA   pode melhorar  essa  experiência  prevendo  e  ajustando  o  conteúdo  visual  com base nos movimentos detectados.
+
+A Eletrônica de uma IA## Referências
+
+BAUERMEISTER,  G.iovanni.
+
+Como usar  Servo  Motor  com  Arduino.
+
+Fazedores,  30 nov.  2018.
+
+Disponível em:  <https://blog.fazedores.com/como-usar-servo-motor-com-arduino/>.
+
+Acesso em: 10 set. 2024.
+
+BUZZER..
+
+SunFounder,                 2022.
+
+Disponível                 em: <https://docs.sunfounder.com/projects/sf-components/en/latest/component_buzzer.html>.
+
+Acesso em: 10 set. 2024.
+
+CASTRO, L.eandro.
+
+Entendo o funcionamento do sensor inclinação (Giroscópio) com Arduino.
+
+Arduino      Ômega      Blog,      24      abril      2021.
+
+Disponível      em: <https://blog.arduinoomega.com/5-passos-para-utilizar-o-sensor-de-inclinacao-giroscopio/>.
+
+Acesso em: 10 set. 2024.
+
+CHAVE     Táctil     Push     Button     Com     Capa.
+
+Bitmarker.
+
+Disponível     em: <https://www.bitmaker.com.br/chave-tactil-push-button-com-capa->.
+
+Acesso  em:  06 set. 2024.
+
+CODEBENDER._CC.
+
+How  to  Use  a  Buzzer  (or  Piezo  Speaker) -Arduino  Tutorial.
+
+Autodesk Instructables, 2015.
+
+Disponível em: <https://www.instructables.com/How-to-use-a-Buzzer-Arduino-Tutorial/>.
+
+Acesso em: 10 set. 2024.
+
+DAMIRCHI,  M.ohammad.
+
+Interfacing  Passive  Buzzer  Module  with  Arduino.
+
+Electro peak!,   2020.
+
+Disponível   em:   <https://electropeak.com/learn/interfacing-passive-buzzer-module-with-arduino/>.
+
+Acesso em: 10 set. 2024.
+
+DFROBOT..
+
+Ultrasonic  Sensor  Review:  Comparing  DFRobot  URM09,HC-SR04, Devantech  SFR02  &  Maxbotix  MB1040.
+
+DFRobot,  23  nov.  2023.
+
+Disponível  em: <https://www.dfrobot.com/blog-13482.html>.
+
+Acesso em: 10 set. 2024.
+
+DHT.22 –Temperature and Humidity Sensor.
+
+Components101, 19 de abril de 2018.
+
+Disponível em: <https://components101.com/sensors/dht22-pinout-specs-datasheet>.
+
+Acesso em: 06 set. 2024.
+
+DIYABLES  DHT.22  Temperature  and  Humidity  Sensor  Module  for  Arduino,  ESP32, ESP8266,       Raspberry       Pi.
+
+DIY       Ables,       2022.
+
+Disponível       em:
+A Eletrônica de uma IA<https://diyables.io/products/dht22-temperature-and-humidity-sensor-module>.
+
+Acesso em: 10 set. 2024.
+
+EXP..    02:    Push    Button    Interfacing.
+
+Gmostfabd.    2024.
+
+Disponível    em: <https://gmostofabd.github.io/8051-Push-Button/>.
+
+Acesso em: 06 set. 2024.
+
+GRACHTEN,  Eduardo.
+
+Servo  motor -o  que  é  e  como  funciona.
+
+LinkedIn,  09  de outubro de 2022.
+
+Disponível em: <https://www.linkedin.com/pulse/servo-motor-o-que-%C3%A9-e-como-funciona-eduardo-grachten/>.
+
+Acesso em: 06 set. 2024.
+
+GAIN, Sudipto.
+
+DAY-2 Motion Sensor (HC-SR501).
+
+LinkedIn, 23 de fevereiro de 2024.
+
+Disponível      em:      <https://www.linkedin.com/pulse/day-2-motion-sensor-hc-sr501-shudipto-gain-tkpsc>.
+
+Acesso em: 06 set. 2024.
+
+MATTEDE,  H.enrique.
+
+O  que  é  servo  motor  e  como  funciona.
+
+Manual  da  Eletrica.
+
+Disponível  em:  <https://www.mundodaeletrica.com.br/o-que-e-servo-motor-e-como-funciona/>.
+
+Acesso em: 06 set. 2024.
+
+HACER.sensores de movimiento comPIR.
+
+Proyecto Electronico, 2017.
+
+Disponível em:             <https://www.proyectoelectronico.com/alarmas/pir-re200b-biss001-lhi778-kc778b.html>.
+
+Acesso em: 10 set. 2024.
+
+MÓDULO  conversor  de  nível  lógico  335V -Bidirecional  4  Canais.
+
+Smartkits.
+
+Disponível  em:  <https://www.smartkits.com.br/modulo-conversor-de-nivel-logico-3-3-5v-bidirecional?parceiro=9390&gad_source=1&gclid=CjwKCAjwuMC2BhA7EiwAmJKRrDg5_sgX4fBg996GcLVuDMi61lfligJzMP-OcYQyACbC8fZ08z4woxoCT4oQAvD_BwE>.
+
+Acesso em: 06 set. 2024MÓDULO   LDR   (Resistor   dependente   da   luz).
+
+STA,   2020.
+
+Disponível   em: <https://www.sta-eletronica.com.br/artigos/arduinos/modulo-ldr-resistor-dependente-da-luz>.
+
+Acesso em: 10 set. 2024.
+
+MÓDULO  Relé  1  Canal  Led  Indicador  para  Arduino  Pic  5V  10A.
+
+Loja  Robótica Educacional.
+
+Disponível  em:  <https://loja.roboticaeducacional.art.br/modulo-rele-1-canal-led-indicador-para-arduino-pic-5v-10a>.
+
+Acesso em: 06 set. 2024.
+
+VIEIRA, J.oão.
+
+Acionando uma Lâmpada pela rede Ethernet.
+
+Robocore, 09 de julho de    2024.
+
+Disponível    em:    <https://www.robocore.net/tutoriais/acionando-uma-lampada-pela-rede-ethernet>.
+
+Acesso em: 06 set. 2024.
+
+WHAT.is     PIR     Motion     Detector.
+
+Mokolora,     2022.
+
+Disponível     em: <https://www.mokolora.com/wp-content/uploads/2022/03/What-is-PIR-Motion-Detector.webp>.
+
+Acesso em: 06 set. 2024
+```

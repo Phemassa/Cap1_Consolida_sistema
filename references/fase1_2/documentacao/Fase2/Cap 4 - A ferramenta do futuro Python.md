@@ -1,0 +1,86 @@
+# Cap 4 - A ferramenta do futuro Python
+
+## Sumário
+
+# Cap 4 - A ferramenta do futuro Python
+
+A ferramenta do futuro: PythonFigura 12-Estrutura de uma listaFonte: Elaborado pelo autor (2022)A lista é composta deelementos,e dentro de cada elemento,existeum índice e uma célula (conteúdo).
+
+Que  tal  unirmos  os  dois?
+
+Vamos  criar  uma  listacujacélula  (conteúdo)  é um dicionário:
+A ferramenta do futuro: PythonFigura 13-Combinação da lista com o dicionárioFonte: Elaborado pelo autor (2022)Utilizando esse conceito, conseguimoscriaruma “tabela” na qual cada campo e tabela podem ser armazenados e acessados individualmente.6.2 Cadastrando contatosChegou o momento de colocarmos toda essa teoria em prática.
+
+Vamos considerar um registro com os campos:Estrutura do dicionário CONTATOKeyTipoCpfIntNomeStrCelularStrEmailStrTabela 1-Estrutura do registro CONTATOFonte: Elaborado pelo autor (2022)
+A ferramenta do futuro: PythonE uma lista que representará a nossa tabela com o nome TABELA.
+
+Esta será a sugestão do menu:Comando de prompt 30-Sugestão da solução –CONTATOS Fonte: Elaborado pelo autor (2022)A opção 0 sairá do sistema.
+
+A opção 1 cadastrará um novo contato.
+
+A opção 2 exibirá todos os contatos cadastrados.
+
+Aopção 3 exibirá um contato específico a partir de um índice fornecido.
+
+Vamos  comentar  a  construção  de  cada  rotina,  começando  pela  criação das estruturas de dados:
+```python
+# Cria uma 'Tabela' que armazenará um dicionáriotabela = list()# cria um dicionário de nome 'contato' vaziocontato = dict()Código-fonte 44-Inicialização da tabela (lista x dicionário)Fonte: Elaborado pelo autor (2022)Simples  assim!
+
+Uma  lista  que  representa  a  TABELA  e  um  dicionário  que representa o CONTATO.
+
+Agora,mostraremos a rotina quepodecadastraros contatos:# Procedimento que preenche um registrodef preenche_registro(t: list, reg: dict) -> None:# permite ao usuário preencher o dicionárioprint("PREENCHENDO O REGISTRO")reg['cpf'] = input("CPF...........: ")reg['nome'] = input("Nome..........: ")reg['celular'] = input("Celular.......: ")reg['email'] = input("E-mail........: ")# cria uma cópia do ponteirot.append(reg.copy())Código-fonte 45-Construção do procedimento preenche_registroFonte: Elaborado pelo autor (2022)0 -SAIR1 -CADASTRAR UM CONTATO2 -EXIBIR OS CONTATOS CADASTRADOS3 -EXIBIR UM CONTATO ESPECÍFICODigite uma opção desejada...:
+A ferramenta do futuro: PythonA  nossa  rotinachama-sepreenche_registroe  é  um  procedimento.
+
+Ela passará como parâmetrost, que representa a tabela,e reg, representandoo registro do contato.
+
+A rotina permite que o regseja preenchido pelo usuário,e quando vai dar um appendem t, ocorreum copy()em reg.
+
+Ométodo copy()permite criaroutra posição na memória, ou seja, não utiliza o ponteiro da estruturainicial.
+
+E para exibir um registro específico?
+
+Observe:# procedimento que exibe um registro especificodef exibe_registro(t: list, i: int) -> None:print(f"REGISTRO {i}:")print("CPF.......:" + str(t[i]['cpf']))print("Nome......:" + t[i]['nome'])print("Celular...:" + t[i]['celular'])print("E-mail....:" + t[i]['email'])print()Código-fonte 46-Construção do procedimento exibe_registroFonte: Elaborado pelo autor (2022)Passamos por parâmetro a tabela t e o índice ique desejamos exibir.
+
+Em seguida,combinamos a tabela tcom o índice e a keypara exibir o registro completo.
+
+Vale ressaltar que esse procedimento exibe somente um registro.
+
+Agora vamos observara rotina que exibe todos os registros da tabela:# Procedimento que exibe todos os registros da tabeladef exibe_tabela(t: list) -> None:qtd_registros = len(t)for indice in range(qtd_registros):exibe_registro(t, indice)Código-fonte 47-Construção do procedimento exibe_tabelaFonte: Elaborado pelo autor (2022)A tabela té passada como parâmetro.
+
+Dentro do procedimento,primeiramente écontadaa  quantidade  de  registros  e essa  informação  é armazenada  na  variável qtd_registros.
+
+Dessa forma,o laço percorre todos os registros, a partir do índice 0  e  a  cada  volta  é  invocado  o  procedimento exibe_registro(demonstrado anteriormente) que exibe os registros pelo índice.
+```
+
+A ferramenta do futuro: PythonObservea soluçãocompleta para você testar:'''Autor.....: Prof.
+
+Edson de OliveiraData......: 14/11/2022Assunto...: Utilizando listas x dicionáriosProblema..: Cadastrando e exibindo registros'''
+```python
+# Procedimento que preenche um registrodef preenche_registro(t: list, reg: dict) -> None:# permite ao usuário preencher o dicionárioprint("PREENCHENDO O REGISTRO")reg['cpf'] = input("CPF...........: ")reg['nome'] = input("Nome..........: ")reg['celular'] = input("Celular.......: ")reg['email'] = input("E-mail........: ")# cria uma cópia do ponteirot.append(reg.copy())# procedimento que exibe um registro especificodef exibe_registro(t: list, i: int) -> None:print(f"REGISTRO {i}:")print("CPF.......:" + str(t[i]['cpf']))print("Nome......:" + t[i]['nome'])print("Celular...:" + t[i]['celular'])print("E-mail....:" + t[i]['email'])print()# Procedimento que exibe todos os registros da tabeladef exibe_tabela(t: list) -> None:qtd_registros = len(t)for indice in range(qtd_registros):exibe_registro(t, indice)# -----PROGRAMA PRINCIPAL# Cria uma 'Tabela' que armazenará um dicionáriotabela = list()# cria um dicionário de nome 'contato' vaziocontato = dict()while True:print("""0 -SAIR1 -CADASTRAR UM CONTATO2 -EXIBIR OS CONTATOS CADASTRADOS3 -EXIBIR UM CONTATO ESPECÍFICO
+A ferramenta do futuro: Python""")opcao = int(input("Digite uma opção desejada...: "))match opcao:case 0:breakcase 1:preenche_registro(tabela, contato)case 2:exibe_tabela(tabela)case 3:tot_reg = len(tabela)ind = int(input("Digite o índice...: "))if ind > tot_reg -1 or ind < 0:print("Índice inexistente!")else:exibe_registro(tabela, ind)case _:print("Opção inválida!")Código-fonte 48-Construção integral da solução CONTATOSFonte: Elaborado pelo autor (2022)Confira a simulação da execução.
+
+Cadastrando os registros:0 -SAIR1 -CADASTRAR UM CONTATO2 -EXIBIR OS CONTATOS CADASTRADOS3 -EXIBIR UM CONTATO ESPECÍFICODigite uma opção desejada...: 1PREENCHENDO O REGISTROCPF...........: 12345654398Nome..........: Edson de OliveiraCelular.......: 11947363388E-mail........: profedson.oliveira@fiap.com.br0 -SAIR1 -CADASTRAR UM CONTATO2 -EXIBIR OS CONTATOS CADASTRADOS3 -EXIBIR UM CONTATO ESPECÍFICODigite uma opção desejada...: 1PREENCHENDO O REGISTROCPF...........: 23432388898Nome..........: Vanderley NogueiraCelular.......: 1294837363E-mail........: vand@hotmail.com0 -SAIR
+A ferramenta do futuro: Python1 -CADASTRAR UM CONTATO2 -EXIBIR OS CONTATOS CADASTRADOS3 -EXIBIR UM CONTATO ESPECÍFICODigite uma opção desejada...: 1PREENCHENDO O REGISTROCPF...........: 5433736344Nome..........: Estela SilvaCelular.......: 21948473737E-mail........: estela@hotmail.comComando de prompt 31-Exibição do preenchimento dos contatosFonte: Elaborado pelo autor (2022)Exibindo os registros:Comando de prompt 32-Exibição de todos os contatosFonte: Elaborado pelo autor (2022)0 -SAIR1 -CADASTRAR UM CONTATO2 -EXIBIR OS CONTATOS CADASTRADOS3 -EXIBIR UM CONTATO ESPECÍFICODigite uma opção desejada...: 2REGISTRO 0:CPF.......:12345654398Nome......:Edson de OliveiraCelular...:11947363388E-mail....:profedson.oliveira@fiap.com.brREGISTRO 1:CPF.......:23432388898Nome......:Vanderley NogueiraCelular...:1294837363E-mail....:vand@hotmail.comREGISTRO 2:CPF.......:543373644Nome......:Estela SilvaCelular...:21948473737E-mail....:estela@hotmail.com
+A ferramenta do futuro: PythonExibindo um registro específico:Comando de prompt 33-Exibição de um contato específicoFonte: Elaborado pelo autor (2022)Com a construção dessa solução,conseguimoscontemplarpraticamente todos os conceitos trabalhados neste capítulo.0 -SAIR1 -CADASTRAR UM CONTATO2 -EXIBIR OS CONTATOS CADASTRADOS3 -EXIBIR UM CONTATO ESPECÍFICODigite uma opção desejada...: 3Digite o índice...: 1REGISTRO 1:CPF.......:23432388898Nome......:Vanderley NogueiraCelular...:1294837363E-mail....:vand@hotmail.com0 -SAIR1 -CADASTRAR UM CONTATO2 -EXIBIR OS CONTATOS CADASTRADOS3 -EXIBIR UM CONTATO ESPECÍFICODigite uma opção desejada...: 0
+A ferramenta do futuro: PythonREFERÊNCIALEOABLOG.
+
+Tabela do IRRF: Imposto de Renda 2022. 25 abr. 2022.
+
+Disponível em: <https://www.leoa.com.br/blog/tabela-irrf-2022>.
+
+Acesso em: 01 jul. 2024.
+
+A ferramenta do futuro: PythonGLOSSÁRIOÍndiceNúmerointeiro que representa uma célula específica.
+
+KeyChave/campo de um registro.
+
+ValueConteúdo de uma key.
+
+ItemsCombinação dos pares key/value.
+
+MétodoComando específico de um objeto.
+
+ObjetoNeste capítulo,são as estruturas de dados aprendidas.
+
+DicionárioTermo em Python paradefinir uma estrutura de dados.
+```

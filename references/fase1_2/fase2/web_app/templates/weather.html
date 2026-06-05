@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+
+{% block title %}Dados Meteorológicos - Sistema de Irrigação Inteligente{% endblock %}
+
+{% block content %}
+<!-- Header da Página -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card bg-gradient-primary text-white">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h4>
+                            <i class="bi bi-cloud-sun"></i>
+                            Dados Meteorológicos - Atividade Opcional 1
+                        </h4>
+                        <p class="mb-0">
+                            <i class="bi bi-info-circle"></i>
+                            Integração com API pública para economia de água e irrigação inteligente
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <div class="badge bg-light text-primary fs-6">
+                            <i class="bi bi-trophy"></i> IR ALÉM - FIAP
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Status da Integração Meteorológica -->
+{% if error_message %}
+<div class="alert alert-warning" role="alert">
+    <h6><i class="bi bi-exclamation-triangle"></i> <strong>Modo Simulação:</strong></h6>
+    <p class="mb-0">{{ error_message }}</p>
+    <small>Usando dados simulados para demonstração. Em produção, configure a API key da OpenWeatherMap.</small>
+</div>
+{% endif %}
+
+<!-- Clima Atual -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-primary">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-thermometer-sun"></i>
+                    Condições Meteorológicas Atuais - São Paulo
+                </h5>
+                <small>Atualizado: {{ current_weather.timestamp }}</small>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <div class="weather-metric">
+                            <h3 class="text-primary">{{ current_weather.temperature }}°C</h3>
+                            <small class="text-muted">Temperatura</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="weather-metric">
+                            <h3 class="text-info">{{ current_weather.humidity }}%</h3>
+                            <small class="text-muted">Umidade</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="weather-metric">
+                            <h3 class="text-success">{{ current_weather.wind_speed }} km/h</h3>
+                            <small class="text-muted">Vento</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="weather-metric">
+                            <h3 class="text-warning">{{ current_weather.description|title }}</h3>
+                            <small class="text-muted">Condição</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recomendação de Irrigação -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card {{ 'border-danger' if irrigation_recommendation.skip_irrigation else 'border-success' }}">
+            <div class="card-header {{ 'bg-danger' if irrigation_recommendation.skip_irrigation else 'bg-success' }} text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-{{ 'exclamation-triangle' if irrigation_recommendation.skip_irrigation else 'check-circle' }}"></i>
+                    Recomendação de Irrigação Baseada no Clima
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if irrigation_recommendation.skip_irrigation %}
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <div>
+                            <h6 class="mb-1"><strong>🚫 IRRIGAÇÃO SUSPENSA</strong></h6>
+                            <p class="mb-1">{{ irrigation_recommendation.reason }}</p>
+                            <small>Confiança: {{ irrigation_recommendation.confidence }}% | Economia de água garantida!</small>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <div>
+                            <h6 class="mb-1"><strong>✅ IRRIGAÇÃO LIBERADA</strong></h6>
+                            <p class="mb-1">{{ irrigation_recommendation.reason }}</p>
+                            <small>Confiança: {{ irrigation_recommendation.confidence }}% | Condições favoráveis para irrigação</small>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Previsão dos Próximos Dias -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-calendar3"></i>
+                    Previsão para os Próximos Dias
+                </h5>
+                <small>Planejamento de irrigação baseado na previsão meteorológica</small>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for day in forecast %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card border-light">
+                            <div class="card-body text-center">
+                                <h6 class="card-title text-muted">{{ day.timestamp }}</h6>
+                                <div class="weather-icon mb-2">
+                                    {% if 'chuva' in day.description.lower() or 'rain' in day.description.lower() %}
+                                        <i class="bi bi-cloud-rain text-primary" style="font-size: 2rem;"></i>
+                                    {% elif 'nuvem' in day.description.lower() or 'cloud' in day.description.lower() %}
+                                        <i class="bi bi-cloud text-secondary" style="font-size: 2rem;"></i>
+                                    {% else %}
+                                        <i class="bi bi-sun text-warning" style="font-size: 2rem;"></i>
+                                    {% endif %}
+                                </div>
+                                <p class="card-text">
+                                    <strong>{{ day.temperature }}°C</strong><br>
+                                    <small>{{ day.description|title }}</small><br>
+                                    <small class="text-muted">Umidade: {{ day.humidity }}%</small>
+                                </p>
+                                {% if 'chuva' in day.description.lower() or 'rain' in day.description.lower() %}
+                                    <span class="badge bg-danger">Sem Irrigação</span>
+                                {% else %}
+                                    <span class="badge bg-success">Irrigação OK</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Integração com Sistema de Irrigação -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">
+                    <i class="bi bi-gear"></i>
+                    Integração com Sistema de Irrigação
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6><i class="bi bi-cpu"></i> <strong>Cultura Atual:</strong> {{ culture.name }}</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-thermometer"></i> <strong>Temp. Ideal:</strong> 18-30°C</li>
+                            <li><i class="bi bi-droplet"></i> <strong>Umidade Min.:</strong> {{ culture.humidity_min }}%</li>
+                            <li><i class="bi bi-graph-up"></i> <strong>pH Ideal:</strong> {{ culture.ph_min }}-{{ culture.ph_max }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6><i class="bi bi-cloud-check"></i> <strong>Benefícios da Integração:</strong></h6>
+                        <ul class="list-unstyled">
+                            <li>💧 <strong>Economia de água</strong> com previsão de chuva</li>
+                            <li>🌱 <strong>Otimização</strong> baseada em dados reais</li>
+                            <li>📊 <strong>Decisões inteligentes</strong> automatizadas</li>
+                            <li>🏆 <strong>Sustentabilidade</strong> agrícola avançada</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="mb-0">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            <strong>Atividade Opcional 1 - "IR ALÉM":</strong> 
+                            Este sistema integra dados meteorológicos de APIs públicas (OpenWeatherMap) 
+                            para suspender automaticamente a irrigação quando há previsão de chuva, 
+                            economizando recursos hídricos e energia.
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <button class="btn btn-primary" onclick="checkWeatherImpact()">
+                            <i class="bi bi-arrow-clockwise"></i> Verificar Impacto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botões de Ação -->
+<div class="row">
+    <div class="col-md-6">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-success btn-lg w-100">
+            <i class="bi bi-house"></i> Voltar ao Dashboard
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a href="{{ url_for('settings') }}" class="btn btn-outline-primary btn-lg w-100">
+            <i class="bi bi-gear"></i> Configurações do Sistema
+        </a>
+    </div>
+</div>
+
+<!-- Container de alertas -->
+<div id="alertContainer" style="position: fixed; bottom: 20px; right: 20px; z-index: 1050; max-width: 400px;"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Função para mostrar alertas
+function showAlert(message, type = 'info') {
+    const alertContainer = document.getElementById('alertContainer');
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show shadow-lg`;
+    alertDiv.style.marginBottom = '10px';
+    alertDiv.innerHTML = `
+        <div class="d-flex align-items-center">
+            <i class="bi ${type === 'success' ? 'bi-check-circle' : type === 'danger' ? 'bi-exclamation-triangle' : 'bi-info-circle'} me-2"></i>
+            <span>${message}</span>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+    
+    alertContainer.appendChild(alertDiv);
+    
+    // Remove o alerta após 5 segundos
+    setTimeout(() => {
+        if (alertDiv.parentNode) {
+            alertDiv.parentNode.removeChild(alertDiv);
+        }
+    }, 5000);
+}
+
+// Função para verificar impacto meteorológico na irrigação
+function checkWeatherImpact() {
+    fetch('/api/weather_check')
+    .then(response => response.json())
+    .then(data => {
+        if (data.skip_irrigation) {
+            showAlert(
+                `🌧️ ECONOMIA ATIVA: ${data.reason} (${data.confidence}% confiança)`,
+                'warning'
+            );
+        } else {
+            showAlert(
+                `☀️ CONDIÇÕES FAVORÁVEIS: ${data.reason} (${data.confidence}% confiança)`,
+                'success'
+            );
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showAlert('Erro ao verificar condições meteorológicas', 'danger');
+    });
+}
+
+// Atualização automática dos dados meteorológicos
+setInterval(() => {
+    console.log('🌤️ Verificando atualizações meteorológicas...');
+    // Em produção, faria fetch para atualizar dados
+}, 300000); // A cada 5 minutos
+
+// Log inicial
+console.log('🌤️ Página Meteorológica carregada - Atividade Opcional 1 "IR ALÉM"');
+console.log('💡 Sistema integrado com API pública para economia de água');
+</script>
+
+<style>
+.weather-metric {
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.weather-metric h3 {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.weather-icon {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translatey(0px); }
+    50% { transform: translatey(-10px); }
+    100% { transform: translatey(0px); }
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+</style>
+{% endblock %}

@@ -1,0 +1,11 @@
+Integrantes do grupo:
+- Cesar Martinho de Azeredo – RM568140
+- Carlos Alberto Florindo Costato – RM567005
+- Phellype Matheus Giacoia Flaibam Massarente – RM566826
+
+GitHub: https://github.com/Phemassa/
+
+assets:
+crop_yield.csv
+mall.csv
+moons.csv

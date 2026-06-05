@@ -1,0 +1,19 @@
+# FarmTech Solutions - Dependências Python
+# Este projeto utiliza apenas bibliotecas padrão do Python
+
+# Bibliotecas padrão utilizadas:
+# - csv: Manipulação de arquivos CSV
+# - os: Operações do sistema operacional
+# - re: Expressões regulares para validação de entrada
+
+# Requisitos mínimos:
+# Python >= 3.6
+
+# Não há dependências externas para instalar
+# Para instalar dependências em projetos futuros, use:
+# pip install -r requirements.txt
+
+# Sistema compatível com:
+# - Windows 10/11
+# - Linux (Ubuntu, CentOS, etc.)
+# - macOS 10.14+

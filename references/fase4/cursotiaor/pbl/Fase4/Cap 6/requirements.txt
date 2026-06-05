@@ -1,0 +1,94 @@
+# FarmTech Solutions - Dependências Python
+# Capítulo 6: Gestão do Agronegócio em Python
+
+# =============================================
+# Bibliotecas Obrigatórias
+# =============================================
+
+# Cap 6: Banco de Dados Oracle
+cx-Oracle==8.3.0
+
+# Cap 5: Manipulação de JSON (built-in, não precisa instalar)
+# import json
+
+# Cap 4: Estruturas de dados (built-in)
+# list, tuple, dict
+
+# Cap 3: Funções e procedimentos (built-in)
+# def, return
+
+# =============================================
+# Bibliotecas Opcionais (Extras)
+# =============================================
+
+# Integração Serial com ESP32 (Cap 1 ↔ Cap 6)
+pyserial==3.5
+
+# Estatísticas avançadas
+# statistics (built-in)
+
+# Data e hora
+# datetime (built-in)
+
+# Sistema operacional
+# os (built-in)
+
+# =============================================
+# Instruções de Instalação
+# =============================================
+
+# Instalar todas as dependências:
+# pip install -r requirements.txt
+
+# Instalar individualmente:
+# pip install cx-Oracle
+# pip install pyserial
+
+# =============================================
+# Verificar Instalação
+# =============================================
+
+# python -c "import cx_Oracle; print(cx_Oracle.version)"
+# python -c "import serial; print(serial.VERSION)"
+
+# =============================================
+# Configuração do Oracle Database
+# =============================================
+
+# 1. Instalar Oracle Instant Client:
+#    https://www.oracle.com/database/technologies/instant-client.html
+
+# 2. Configurar variável de ambiente (Windows):
+#    set PATH=%PATH%;C:\oracle\instantclient_21_3
+
+# 3. Configurar variável de ambiente (Linux/Mac):
+#    export LD_LIBRARY_PATH=/opt/oracle/instantclient_21_3:$LD_LIBRARY_PATH
+
+# 4. Testar conexão:
+#    python -c "import cx_Oracle; print('Oracle OK')"
+
+# =============================================
+# Versões Testadas
+# =============================================
+
+# Python: 3.8+
+# cx-Oracle: 8.3.0
+# Oracle Database: 19c, 21c, 23c (compatível)
+# PySerial: 3.5
+
+# =============================================
+# Ambiente de Desenvolvimento
+# =============================================
+
+# VS Code Extensions (opcionais):
+# - Python (ms-python.python)
+# - Pylance (ms-python.vscode-pylance)
+# - Oracle Developer Tools for VS Code
+
+# =============================================
+# Notas
+# =============================================
+
+# - cx-Oracle requer Oracle Instant Client instalado
+# - PySerial requer drivers USB (geralmente automático)
+# - JSON, datetime, os, statistics: bibliotecas built-in do Python

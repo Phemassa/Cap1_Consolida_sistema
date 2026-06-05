@@ -1,0 +1,194 @@
+# Cap 8 - Acelera com data science
+
+## Sumário
+
+# Cap 8 - Acelera com data science
+
+Acelera com data scienceos dados foremdistribuídos normalmente, formarão aproximadamente uma linha reta.
+
+Especialmente em projetos de Ciência de Dados, IA e Engenharia de Software, a  verificação  dos  pressupostos  da Regressão  Linearé  essencial  para  garantir  a precisão e confiabilidade das previsões e inferências feitas com base no modelo.
+
+Por exemplo, em um modelo que prediz a performance do software, ou o número de falhas que é esperado um modelo de Machine Learning cometer, ou a quantidade de vendas esperadas  para  o  próximo  mês  de  uma  empresa, a  violação  desses  pressupostos pode levar a estimativas imprecisas, afetando a tomada de decisões e a otimização de recursos.
+
+Vamos ilustrar com um exemplo didático relacionado à engenharia de software os  pressupostos  discutidos:considereque  estamos  desenvolvendo  um  modelo  de Regressão Linearpara prever o tempo de carregamento de uma página web (variável dependente) com base no tamanho do conteúdo da página em megabytes (variável independente).
+
+Primeiro, coletamos dados que incluem o tamanho das páginas e os respectivos tempos de carregamento.1.
+
+Linearidade: verificamos  se  o  aumento  no  tamanho  do  conteúdo  está associado  a  um  aumento  proporcional  no  tempo  de  carregamento.
+
+Isso pode  ser  visualizado  com  um  gráfico  de  dispersão;  esperamos  ver  uma relação linear aproximada entre as variáveis.2.
+
+Independência dos Erros:investigamos se os erros (as diferenças entre os tempos  de  carregamento  observados  e  os  previstos  pelo  modelo)  são independentes.
+
+Para  isso, utilizamostestes  estatísticos,  como  o  teste  de Durbin-Watson, para avaliar a independência dos erros.3.
+
+Homoscedasticidade:procuramos uma variância constante nos erros.
+
+Isso é  verificado por meiodeum  gráfico  de  resíduos, onde  esperamos  ver  os pontos  distribuídos  aleatoriamente  e  sem  formar  padrões  específicos  ao longo do eixo horizontal (tamanho do conteúdo).4.
+
+Normalidade  dos  Erros:realizamos  testes,  como  o  Shapiro-Wilk,  e construímos  um  gráfico  Q-Q  para  verificar  se  os  erros  seguem  uma distribuição   normal.
+
+No   gráfico   Q-Q,   os   pontos   devem   alinhar-se aproximadamente com a linha diagonal.
+
+Acelera com data scienceAo  aplicar  esses  pressupostos  ao  nosso  exemplo,  podemos  garantir  que  o modelo de Regressão Lineardesenvolvido é confiável e válido para prever o tempo de  carregamento  de  páginas  web  com  base  no  tamanho  do  conteúdo.
+
+Essa abordagem assegura que as inferências feitas a partir do modelo são sólidas e que as previsões são precisas, fundamentais para a otimização de websites e a melhoria da experiência do usuário.
+
+Para  ilustrar  os  pressupostos  da Regressão  Linearem  R,  vamos criarum exemplo no contexto de áreas tecnológicas, como Ciência de Dados, IA e Engenharia de Software.
+
+Considereque estamos analisando a relação entre a complexidade do código (medida, por exemplo, pelo Índice de Complexidade Ciclomática) e o número de bugs encontrados em um software.
+
+Vamosgerar dados e aplicar as técnicas para verificar os pressupostos da Regressão Linear.
+
+Para uma melhor compreensão dos códigos vamos as interpretações:1.
+
+Preparação  de  Dados:criamos  dados  representando  a  complexidade  do código e o número de bugs associados.2.
+
+Modelagem de Regressão:realizamos uma Regressão LinearSimplescom esses dados.3.
+
+Testando Linearidade: utilizamosum gráfico de dispersão com a linha de regressão para avaliar visualmente se a relação parece linear.
+
+O gráfico de dispersão com a linha de regressão é uma ferramenta para avaliar a  relação  entre  duas  variáveis  em  análise  de Regressão  Linear.
+
+No  contexto  de complexidade do código e número de bugs em software, este gráfico fornece insightsespecíficos:1.
+
+Pontos no Gráfico:cada ponto representa uma observação do conjunto de dados.
+
+Um ponto pode indicarque, para um certo nível de complexidade do código, um número específico de bugs foi observado.2.
+
+Linha  de  Regressão:alinha  através  dos  pontos  é  a  linha  de Regressão Linear, representando a estimativa da relação linear entre complexidade do
+Acelera com data sciencecódigo e número de bugs.
+
+Esta linha é determinada minimizando a soma dos quadrados das distâncias verticais dos pontos até a linha.3.
+
+Inclinação da Linha: ainclinação da linha indica a relação entre as variáveis.
+
+Uma  linha  ascendente  sugere  uma  relação  positiva,  indicando  que  o aumento da complexidade do código resulta em um aumento no número de bugs.
+
+Uma linha descendente indicaria uma relação negativa.4.
+
+Ajuste  da  Linha  aos  Dados:aproximidade  dos  pontos  à  linha  e  sua distribuição indicam o quão bem o modelo de Regressão Linearse ajusta aos dados.
+
+Pontos próximos e uniformemente distribuídos sugerem um bom ajuste, enquanto uma dispersão ampla indica um ajuste menos preciso.5.
+
+Previsão:alinha  de  regressão  pode  ser  utilizada  para  prever  o  número esperado de bugs para um nível de complexidade não presente nos dados, encontrando o valor correspondente na linha de regressão para aquele nível de complexidade.
+
+O   gráfico   de   dispersão   com   a   linha   de   regressão,   portanto,   é   uma representação visual da relação entre as variáveis e ajuda na avaliação da adequação do  modelo  de Regressão  Linear,  além  de  elucidar  a  natureza  da  relação  entre  as variáveis no desenvolvimento de software.1.5Testando Independência dos ErrosO Teste de Durbin-Watson avalia a independência dos erros, ou seja, valores próximos de 2 indicam independência.
+
+A independência dos erros é um pressuposto chave na Regressão Linear, isso significaque os resíduos (erros) do modelo não devem ser correlacionados.
+
+O Teste de   Durbin-Watson   é uma   ferramenta   estatística   utilizadapara   avaliar   esse pressuposto.
+
+Vejacomo interpretar os resultados do Teste de Durbin-Watson:1.
+
+Objetivo do Teste:é projetado para detectar a presença de autocorrelação (uma  relação  entre  valores  sequenciais)  nos  resíduos  de  uma  análise  de regressão.
+
+Acelera com data science2.
+
+Valores do Teste: oteste gera um valor que varia de 0 a 4. •Um valor próximo de 2 sugere que não há autocorrelação nos resíduos.•Valores significativamente menores que 2 indicam autocorrelação positiva.
+
+Isso significa que um valor de erro positivo provavelmente será seguido por outro valor de erro positivo.•Valores significativamente maiores que 2 sugerem autocorrelação negativa, onde um valor de erro positivo provavelmente será seguido por um valor de erro negativo.1.6Interpretação para a Regressão Linear•Sem Autocorrelação (Valor ~2):indica que os resíduos são independentes entre  si,  satisfazendo  um  dos  pressupostos  da Regressão  Linear.
+
+Isso significa que o modelo é adequado e que as previsões feitas são confiáveis.•Autocorrelação  Positiva  (Valor  <2):pode  indicar  que  o  modelo  está deixando de capturar alguma informação importante.
+
+Por exemplo, em um contexto de Engenharia de Software, isso pode acontecer se o modelo não levar  em  conta  algum  fator  que  influencia  consistentemente  o  número  de bugs de forma crescente ao longo do tempo.•Autocorrelação   Negativa   (Valor   >2):embora   menos   comum,   uma autocorrelação negativa também pode indicar problemas no modelo, como uma variável independente que afeta os resíduosde maneira oscilante.
+
+Em  resumo,  o  Teste  de  Durbin-Watson  é  um  instrumento  importante  para verificar a independência dos erros em um modelo de Regressão Linear, garantindo que o modelo seja confiável e suas previsões sejam válidas.
+
+A detecção de qualquer forma de autocorrelação pode exigir uma revisão no modelo ou uma investigação mais profunda das variáveis envolvidas.
+
+Acelera com data science1.7Testando HomoscedasticidadeUm  gráfico  de  resíduos versusvalores  ajustados  ajudam  a  verificar  se  a variância dos erros é constante (homoscedasticidade).
+
+A homoscedasticidade é um pressuposto importante na Regressão Linear, que afirma que os erros (ou resíduos) do modelo devem ter variância constante em relação às  variáveis  independentes.
+
+O  gráfico  de  resíduos versusvalores  ajustados  é  uma ferramenta visual utilizada para verificar esse pressuposto.
+
+Comopodemosinterpretá-lo:1.
+
+Criação  do  Gráfico:este  gráfico  plota  os  resíduos  (a  diferença  entre  os valores  observados  e  os  valores  previstos  pelo  modelo)  no  eixo  vertical contra os valores ajustados (valores previstos) no eixo horizontal.2.
+
+Padrão dos Pontos:•Homoscedasticidade  (Variação  Constante):em  um  modelo  ideal,  os pontos no gráfico devem formar um padrão aleatório e sem forma específica ao redor da linha horizontal zero.
+
+Isso indicaria que a variância dos erros é constante em todos os níveis das variáveis independentes, satisfazendo o pressuposto de homoscedasticidade.•Heteroscedasticidade   (Variação   Não   Constante):se   os   resíduos exibirem padrões (como forma de funil ou forma em U), isso sugere que a variância dos erros varia com os valores ajustados, violando o pressuposto de  homoscedasticidade.
+
+Por  exemplo,  se  os  resíduos  se  expandirem  ou contraírem  em  um  dos  lados  do  gráfico,  indica  que  os  erros  são  maiores para determinados valores das variáveis independentes.3.
+
+Interpretação para Regressão Linear:•Homoscedasticidade  Confirmada:isso  indica  que  o  modelo  é  bem especificado e os resultados da regressão são confiáveis.
+
+Ou seja,o modelo está tratando de forma igualmente precisa os dados em todo o espectro das variáveis independentes.•Heteroscedasticidade      Detectada:se      houver      evidência      de heteroscedasticidade, isso pode afetar a confiabilidade das estimativas dos
+Acelera com data scienceparâmetros e dos testes de hipóteses, pois os erros padrões podemestar incorretos.
+
+Em contextos como a Ciência de Dados, Inteligência Artificial e Engenharia  de Software,  isso  pode  significar  que  o  modelo  de  regressão pode não ser adequado para todos os níveis de, por exemplo, complexidade do código.
+
+Emresumo, o gráfico de resíduos versusvalores ajustados é uma ferramenta diagnóstica  essencial  para  avaliar  se  um  modelo  de Regressão  Linearsatisfaz  o pressuposto de homoscedasticidade.
+
+A identificação de padrões neste gráfico pode sinalizar  a  necessidadede  modificar  o  modelo  ou  considerar  transformações  nas variáveis para melhorar a precisão e confiabilidade do modelo.1.8Testando Normalidade dos ErrosO gráfico Q-Q (Quantil-Quantil) compara a distribuição dos resíduos com uma distribuição normal.
+
+Os pontos devem alinhar-se aproximadamente com a linha.
+
+O gráfico Q-Q é uma ferramenta visual utilizada para avaliar se os erros (ou resíduos) de um modelo de Regressão Linearseguem uma distribuição normal, um pressuposto  importante  para  muitas  análises  estatísticas,  incluindo  a Regressão Linear.
+
+Interpretação do gráfico Q-Q:1.
+
+Criação do Gráfico:no gráfico Q-Q, os quantis(ou pontos percentuais) dos resíduos   do   modelo   são   plotados   em   relação   aos   quantis   de   uma distribuição normal teórica.
+
+Se os resíduos seguem uma distribuição normal, os  pontos  no  gráfico  devem  alinhar-se  aproximadamente  com  a  linha diagonal.2.
+
+Análise dos Pontos:•Distribuição Normal:casoos resíduos estejamdistribuídos normalmente, os pontos no gráfico Q-Q devem cair ao longo de uma linha reta.
+
+Pequenos desvios podem ser normais, mas em geral, um alinhamento próximo à linha sugere que a normalidade dos erros foi atingida.
+
+Acelera com data science•Desvios da Normalidade:se os pontos desviam significativamente da linha diagonal, isso indica uma violação da normalidade.
+
+Por exemplo:oPontos  em  um  padrão  em  "S"  ou  curvado:indicam  uma  distribuição dos  resíduos  que  é  mais  pesada  ou  mais  leve  nas  caudas  do  que  a distribuição normal.oPontos  agrupados  em  uma  extremidade  do  gráfico:podem  indicar uma distribuição de resíduos assimétrica.3.
+
+Implicações para a Regressão Linear:•Normalidade Confirmada:indica que os métodos estatísticos baseados na suposição  de  normalidade,  como  testes  de  hipóteses  e  intervalos  de confiança, são apropriados e confiáveis.•Violação da Normalidade:casoos resíduos não sigam uma distribuição normal, pode afetar a validade de alguns testes estatísticos aplicadosaos coeficientes  da  regressão(Trevor et  al.,  2009).
+
+Isso  é  particularmente relevante para tamanhos de amostra pequenos, pois a Regressão Linearé menos sensível à violação da normalidade em amostras grandes.
+
+Logo, o gráfico Q-Q é uma ferramenta diagnóstica fundamental para verificar a normalidade dos resíduos em um modelo de RegressãoLinear.
+
+Avaliar corretamente a  distribuição  dos  resíduos  é fundamentalpara  garantir  a  precisão  e  confiabilidade das  inferências  estatísticas realizadasa  partir  do  modelo.
+
+Se  a  normalidade  for violada,  pode  ser  necessário  considerar  transformações  de  dados  ou  modelos estatísticos alternativos.
+
+Resumo  do  Modelo: oferece  uma  visão  geral,  incluindo  estatísticas  como  R-squared e os p-values dos coeficientes.1.9Exemplo CompletoConsidereque  estamos  avaliando  o  impacto  de  horas  de  desenvolvimento (Simples)   e   de   complexidade   do   código   (Múltipla)   sobre   o   número   de   bugs encontrados em um software.
+
+Acelera com data science```R# Instalando e carregando pacotes necessáriosif (!require(ggplot2)) install.packages("ggplot2")if (!require(car)) install.packages("car")library(ggplot2)library(car)# Dados fictícioshoras <-c(10, 20, 30, 40, 50, 60, 70, 80) # Horas de desenvolvimentocomplexidade <-c(5, 3, 6, 7, 2, 8, 7, 4)  #Complexidade do códigobugs <-c(2, 5, 7, 9, 5, 11, 14, 15)       # Número de bugs# Criando um dataframedados <-data.frame(horas, complexidade, bugs)# Regressão LinearSimplesmodelo_Simples<-lm(bugs ~ horas, data = dados)# Regressão LinearMúltiplamodelo_multiplo <-lm(bugs ~ horas + complexidade, data = dados)# Resumo dos modelossummary(modelo_Simples)summary(modelo_multiplo)# Diagnóstico dos modelos# Verificação de Linearidade(Gráfico de Dispersão com a Reta de Regressão)plot(dados$horas, dados$bugs)abline(modelo_Simples, col = "red")# Verificação de Homoscedasticidadepar(mfrow=c(1,2))plot(modelo_Simples$fitted.values, resid(modelo_Simples))plot(modelo_multiplo$fitted.values, resid(modelo_multiplo))
+Acelera com data science# Verificação de Normalidade (Gráfico Q-Q)par(mfrow=c(1,2))qqPlot(modelo_Simples, main = "Modelo Simples")qqPlot(modelo_multiplo, main = "Modelo Múltiplo")# Teste de Independência (Durbin-Watson)dwtest(modelo_Simples)dwtest(modelo_multiplo)```Este exemplo ilustra como realizar Regressões Linear Simplese Múltiplaem R e  como  diagnosticar  os  pressupostos  críticos  para  a  validade  desses  modelos.
+
+A interpretação destes testes e gráficos ajuda a confirmar se o modelo de regressão é adequado e confiável para a análise pretendida.
+
+Acelera com data science## Referências
+
+FAVERO, L..
+
+P., Belfiore, P., & de Freitas Souza, R. (2023).
+
+Data science, analytics and machine learning with R.
+
+Academic Press.
+
+GELMAN,A..,    &    Hill,    J.    (2006).
+
+Data    analysis    using    regression    and multilevel/hierarchical models.
+
+Cambridge university press.
+
+MORETTIN,P..
+
+A., & Singer, J. da M. (2022).
+
+Estatística e ciência de dados.
+
+TREVOR, H.., Robert, T., & Jerome, F. (2009).
+
+The elements of statistical learning: Data mining, inference, and prediction.
+
+Spinger.
+
+WICKHAM, H.., Çetinkaya-Rundel, M., & Grolemund, G. (2023).
+
+R for data science.
+
+O’Reilly Media, Inc

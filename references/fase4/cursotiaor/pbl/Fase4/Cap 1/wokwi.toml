@@ -1,0 +1,8 @@
+[wokwi]
+version = 1
+# Versão de teste simplificada - usando binário compilado
+firmware = ".pio/build/esp32dev/firmware.bin"
+# Opcional: arquivo ELF para debugging avançado
+# elf = "build/farmtech.elf"
+# Porta GDB para debugging (opcional)
+# gdbServerPort = 3333

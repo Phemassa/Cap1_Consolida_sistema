@@ -1,3 +1,4 @@
+# Origem: https://github.com/Phemassa/fiap-farmtech-fase4 (Fase 4)
 from datetime import datetime
 
 from phases.fase3.repository import load_latest_readings

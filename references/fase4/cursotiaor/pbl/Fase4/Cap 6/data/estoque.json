@@ -1,0 +1,26 @@
+[
+  {
+    "produto": "Ureia (45% N)",
+    "tipo": "fertilizante",
+    "quantidade_kg": 450.0,
+    "data_compra": "2025-09-01",
+    "validade": "2026-09-01",
+    "data_cadastro": "2025-10-12 08:59:25"
+  },
+  {
+    "produto": "Calcário (estoque baixo)",
+    "tipo": "corretivo",
+    "quantidade_kg": 3.0,
+    "data_compra": "2025-10-01",
+    "validade": "2030-10-01",
+    "data_cadastro": "2025-10-12 08:59:25"
+  },
+  {
+    "produto": "Herbicida (vence logo)",
+    "tipo": "defensivo",
+    "quantidade_kg": 50.0,
+    "data_compra": "2024-11-01",
+    "validade": "2025-11-01",
+    "data_cadastro": "2025-10-12 08:59:25"
+  }
+]

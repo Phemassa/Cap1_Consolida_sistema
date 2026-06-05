@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+
+{% block title %}Relatórios - Sistema de Irrigação Inteligente{% endblock %}
+
+{% block content %}
+<!-- Header da Página -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4>
+                <i class="bi bi-graph-up"></i>
+                Relatórios e Análises
+            </h4>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left"></i>
+                Voltar ao Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Resumo Estatístico -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="bi bi-droplet-fill text-primary" style="font-size: 2rem;"></i>
+                <h4 class="mt-2">{{ sensor_history|selectattr('irrigation_active')|list|length }}</h4>
+                <p class="text-muted mb-0">Irrigações Ativas</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="bi bi-thermometer-half text-success" style="font-size: 2rem;"></i>
+                <h4 class="mt-2">
+                    {% set ph_values = sensor_history|map(attribute='ph_level')|list %}
+                    {% if ph_values %}
+                        {{ "%.1f"|format(ph_values|sum / ph_values|length) }}
+                    {% else %}
+                        0.0
+                    {% endif %}
+                </h4>
+                <p class="text-muted mb-0">pH Médio</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="bi bi-moisture text-info" style="font-size: 2rem;"></i>
+                <h4 class="mt-2">
+                    {% set humidity_values = sensor_history|map(attribute='soil_humidity')|list %}
+                    {% if humidity_values %}
+                        {{ "%.1f"|format(humidity_values|sum / humidity_values|length) }}%
+                    {% else %}
+                        0.0%
+                    {% endif %}
+                </h4>
+                <p class="text-muted mb-0">Umidade Média</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="bi bi-thermometer text-warning" style="font-size: 2rem;"></i>
+                <h4 class="mt-2">
+                    {% set temp_values = sensor_history|map(attribute='air_temperature')|list %}
+                    {% if temp_values %}
+                        {{ "%.1f"|format(temp_values|sum / temp_values|length) }}°C
+                    {% else %}
+                        0.0°C
+                    {% endif %}
+                </h4>
+                <p class="text-muted mb-0">Temp. Média</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gráficos de Tendência -->
+<div class="row mb-4">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    Histórico de Sensores
+                </h6>
+            </div>
+            <div class="card-body">
+                <canvas id="historyChart" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="bi bi-pie-chart"></i>
+                    Status de Irrigação
+                </h6>
+            </div>
+            <div class="card-body">
+                <canvas id="irrigationChart"></canvas>
+                <div class="mt-3">
+                    {% set active_count = sensor_history|selectattr('irrigation_active')|list|length %}
+                    {% set total_count = sensor_history|length %}
+                    {% set inactive_count = total_count - active_count %}
+                    
+                    <div class="d-flex justify-content-between">
+                        <span class="text-success">
+                            <i class="bi bi-circle-fill"></i> Ativo: {{ active_count }}
+                        </span>
+                        <span class="text-danger">
+                            <i class="bi bi-circle-fill"></i> Inativo: {{ inactive_count }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Análise NPK -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="bi bi-cpu"></i>
+                    Análise de Elementos NPK
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="border rounded p-3">
+                            <h3 class="text-primary">
+                                {{ sensor_history|selectattr('nitrogen')|list|length }}
+                            </h3>
+                            <p class="mb-0">Leituras com<br><strong>Nitrogênio Adequado</strong></p>
+                            <div class="progress mt-2">
+                                {% set n_percent = (sensor_history|selectattr('nitrogen')|list|length / sensor_history|length * 100) if sensor_history else 0 %}
+                                <div class="progress-bar bg-primary" style="width: {{ n_percent }}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="border rounded p-3">
+                            <h3 class="text-success">
+                                {{ sensor_history|selectattr('phosphorus')|list|length }}
+                            </h3>
+                            <p class="mb-0">Leituras com<br><strong>Fósforo Adequado</strong></p>
+                            <div class="progress mt-2">
+                                {% set p_percent = (sensor_history|selectattr('phosphorus')|list|length / sensor_history|length * 100) if sensor_history else 0 %}
+                                <div class="progress-bar bg-success" style="width: {{ p_percent }}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="border rounded p-3">
+                            <h3 class="text-warning">
+                                {{ sensor_history|selectattr('potassium')|list|length }}
+                            </h3>
+                            <p class="mb-0">Leituras com<br><strong>Potássio Adequado</strong></p>
+                            <div class="progress mt-2">
+                                {% set k_percent = (sensor_history|selectattr('potassium')|list|length / sensor_history|length * 100) if sensor_history else 0 %}
+                                <div class="progress-bar bg-warning" style="width: {{ k_percent }}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabela de Dados Recentes -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="bi bi-table"></i>
+                    Dados Recentes (Últimas 20 Leituras)
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>pH</th>
+                                <th>Umidade Solo</th>
+                                <th>Temperatura</th>
+                                <th>N</th>
+                                <th>P</th>
+                                <th>K</th>
+                                <th>Irrigação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in sensor_history[-20:] %}
+                            <tr>
+                                <td>{{ data.timestamp }}</td>
+                                <td>
+                                    {{ data.ph_level }}
+                                    {% if culture.ph_min <= data.ph_level <= culture.ph_max %}
+                                        <i class="bi bi-check-circle text-success"></i>
+                                    {% else %}
+                                        <i class="bi bi-exclamation-circle text-warning"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ data.soil_humidity }}%
+                                    {% if data.soil_humidity >= culture.humidity_min %}
+                                        <i class="bi bi-check-circle text-success"></i>
+                                    {% else %}
+                                        <i class="bi bi-exclamation-circle text-danger"></i>
+                                    {% endif %}
+                                </td>
+                                <td>{{ data.air_temperature }}°C</td>
+                                <td>
+                                    {% if data.nitrogen %}
+                                        <i class="bi bi-check-circle text-success"></i>
+                                    {% else %}
+                                        <i class="bi bi-x-circle text-danger"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if data.phosphorus %}
+                                        <i class="bi bi-check-circle text-success"></i>
+                                    {% else %}
+                                        <i class="bi bi-x-circle text-danger"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if data.potassium %}
+                                        <i class="bi bi-check-circle text-success"></i>
+                                    {% else %}
+                                        <i class="bi bi-x-circle text-danger"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if data.irrigation_active %}
+                                        <span class="badge bg-success">Ativo</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">Inativo</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Preparar dados para os gráficos
+const sensorData = {{ sensor_history|tojson }};
+
+// Gráfico de Histórico
+const historyCtx = document.getElementById('historyChart').getContext('2d');
+const historyChart = new Chart(historyCtx, {
+    type: 'line',
+    data: {
+        labels: sensorData.map(d => new Date(d.timestamp).toLocaleTimeString()),
+        datasets: [
+            {
+                label: 'pH',
+                data: sensorData.map(d => d.ph_level),
+                borderColor: '#7cb342',
+                backgroundColor: 'rgba(124, 179, 66, 0.1)',
+                tension: 0.4
+            },
+            {
+                label: 'Umidade Solo (%)',
+                data: sensorData.map(d => d.soil_humidity),
+                borderColor: '#2196f3',
+                backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                tension: 0.4
+            },
+            {
+                label: 'Temperatura (°C)',
+                data: sensorData.map(d => d.air_temperature),
+                borderColor: '#ff9800',
+                backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                tension: 0.4
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'top'
+            }
+        }
+    }
+});
+
+// Gráfico de Pizza - Status de Irrigação
+const irrigationCtx = document.getElementById('irrigationChart').getContext('2d');
+const activeCount = sensorData.filter(d => d.irrigation_active).length;
+const inactiveCount = sensorData.length - activeCount;
+
+const irrigationChart = new Chart(irrigationCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Ativo', 'Inativo'],
+        datasets: [{
+            data: [activeCount, inactiveCount],
+            backgroundColor: ['#28a745', '#dc3545'],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false
+            }
+        }
+    }
+});
+</script>
+{% endblock %}

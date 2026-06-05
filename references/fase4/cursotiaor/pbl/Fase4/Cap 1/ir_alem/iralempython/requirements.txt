@@ -1,0 +1,62 @@
+# Dependências Python para FarmTech Weather Integration
+
+# ═══════════════════════════════════════════════════════════════════════════
+# API e Requisições HTTP
+# ═══════════════════════════════════════════════════════════════════════════
+requests>=2.31.0          # Para consultas à OpenWeatherMap API
+urllib3>=2.0.0            # Suporte HTTP robusto
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Comunicação Serial
+# ═══════════════════════════════════════════════════════════════════════════
+pyserial>=3.5             # Comunicação serial com ESP32
+pyserial-asyncio>=0.6     # Suporte assíncrono (opcional)
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Interface Gráfica
+# ═══════════════════════════════════════════════════════════════════════════
+# tkinter já vem incluído no Python padrão
+# Caso necessário instalar separadamente no Linux:
+# sudo apt-get install python3-tk
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Manipulação de Dados e Tempo
+# ═══════════════════════════════════════════════════════════════════════════
+python-dateutil>=2.8.0    # Manipulação avançada de datas
+pytz>=2023.3              # Fusos horários
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Processamento de Dados (Opcional - para extensões futuras)
+# ═══════════════════════════════════════════════════════════════════════════
+numpy>=1.24.0             # Operações matemáticas avançadas
+pandas>=2.0.0             # Manipulação de dados tabulares (histórico)
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Validação e Tipagem
+# ═══════════════════════════════════════════════════════════════════════════
+pydantic>=2.0.0           # Validação de dados (opcional)
+typing-extensions>=4.5.0  # Tipagem avançada
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Logging e Debugging
+# ═══════════════════════════════════════════════════════════════════════════
+colorama>=0.4.6           # Cores no terminal (multiplataforma)
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Configuração e Arquivos
+# ═══════════════════════════════════════════════════════════════════════════
+python-dotenv>=1.0.0      # Carregamento de variáveis de ambiente (.env)
+configparser>=5.3.0       # Arquivos de configuração INI
+
+# ═══════════════════════════════════════════════════════════════════════════
+# INSTALAÇÃO RÁPIDA:
+# ═══════════════════════════════════════════════════════════════════════════
+# pip install -r requirements.txt
+#
+# INSTALAÇÃO MÍNIMA (apenas funcionalidades básicas):
+# pip install requests pyserial python-dateutil
+#
+# TESTE DE INSTALAÇÃO:
+# python -c "import requests, serial, tkinter; print('✅ Dependências OK!')"
+#
+# ═══════════════════════════════════════════════════════════════════════════

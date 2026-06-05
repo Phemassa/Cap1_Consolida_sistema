@@ -1,0 +1,25 @@
+video: https://youtu.be/jc5YeAf9q6w
+https://github.com/Phemassa/fiap-farmtech-fase4/
+
+rm566826 - Phellype Matheus Giacoia Flaibam Massarente
+rm567005 - Carlos Alberto Florindo Costato
+rm568140 - Cesar Martinho de Azeredo
+
+Entrega:
+
+PARTE 1 – Integração de ML com Scikit-Learn e Streamlit em dashboard estática e online para gestores agrícolas
+- Criar e treinar modelos de regressão (linear, múltipla ou não linear) com base nos dados nesta fase ou nas anteriores.
+- Implementar previsões sobre parâmetros agrícolas, como volume de irrigação, necessidade de fertilização e estimativa de rendimento.
+- Avaliar o desempenho do modelo com métricas como MAE, MSE, RMSE e R², e apresentar recomendações baseadas nos resultados.
+- Documentar o processo e apresentar visualizações que justifiquem as decisões tomadas e as previsões obtidas.
+
+PARTE 2 – Implementação de algoritmos preditivos para sugerir ações futuras de irrigação e manejo agrícola
+
+IR ALÉM 1 – INTEGRAÇÃO DOS DADOS REAIS OU SIMULADOS IOT COM O BANCO DE DADOS
+Modele um banco de dados simples de acordo os capítulos de Cognitive Data Science capaz de armazenar os dados de seus sensores.
+
+IR ALÉM 2 – DASHBOARD ANALÍTICO COM PREVISÕES INTERATIVA E ONLINE
+Criar um dashboard visual interativo (usando Streamlit, Power BI ou ferramenta similar) exibindo:
+Gráficos de correlação.
+Resultados de previsão.
+Tendências de produtividade.

@@ -1,3 +1,4 @@
+# Origem: https://github.com/Phemassa/FarmTech-FASE-5-cap1-2026 (Fase 5)
 from datetime import datetime
 
 from app.config import settings
