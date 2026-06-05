@@ -6,9 +6,11 @@
 
 <br>
 
-# 🌱 FarmTech Solutions — Fase 7 (Cap1 Consolida Sistema)
+# 🎓 Graduação ON em Inteligência Artificial
 
-## 📚 Projeto Integrador — Consolidação das Fases 1 a 6
+## 📚 Repositório Oficial de Projetos e Trabalhos Acadêmicos
+
+### 🌱 FarmTech Solutions — Fase 7 (Cap1 Consolida Sistema)
 
 ---
 
@@ -18,19 +20,36 @@
 - Carlos Alberto Florindo Costato – RM567005
 - Phellype Matheus Giacoia Flaibam Massarente – RM566826
 
+## 👩‍🏫 Professores
+
+### Tutor(a)
+
+- Andre Godoy
+
+### Coordenador(a)
+
+- Ana Cristina dos Santos
+
 ---
 
-## 👩🏻‍💻 Sobre este Projeto
+## 👩🏻‍💻 Sobre este Repositório
 
-Este repositório consolida em uma **única base Python** todos os entregáveis das fases anteriores da disciplina **Cap1 — FarmTech Solutions**:
+Este repositório consolida em uma **única base Python** os entregáveis das fases anteriores da disciplina **Cap1 — FarmTech Solutions**.
+
+Aqui está documentada a evolução técnica, analítica e de engenharia do grupo, contemplando:
 
 - **Fase 1 e 2** — CRUD de áreas, cálculos de insumos e modelagem de dados.
 - **Fase 3** — IoT com ESP32, leitura de sensores (temperatura, umidade, pH) e regras de irrigação.
 - **Fase 4** — Machine Learning para previsão da necessidade de irrigação.
 - **Fase 5** — Cloud / AWS — alertas por SNS / SES quando regras de operação são violadas.
-- **Fase 6** — Visão computacional para análise de imagens da plantação.
 
-A operação é feita por **dashboard Streamlit** (com portal de apresentação) **e por CLI**, garantindo reprodutibilidade total dos experimentos.
+- **Fase 6** — Visão computacional para análise de imagens da plantação.
+- Documentação técnica de setup, validação e entrega.
+- Evidências para apresentação e vídeo demonstrativo.
+
+A operação é feita por **dashboard Streamlit** (com portal de apresentação) e por **CLI**, garantindo reprodutibilidade total dos experimentos.
+
+Este repositório funciona como um **portfólio técnico estruturado**, evidenciando a integração completa das fases em uma solução única.
 
 ---
 
@@ -46,7 +65,7 @@ Entregar uma plataforma única, executável e auditável, que:
 
 ---
 
-## 🧠 Estrutura do Repositório
+## 🧠 Estrutura Macro do Repositório
 
 ```bash
 📂 Cap1_Consolida_sistema
@@ -147,7 +166,7 @@ python cli.py alert-test --value 15
 
 ---
 
-## 🧪 Status do Projeto
+## 📌 Status do Projeto
 
 - ✅ Orquestração híbrida pronta (dashboard + CLI).
 - ✅ Fase 1-2 com CRUD de áreas em CSV.

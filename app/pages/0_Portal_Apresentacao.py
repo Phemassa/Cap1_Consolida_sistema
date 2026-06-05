@@ -254,12 +254,29 @@ st.markdown(
     }
     .stButton > button[kind="primary"] {
         background: linear-gradient(135deg, #10b981, #34d399);
-        color: #052e16 !important; border: 0; font-weight: 800;
+        color: #ffffff !important; border: 0; font-weight: 900;
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
         box-shadow: 0 12px 28px rgba(16,185,129,0.35);
     }
     .stButton > button[kind="primary"]:hover {
         filter: brightness(1.08); transform: translateY(-2px);
         box-shadow: 0 16px 36px rgba(16,185,129,0.45);
+    }
+
+    .sidebar-callout {
+        margin: 2px 0 10px 0;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(52,211,153,0.35);
+        background: rgba(16,185,129,0.14);
+        color: #e2fef1;
+        font-size: 0.86rem;
+        line-height: 1.45;
+        font-weight: 600;
+    }
+    .sidebar-callout b {
+        color: #ffffff;
     }
 
     /* ---------- Sidebar ---------- */
@@ -411,8 +428,16 @@ with st.sidebar:
     pred_umid = st.number_input("Umidade do solo", value=22.0)
     pred_ph = st.number_input("pH do solo", value=6.0)
     st.divider()
+        st.markdown(
+                """
+                <div class="sidebar-callout">
+                    <b>Demo completa:</b> aciona todas as fases em sequencia com barra de progresso.<br>
+                    Ideal para iniciar a gravacao do video.
+                </div>
+                """,
+                unsafe_allow_html=True,
+        )
     run_all = st.button("\u25B6  Rodar demo completa", type="primary", use_container_width=True)
-    st.caption("Aciona todas as fases em sequencia com barra de progresso. Ideal para abrir o video.")
     st.divider()
     st.markdown("### \U0001F4DA  Recursos")
     st.markdown(
