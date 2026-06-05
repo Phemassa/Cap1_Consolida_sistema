@@ -1,82 +1,133 @@
-# Cap1 Consolida Sistema - Fase 7
+# FIAP - Faculdade de Informática e Administração Paulista
 
-Projeto consolidado da Fase 7 para integrar as fases 1 a 6 em uma base unica Python, com operacao por dashboard e por CLI.
+<p align="center">
+<a href="https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
+</p>
 
-## Objetivo
+<br>
 
-- Integrar modulos das fases 1, 2, 3, 4 e 6.
-- Usar dashboard central para acionar servicos.
-- Disponibilizar comandos de terminal equivalentes.
-- Disparar alertas AWS por e-mail com base em sensores da Fase 3.
+# 🌱 FarmTech Solutions — Fase 7 (Cap1 Consolida Sistema)
 
-## Estrutura
+## 📚 Projeto Integrador — Consolidação das Fases 1 a 6
 
-```text
-Cap1_Consolida_sistema/
-  assets/evidencias/       # Prints e evidencias para README
-  app/                     # Streamlit principal e configuracoes
-    pages/                 # Paginas separadas por fase
-  phases/                  # Modulos por fase
-    fase1_2/
-    fase3/
-    fase4/
-    fase6/
-  services/                # Orquestracao, health check e alertas
-  references/              # Artefatos de origem das fases 1-6
-  docs/                    # Documentacao e planejamento
-  tests/                   # Testes
-  cli.py                   # Comandos de terminal
+---
+
+## 👨‍🎓 Aluno
+
+- Cesar Martinho de Azeredo – RM568140
+- Carlos Alberto Florindo Costato – RM567005
+- Phellype Matheus Giacoia Flaibam Massarente – RM566826
+
+---
+
+## 👩🏻‍💻 Sobre este Projeto
+
+Este repositório consolida em uma **única base Python** todos os entregáveis das fases anteriores da disciplina **Cap1 — FarmTech Solutions**:
+
+- **Fase 1 e 2** — CRUD de áreas, cálculos de insumos e modelagem de dados.
+- **Fase 3** — IoT com ESP32, leitura de sensores (temperatura, umidade, pH) e regras de irrigação.
+- **Fase 4** — Machine Learning para previsão da necessidade de irrigação.
+- **Fase 5** — Cloud / AWS — alertas por SNS / SES quando regras de operação são violadas.
+- **Fase 6** — Visão computacional para análise de imagens da plantação.
+
+A operação é feita por **dashboard Streamlit** (com portal de apresentação) **e por CLI**, garantindo reprodutibilidade total dos experimentos.
+
+---
+
+## 🎯 Objetivo
+
+Entregar uma plataforma única, executável e auditável, que:
+
+- 📌 Integra todos os módulos das fases 1 a 6 em um mesmo workspace.
+- 📌 Expõe cada fase tanto pela dashboard quanto pela CLI.
+- 📌 Treina e versiona modelos de ML com métricas, ROC, matriz de confusão e cross-validation.
+- 📌 Dispara alertas reais (modo AWS) ou em modo *dry-run* local com histórico em JSONL.
+- 📌 Permite gravar uma demonstração de até 10 minutos via portal de apresentação dedicado.
+
+---
+
+## 🧠 Estrutura do Repositório
+
+```bash
+📂 Cap1_Consolida_sistema
+│
+├── 📂 app                       # Streamlit principal (dashboard + portal)
+│   ├── main.py
+│   └── pages/
+│       ├── 0_Portal_Apresentacao.py
+│       ├── 1_Fase_1_2_CRUD.py
+│       ├── 2_Fase_3_Sensores.py
+│       ├── 3_Fase_4_ML.py
+│       ├── 4_Fase_5_Alertas_AWS.py
+│       └── 5_Fase_6_Visao.py
+│
+├── 📂 phases                    # Modulos por fase (logica de negocio)
+│   ├── fase1_2/
+│   ├── fase3/
+│   ├── fase4/
+│   └── fase6/
+│
+├── 📂 services                  # Orquestracao, healthcheck, alertas
+├── 📂 data                      # CSVs, runtime, imagens de teste
+├── 📂 references                # Snapshots dos repos originais (fases 1 a 6)
+├── 📂 docs                      # Plano, barema, roteiro de video
+├── 📂 assets/evidencias         # Prints e evidencias do README
+├── 📂 scripts                   # bootstrap.sh, demo_flow.sh
+├── 📂 tests                     # Testes (smoke)
+│
+├── cli.py                       # Comandos de terminal
+├── requirements.txt
+└── README.md
 ```
 
-## Origem das Fases
+### 🌳 Origem das Fases
 
-A Fase 7 consolida os entregaveis das fases anteriores. Cada modulo em `phases/` e `services/` indica seu repositorio de origem no cabecalho do arquivo. Indice consolidado em [references/README.md](references/README.md).
-
-| Fase | Tema | Repositorio original | Modulo na Fase 7 |
-|------|------|----------------------|------------------|
-| 1 e 2 | Areas, insumos e BD | https://github.com/Phemassa/FarmTechSolutions | [phases/fase1_2](phases/fase1_2) |
+| Fase | Tema | Repositório original | Módulo na Fase 7 |
+|------|------|-----------------------|------------------|
+| 1 e 2 | Áreas, insumos e BD | https://github.com/Phemassa/FarmTechSolutions | [phases/fase1_2](phases/fase1_2) |
 | 3 | IoT ESP32 e sensores | https://github.com/Phemassa/fiap-farmtech-fase3 | [phases/fase3](phases/fase3) |
 | 4 | ML e Dashboard | https://github.com/Phemassa/fiap-farmtech-fase4 | [phases/fase4](phases/fase4) |
 | 5 | Cloud e Alertas AWS | https://github.com/Phemassa/FarmTech-FASE-5-cap1-2026 | [services/alert_service.py](services/alert_service.py) |
-| 6 | Visao computacional | https://github.com/Phemassa/Cap_1_Rede_Neural | [phases/fase6](phases/fase6) + [references/fase6](references/fase6) |
+| 6 | Visão computacional | https://github.com/Phemassa/Cap_1_Rede_Neural | [phases/fase6](phases/fase6) |
 
-## Arquitetura consolidada
+Índice consolidado das referências em [references/README.md](references/README.md).
+
+---
+
+## 🏗️ Arquitetura Consolidada
 
 ```mermaid
 flowchart LR
-  A[Fase 1-2<br/>CRUD Areas CSV] --> B[Fase 3<br/>Sensores Oracle/CSV]
-  B --> C[Fase 4<br/>ML Treino e Predicao]
-  B --> D[Fase 5<br/>Alertas AWS SNS/SES]
-  E[Fase 6<br/>Visao por Imagens] --> F[Dashboard Unica Streamlit]
-  A --> F
-  B --> F
-  C --> F
-  D --> F
+  A[Fase 1-2<br/>CRUD Areas CSV] --> F[Dashboard Streamlit + CLI]
+  B[Fase 3<br/>Sensores Oracle/CSV] --> F
+  C[Fase 4<br/>ML Treino + Predicao] --> F
+  D[Fase 5<br/>Alertas AWS SNS/SES] --> F
+  E[Fase 6<br/>Visao por Imagens] --> F
+  B --> C
+  B --> D
 ```
 
-## Setup rapido
+---
 
-1. Criar ambiente virtual e instalar dependencias:
+## ⚙️ Setup Rápido
 
 ```bash
+# 1. Ambiente virtual + dependencias
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-```
 
-2. Configurar variaveis:
-
-```bash
+# 2. Variaveis de ambiente (opcional para AWS)
 cp .env.example .env
+
+# 3. Dashboard
+PYTHONPATH=$PWD streamlit run app/main.py
+
+# 4. CLI
+python cli.py health
 ```
 
-3. Executar dashboard:
-
-```bash
-streamlit run app/main.py
-```
-
-4. Executar CLI:
+### 📜 Comandos CLI principais
 
 ```bash
 python cli.py health
@@ -85,7 +136,6 @@ python cli.py area-add --nome "Talhao C" --cultura soja --hectares 12
 python cli.py area-update --id 1 --hectares 11
 python cli.py area-delete --id 2
 python cli.py run fase3
-python cli.py monitor-fase3 --limit 20
 python cli.py monitor-fase3 --limit 20 --send-alerts
 python cli.py train-fase4 --limit 120
 python cli.py predict-fase4 --temperatura 30 --umidade-solo 22 --ph-solo 6
@@ -95,96 +145,87 @@ python cli.py alerts-history --limit 20
 python cli.py alert-test --value 15
 ```
 
-## Status atual
+---
 
-- Scaffold de consolidacao criado.
-- Orquestracao hibrida inicial pronta (dashboard + CLI).
-- Fase 1-2 com CRUD de areas em CSV integrado na CLI.
-- Fase 3 com Oracle + fallback CSV e regras de alerta operacional implementada.
-- Fase 4 com treino de modelos, metricas e predicao inicial integrada.
-- Fase 6 com inferencia baseline por pasta de imagens integrada no app e CLI.
-- Fase 5 com monitoramento pontual + historico de alertas integrado.
+## 🧪 Status do Projeto
 
-## Paginas da dashboard
+- ✅ Orquestração híbrida pronta (dashboard + CLI).
+- ✅ Fase 1-2 com CRUD de áreas em CSV.
+- ✅ Fase 3 com Oracle + fallback CSV e regras operacionais.
+- ✅ Fase 4 com treino, métricas (acurácia, F1, ROC, matriz de confusão, CV), predição e modelos persistidos.
+- ✅ Fase 5 com SNS/SES + modo *dry-run* + histórico JSONL.
+- ✅ Fase 6 com inferência baseline por pasta de imagens.
+- ✅ Portal de apresentação dedicado (`app/pages/0_Portal_Apresentacao.py`).
+- ✅ Smoke test verde e `scripts/demo_flow.sh` executando todos os fluxos.
 
-- Home: [app/main.py](app/main.py)
-- Fase 1-2: [app/pages/1_Fase_1_2_CRUD.py](app/pages/1_Fase_1_2_CRUD.py)
-- Fase 3: [app/pages/2_Fase_3_Sensores.py](app/pages/2_Fase_3_Sensores.py)
-- Fase 4: [app/pages/3_Fase_4_ML.py](app/pages/3_Fase_4_ML.py)
-- Fase 5: [app/pages/4_Fase_5_Alertas_AWS.py](app/pages/4_Fase_5_Alertas_AWS.py)
-- Fase 6: [app/pages/5_Fase_6_Visao.py](app/pages/5_Fase_6_Visao.py)
+---
 
-## AWS Alerts
+## 📸 Evidências
 
-Guia completo de configuracao e evidencias: ver [docs/AWS_ALERT_SETUP.md](docs/AWS_ALERT_SETUP.md).
+Galeria completa em [assets/evidencias/README.md](assets/evidencias/README.md).
 
-## Fechamento de entrega
-
-- Checklist de barema: [docs/BAREMA_CHECKLIST.md](docs/BAREMA_CHECKLIST.md)
-- Roteiro de video (10 min): [docs/VIDEO_SCRIPT_10MIN.md](docs/VIDEO_SCRIPT_10MIN.md)
-- Template de evidencias: [docs/EVIDENCIAS_ENTREGA.md](docs/EVIDENCIAS_ENTREGA.md)
-- Script de demonstracao CLI: [scripts/demo_flow.sh](scripts/demo_flow.sh)
-
-## Evidencias no README (preencher)
-
-Use as imagens em [assets/evidencias/README.md](assets/evidencias/README.md) e atualize esta secao antes da entrega.
-
-### Prints obrigatorios
+### Prints obrigatórios
 
 - [ ] Dashboard Fase 1-2 (CRUD)
 - [ ] Dashboard Fase 3 (snapshot)
-- [ ] Dashboard Fase 4 (treino e predicao)
-- [ ] Dashboard Fase 5 (monitoramento e historico)
-- [ ] Dashboard Fase 6 (inferencia)
+- [ ] Dashboard Fase 4 (treino, ROC, matriz de confusão)
+- [ ] Dashboard Fase 5 (monitoramento e histórico)
+- [ ] Dashboard Fase 6 (inferência)
 - [ ] AWS SNS topic + subscription
 - [ ] E-mail de alerta recebido
 
-### Galeria de evidencias (substituir conforme prints)
+### Galeria
 
-#### Dashboard - Fase 1-2 (CRUD)
+#### Portal de Apresentação
+![Portal](assets/evidencias/dashboard_home.png)
 
+#### Fase 1-2 — CRUD
 ![Fase 1-2 CRUD](assets/evidencias/fase1_2_crud.png)
 
-#### Dashboard - Fase 3 (Snapshot de sensores)
-
+#### Fase 3 — Sensores
 ![Fase 3 Snapshot](assets/evidencias/fase3_snapshot.png)
 
-#### Dashboard - Fase 4 (Treino e metricas)
-
+#### Fase 4 — Treino & Métricas
 ![Fase 4 Treino](assets/evidencias/fase4_treino_metricas.png)
 
-#### Dashboard - Fase 4 (Predicao)
+#### Fase 4 — Predição
+![Fase 4 Predição](assets/evidencias/fase4_predicao.png)
 
-![Fase 4 Predicao](assets/evidencias/fase4_predicao.png)
-
-#### Dashboard - Fase 5 (SNS Topic)
-
+#### Fase 5 — SNS Topic
 ![Fase 5 SNS Topic](assets/evidencias/fase5_sns_topic.png)
 
-#### Dashboard - Fase 5 (E-mail de alerta recebido)
-
+#### Fase 5 — E-mail recebido
 ![Fase 5 Email](assets/evidencias/fase5_email_recebido.png)
 
-#### Dashboard - Fase 6 (Inferencia)
+#### Fase 6 — Inferência
+![Fase 6 Inferência](assets/evidencias/fase6_inferencia.png)
 
-![Fase 6 Inferencia](assets/evidencias/fase6_inferencia.png)
+---
 
-#### Dashboard - Home
+## 🎬 Vídeo Demonstrativo
 
-![Dashboard Home](assets/evidencias/dashboard_home.png)
+- 🔗 Link YouTube (não listado): https://youtu.be/SEU_LINK_AQUI
 
-### Video demonstrativo
-
-- Link YouTube (nao listado): https://youtu.be/SEU_LINK_AQUI
-
-### Comandos usados na gravacao
+Comandos usados na gravação:
 
 ```bash
 ./scripts/demo_flow.sh
 ```
 
-### Checklist final rapido
+---
 
-- [ ] Todos os prints acima inseridos e abrindo corretamente
-- [ ] Link do video atualizado
-- [ ] README revisado sem placeholders pendentes
+## 📚 Documentação Auxiliar
+
+- 📋 Checklist de barema: [docs/BAREMA_CHECKLIST.md](docs/BAREMA_CHECKLIST.md)
+- 🎥 Roteiro de vídeo: [docs/VIDEO_SCRIPT_10MIN.md](docs/VIDEO_SCRIPT_10MIN.md)
+- 🧾 Template de evidências: [docs/EVIDENCIAS_ENTREGA.md](docs/EVIDENCIAS_ENTREGA.md)
+- ☁️ Setup AWS: [docs/AWS_ALERT_SETUP.md](docs/AWS_ALERT_SETUP.md)
+- 🗺️ Plano de projeto: [docs/PROJECT_PLAN.md](docs/PROJECT_PLAN.md)
+
+---
+
+## 📋 Licença
+
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/Phemassa/Cap1_Consolida_sistema">FarmTech Solutions — Fase 7</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">FIAP</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>

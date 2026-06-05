@@ -443,14 +443,14 @@ st.write("")
 
 
 # ============================== TABS ============================== #
-tab_h, tab12, tab3, tab4, tab6, tab5, tab_end = st.tabs(
+tab_h, tab12, tab3, tab4, tab5, tab6, tab_end = st.tabs(
     [
         "\U0001F3E0  Visao Geral",
         "\U0001F4D8  Fase 1\u20132",
         "\U0001F4E1  Fase 3",
         "\U0001F9E0  Fase 4",
-        "\U0001F441\ufe0f  Fase 6",
         "\U0001F4E8  Fase 5",
+        "\U0001F441\ufe0f  Fase 6",
         "\U0001F3C1  Encerramento",
     ]
 )
@@ -528,22 +528,144 @@ def _render_fase4_metrics(result: dict) -> None:
     if not metrics:
         st.info("Sem metricas. Treine os modelos primeiro.")
         return
-    rows = [{"modelo": model, **m} for model, m in metrics.items()]
+
+    rows = [{"modelo": model, **{k: v for k, v in m.items() if isinstance(v, (int, float))}} for model, m in metrics.items()]
     df = pd.DataFrame(rows)
-    st.markdown(
-        f"<div class='card'><span class='tag'>Melhor modelo</span>"
-        f"<h4>\U0001F3C6 {report.get('best_model', '?')}</h4>"
-        f"<p>Treinado em {report.get('train_samples', 0)} amostras &middot; "
-        f"avaliado em {report.get('test_samples', 0)} amostras de teste.</p></div>",
-        unsafe_allow_html=True,
-    )
-    fig = px.bar(
-        df.melt(id_vars="modelo", var_name="metrica", value_name="valor"),
-        x="modelo", y="valor", color="metrica", barmode="group",
-        title="Comparativo entre modelos",
-    )
-    fig.update_yaxes(range=[0, 1.05])
+    best = report.get("best_model", "?")
+    best_m = metrics.get(best, {})
+
+    # ---- Resumo do melhor modelo + dataset ----
+    cR1, cR2, cR3, cR4 = st.columns(4)
+    kpi(cR1, "Melhor modelo",  best,                                          icon="\U0001F3C6")
+    kpi(cR2, "Acuracia",       f"{best_m.get('accuracy', 0):.2%}",            icon="\U0001F4CF")
+    kpi(cR3, "F1-score",       f"{best_m.get('f1', 0):.2%}",                  icon="\U0001F3AF")
+    if best_m.get("roc"):
+        kpi(cR4, "AUC ROC",    f"{best_m['roc']['auc']:.3f}",                 icon="\U0001F4C8")
+    else:
+        kpi(cR4, "Tempo treino", f"{best_m.get('train_ms', 0):.1f} ms",       icon="\u23F1\ufe0f")
+
+    # ---- Comparativo ponta a ponta ----
+    section("Comparativo de modelos")
+    metric_cols = ["accuracy", "precision", "recall", "f1"]
+    df_long = df.melt(id_vars="modelo", value_vars=metric_cols,
+                      var_name="metrica", value_name="valor")
+    fig = px.bar(df_long, x="modelo", y="valor", color="metrica", barmode="group",
+                 title="Metricas por modelo (test set)")
+    fig.update_yaxes(range=[0, 1.05], tickformat=".0%")
     st.plotly_chart(_styled_fig(fig, 360), use_container_width=True)
+
+    if "train_ms" in df.columns:
+        cT1, cT2 = st.columns(2)
+        with cT1:
+            fig_t = px.bar(df, x="modelo", y="train_ms", color="modelo",
+                           title="Tempo de treino (ms)", text="train_ms")
+            fig_t.update_traces(textposition="outside")
+            fig_t.update_layout(showlegend=False)
+            st.plotly_chart(_styled_fig(fig_t, 280), use_container_width=True)
+        with cT2:
+            cv_data = []
+            for model, m in metrics.items():
+                if m.get("cv_f1_mean") is not None:
+                    cv_data.append({
+                        "modelo": model,
+                        "cv_f1_mean": m["cv_f1_mean"],
+                        "cv_f1_std": m["cv_f1_std"] or 0,
+                    })
+            if cv_data:
+                cv_df = pd.DataFrame(cv_data)
+                fig_cv = go.Figure()
+                fig_cv.add_trace(go.Bar(
+                    x=cv_df["modelo"], y=cv_df["cv_f1_mean"],
+                    error_y=dict(type="data", array=cv_df["cv_f1_std"]),
+                    marker_color=PLOTLY_PALETTE[:len(cv_df)],
+                    text=[f"{v:.2%}" for v in cv_df["cv_f1_mean"]],
+                    textposition="outside",
+                ))
+                fig_cv.update_layout(title="F1 medio em CV (5 folds)", yaxis_tickformat=".0%",
+                                     yaxis_range=[0, 1.05])
+                st.plotly_chart(_styled_fig(fig_cv, 280), use_container_width=True)
+
+    # ---- Curva ROC sobreposta ----
+    roc_traces = []
+    for model, m in metrics.items():
+        if m.get("roc"):
+            roc_traces.append((model, m["roc"]))
+    if roc_traces:
+        section("Curvas ROC")
+        fig_roc = go.Figure()
+        for idx, (model, roc) in enumerate(roc_traces):
+            fig_roc.add_trace(go.Scatter(
+                x=roc["fpr"], y=roc["tpr"], mode="lines",
+                name=f"{model} (AUC {roc['auc']:.3f})",
+                line=dict(width=3, color=PLOTLY_PALETTE[idx % len(PLOTLY_PALETTE)]),
+            ))
+        fig_roc.add_trace(go.Scatter(
+            x=[0, 1], y=[0, 1], mode="lines",
+            name="aleatorio", line=dict(dash="dash", color="rgba(148,163,184,0.5)"),
+            showlegend=False,
+        ))
+        fig_roc.update_layout(title="ROC \u2014 todos os modelos",
+                              xaxis_title="False Positive Rate",
+                              yaxis_title="True Positive Rate")
+        st.plotly_chart(_styled_fig(fig_roc, 360), use_container_width=True)
+
+    # ---- Matriz de confusao + importancia do melhor modelo ----
+    section(f"Detalhe do melhor modelo \u00b7 {best}")
+    cC, cI = st.columns([1, 1])
+    cm = best_m.get("confusion_matrix")
+    labels = report.get("labels", ["nao_irrigar", "irrigar"])
+    if cm:
+        fig_cm = px.imshow(
+            cm,
+            x=[f"pred {labels[0]}", f"pred {labels[1]}"],
+            y=[f"real {labels[0]}", f"real {labels[1]}"],
+            color_continuous_scale="Greens",
+            text_auto=True,
+            title="Matriz de confusao",
+            aspect="auto",
+        )
+        fig_cm.update_layout(coloraxis_showscale=False)
+        cC.plotly_chart(_styled_fig(fig_cm, 320), use_container_width=True)
+
+    fi = best_m.get("feature_importance") or []
+    if fi:
+        fi_df = pd.DataFrame(fi).sort_values("importance", ascending=True)
+        fig_fi = px.bar(fi_df, x="importance", y="feature", orientation="h",
+                        title="Importancia das features",
+                        text=[f"{v:.0%}" for v in fi_df["importance"]])
+        fig_fi.update_traces(marker_color="#34d399", textposition="outside")
+        fig_fi.update_xaxes(tickformat=".0%")
+        cI.plotly_chart(_styled_fig(fig_fi, 320), use_container_width=True)
+
+    # ---- Dataset ----
+    dataset = report.get("dataset", {})
+    if dataset:
+        section("Dataset utilizado")
+        cD1, cD2, cD3 = st.columns(3)
+        kpi(cD1, "Amostras totais", str(dataset.get("total", 0)),       icon="\U0001F4DA")
+        kpi(cD2, "Classe positiva", f"{dataset.get('positive_ratio', 0):.0%}", icon="\U0001F4A7")
+        kpi(cD3, "Treino / Teste",  f"{report.get('train_samples', 0)} / {report.get('test_samples', 0)}", icon="\u2696\ufe0f")
+
+        # Distribuicao de classes
+        bal = pd.DataFrame([
+            {"classe": labels[0], "qtd": dataset.get("negatives", 0)},
+            {"classe": labels[1], "qtd": dataset.get("positives", 0)},
+        ])
+        cB1, cB2 = st.columns([1, 2])
+        fig_bal = px.pie(bal, names="classe", values="qtd",
+                         title="Balanceamento de classes", hole=0.55)
+        cB1.plotly_chart(_styled_fig(fig_bal, 320), use_container_width=True)
+
+        preview = dataset.get("preview", [])
+        if preview:
+            cB2.markdown("**Preview do dataset (8 primeiras linhas)**")
+            cB2.dataframe(pd.DataFrame(preview), use_container_width=True, hide_index=True)
+
+        describe = dataset.get("describe", {})
+        if describe:
+            with st.expander("Estatisticas descritivas das features"):
+                st.dataframe(pd.DataFrame(describe).round(3),
+                             use_container_width=True)
 
 
 def _render_fase6(result: dict) -> None:
