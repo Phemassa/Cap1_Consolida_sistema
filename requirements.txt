@@ -6,3 +6,6 @@ oracledb>=2.2.0
 boto3>=1.34.0
 python-dotenv>=1.0.1
 Pillow>=10.3.0
+
+# Opcional: captura automatica de evidencias do dashboard (scripts/capture_evidencias.py)
+# playwright>=1.44.0  (apos instalar: playwright install chromium)

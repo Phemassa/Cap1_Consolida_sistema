@@ -185,21 +185,28 @@ python cli.py pipeline --limit 22   # pipeline real fim-a-fim (mesmo motor do Co
 ## 📸 Evidências
 
 Galeria completa em [assets/evidencias/README.md](assets/evidencias/README.md).
+Os screenshots do dashboard são gerados automaticamente com `python scripts/capture_evidencias.py` (Playwright) sobre a aplicação em execução.
 
-### Prints obrigatórios
+### Checklist de evidências
 
-- [ ] Dashboard Fase 1-2 (CRUD)
-- [ ] Dashboard Fase 3 (snapshot)
-- [ ] Dashboard Fase 4 (treino, ROC, matriz de confusão)
-- [ ] Dashboard Fase 5 (monitoramento e histórico)
-- [ ] Dashboard Fase 6 (inferência)
-- [ ] AWS SNS topic + subscription
-- [ ] E-mail de alerta recebido
+- [x] Cockpit Operacional (pipeline real + veredito)
+- [x] Portal de apresentação
+- [x] Dashboard Fase 1-2 (CRUD)
+- [x] Dashboard Fase 3 (snapshot)
+- [x] Dashboard Fase 4 (treino, ROC, matriz de confusão)
+- [x] Dashboard Fase 4 (predição)
+- [x] Dashboard Fase 5 (alertas e histórico)
+- [x] Dashboard Fase 6 (inferência)
+- [ ] AWS SNS topic + subscription *(captura manual no console AWS — modo padrão é dry-run)*
+- [ ] E-mail de alerta recebido *(captura manual na caixa de entrada quando AWS estiver configurada)*
 
 ### Galeria
 
+#### Cockpit Operacional — pipeline real fim-a-fim
+![Cockpit Operacional](assets/evidencias/dashboard_home.png)
+
 #### Portal de Apresentação
-![Portal](assets/evidencias/dashboard_home.png)
+![Portal](assets/evidencias/portal_apresentacao.png)
 
 #### Fase 1-2 — CRUD
 ![Fase 1-2 CRUD](assets/evidencias/fase1_2_crud.png)
@@ -213,11 +220,8 @@ Galeria completa em [assets/evidencias/README.md](assets/evidencias/README.md).
 #### Fase 4 — Predição
 ![Fase 4 Predição](assets/evidencias/fase4_predicao.png)
 
-#### Fase 5 — SNS Topic
-![Fase 5 SNS Topic](assets/evidencias/fase5_sns_topic.png)
-
-#### Fase 5 — E-mail recebido
-![Fase 5 Email](assets/evidencias/fase5_email_recebido.png)
+#### Fase 5 — Alertas & Histórico
+![Fase 5 Alertas](assets/evidencias/fase5_alertas.png)
 
 #### Fase 6 — Inferência
 ![Fase 6 Inferência](assets/evidencias/fase6_inferencia.png)
