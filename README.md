@@ -46,6 +46,8 @@ Aqui está documentada a evolução técnica, analítica e de engenharia do grup
 
 A operação é feita por **dashboard Streamlit** (com portal de apresentação) e por **CLI**, garantindo reprodutibilidade total dos experimentos.
 
+O destaque da consolidação é o **Cockpit Operacional (Mission Control)** — uma página que executa o **pipeline real fim-a-fim** (Fase 1-2 → 3 → 4 → decisão → 5 → 6) ao vivo, entregando um veredito de irrigação, o rastro de cada fase, telemetria e histórico de execuções. É o mesmo motor acionado por `python cli.py pipeline`, garantindo consistência entre dashboard e terminal.
+
 Este repositório funciona como um **portfólio técnico estruturado**, evidenciando a integração completa das fases em uma solução única.
 
 ---
@@ -70,6 +72,7 @@ Entregar uma plataforma única, executável e auditável, que:
 ├── 📂 app                       # Streamlit principal (dashboard + portal)
 │   ├── main.py
 │   └── pages/
+│       ├── 00_Cockpit_Operacional.py   # Mission Control (pipeline real fim-a-fim)
 │       ├── 0_Portal_Apresentacao.py
 │       ├── 1_Fase_1_2_CRUD.py
 │       ├── 2_Fase_3_Sensores.py
@@ -121,6 +124,7 @@ flowchart LR
   E[Fase 6<br/>Visao por Imagens] --> F
   B --> C
   B --> D
+  F --> G[Cockpit Operacional<br/>pipeline fim-a-fim + veredito]
 ```
 
 ---
@@ -159,6 +163,7 @@ python cli.py run-fase6 --images-dir data/images --limit 20
 python cli.py monitor-now --limit 20
 python cli.py alerts-history --limit 20
 python cli.py alert-test --value 15
+python cli.py pipeline --limit 22   # pipeline real fim-a-fim (mesmo motor do Cockpit)
 ```
 
 ---
@@ -171,6 +176,7 @@ python cli.py alert-test --value 15
 - ✅ Fase 4 com treino, métricas (acurácia, F1, ROC, matriz de confusão, CV), predição e modelos persistidos.
 - ✅ Fase 5 com SNS/SES + modo *dry-run* + histórico JSONL.
 - ✅ Fase 6 com inferência baseline por pasta de imagens.
+- ✅ Cockpit Operacional executando o pipeline real fim-a-fim (`app/pages/00_Cockpit_Operacional.py`).
 - ✅ Portal de apresentação dedicado (`app/pages/0_Portal_Apresentacao.py`).
 - ✅ Smoke test verde e `scripts/demo_flow.sh` executando todos os fluxos.
 
