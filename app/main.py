@@ -15,6 +15,11 @@ st.set_page_config(page_title="FarmTech Fase 7", layout="wide")
 st.title("FarmTech - Consolidacao Fase 7")
 st.caption("Home da plataforma consolidada (use o menu lateral para acessar cada fase)")
 
+st.success(
+    "✨ **Cockpit Operacional** (Mission Control) na barra lateral: executa o pipeline real "
+    "Fase 1-2 → 3 → 4 → decisao → 5 → 6 ao vivo, com veredito de irrigacao, rastro das fases e telemetria."
+)
+
 col_a, col_b, col_c = st.columns(3)
 
 with col_a:
@@ -52,7 +57,8 @@ st.code(
     "python cli.py area-delete --id 2\n"
     "python cli.py monitor-now --limit 20\n"
     "python cli.py alerts-history --limit 20\n"
-    "python cli.py alert-test --value 15 --threshold 20",
+    "python cli.py alert-test --value 15 --threshold 20\n"
+    "python cli.py pipeline --limit 22",
     language="bash",
 )
 

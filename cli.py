@@ -3,7 +3,7 @@ import json
 
 from services.alert_service import AlertService
 from services.healthcheck import collect_health
-from services.orchestrator import alerts_history, create_area, delete_area, infer_fase4, monitor_fase3, monitor_now, run_fase6_vision, run_phase, train_fase4, update_area
+from services.orchestrator import alerts_history, create_area, delete_area, infer_fase4, monitor_fase3, monitor_now, run_phase, run_pipeline, run_fase6_vision, train_fase4, update_area
 
 
 def main() -> None:
@@ -55,6 +55,12 @@ def main() -> None:
 
     alerts_history_parser = sub.add_parser("alerts-history", help="Lista historico de alertas")
     alerts_history_parser.add_argument("--limit", type=int, default=20)
+
+    pipeline_parser = sub.add_parser("pipeline", help="Executa o fluxo end-to-end interligando todas as fases")
+    pipeline_parser.add_argument("--limit", type=int, default=20)
+    pipeline_parser.add_argument("--no-alerts", action="store_true", help="Nao despacha alertas")
+    pipeline_parser.add_argument("--no-vision", action="store_true", help="Pula a Fase 6 (visao)")
+    pipeline_parser.add_argument("--images-dir", type=str, default=None)
 
     args = parser.parse_args()
 
@@ -125,6 +131,17 @@ def main() -> None:
     if args.command == "alerts-history":
         result = alerts_history(limit=args.limit)
         print(json.dumps(result, indent=2, ensure_ascii=True))
+        return
+
+    if args.command == "pipeline":
+        result = run_pipeline(
+            limit=args.limit,
+            send_alerts=not args.no_alerts,
+            include_vision=not args.no_vision,
+            images_dir=args.images_dir,
+        )
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return
 
 
 if __name__ == "__main__":

@@ -14,21 +14,18 @@
 
 ---
 
-## 👨‍🎓 Aluno
+## 👨‍🎓 Integrantes
 
-- Cesar Martinho de Azeredo – RM568140
-- Carlos Alberto Florindo Costato – RM567005
-- Phellype Matheus Giacoia Flaibam Massarente – RM566826
+| Nome | RM | LinkedIn |
+|------|-----|----------|
+| Cesar Martinho de Azeredo | RM568140 | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/cesar-azeredo) |
+| Carlos Alberto Florindo Costato | RM567005 | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/carlos-costato/) |
+| Phellype Matheus Giacoia Flaibam Massarente | RM566826 | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/phellype-massarente-13739810a/) |
 
-## 👩‍🏫 Professores
+## 👨‍🏫 Professores
 
-### Tutor(a)
-
-- Andre Godoy
-
-### Coordenador(a)
-
-- Ana Cristina dos Santos
+- **Tutor**: Andre Godoy
+- **Coordenador**: Ana Cristina dos Santos
 
 ---
 
@@ -223,7 +220,9 @@ Galeria completa em [assets/evidencias/README.md](assets/evidencias/README.md).
 
 ## 🎬 Vídeo Demonstrativo
 
-- 🔗 Link YouTube (não listado): https://youtu.be/SEU_LINK_AQUI
+[![Assista a demonstração no YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/SEU_LINK_AQUI)
+
+**Link direto**: https://youtu.be/SEU_LINK_AQUI
 
 Comandos usados na gravação:
 

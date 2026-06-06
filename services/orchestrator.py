@@ -7,6 +7,7 @@ from phases.fase4.service import predict as predict_fase4
 from phases.fase4.service import run as run_fase4
 from phases.fase6.service import run as run_fase6
 from services.monitoring import monitor_and_alert_once, read_history
+from services.pipeline import run_end_to_end
 
 
 def run_phase(phase: str) -> dict:
@@ -51,6 +52,20 @@ def delete_area(area_id: int) -> dict:
 
 def monitor_now(limit: int = 20) -> dict:
     return monitor_and_alert_once(limit=limit)
+
+
+def run_pipeline(
+    limit: int = 20,
+    send_alerts: bool = True,
+    include_vision: bool = True,
+    images_dir: str | None = None,
+) -> dict:
+    return run_end_to_end(
+        limit=limit,
+        send_alerts=send_alerts,
+        include_vision=include_vision,
+        images_dir=images_dir,
+    )
 
 
 def alerts_history(limit: int = 50) -> dict:

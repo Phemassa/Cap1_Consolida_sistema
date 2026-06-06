@@ -692,6 +692,58 @@ def _render_fase4_metrics(result: dict) -> None:
                 st.dataframe(pd.DataFrame(describe).round(3),
                              use_container_width=True)
 
+        examples = pd.DataFrame([
+            {
+                "caso": "Solo seco + calor",
+                "temperatura": 36.0,
+                "umidade_solo": 18.0,
+                "ph_solo": 6.4,
+                "regra": "irrigar",
+                "leitura": "A baixa umidade e a temperatura alta empurram a classe positiva.",
+            },
+            {
+                "caso": "Solo umido + clima ameno",
+                "temperatura": 28.0,
+                "umidade_solo": 42.0,
+                "ph_solo": 6.8,
+                "regra": "nao irrigar",
+                "leitura": "Cenario equilibrado, normalmente classificado como seguro.",
+            },
+            {
+                "caso": "pH fora do intervalo",
+                "temperatura": 30.0,
+                "umidade_solo": 31.0,
+                "ph_solo": 5.2,
+                "regra": "irrigar",
+                "leitura": "Mesmo com umidade aceitavel, o pH aciona a classe positiva.",
+            },
+            {
+                "caso": "Umidade critica",
+                "temperatura": 24.0,
+                "umidade_solo": 12.0,
+                "ph_solo": 7.0,
+                "regra": "irrigar",
+                "leitura": "Exemplo de fronteira forte para mostrar o comportamento do modelo.",
+            },
+        ])
+
+        st.markdown("**Exemplos que o modelo aprende a separar**")
+        st.dataframe(examples, use_container_width=True, hide_index=True)
+
+        cE1, cE2, cE3, cE4 = st.columns(4)
+        kpi(cE1, "Casos didaticos", "4", "para explicar a regra", icon="\U0001F4DD")
+        kpi(cE2, "Cenarios positivos", "3", "acionam irrigacao", icon="\U0001F4A7")
+        kpi(cE3, "Cenarios negativos", "1", "mantem o solo", icon="\U0001F331")
+        kpi(cE4, "Fronteiras", "2", "mostram borda da decisao", icon="\U0001F7E1")
+
+        st.markdown(
+            "<div class='card'><span class='tag violet'>Interpretacao</span>"
+            "<h4>Como ler o treino</h4>"
+            "<p>O modelo aprende que temperatura alta, umidade baixa e pH fora da faixa elevam a chance de irrigacao. "
+            "Os exemplos acima ajudam a demostrar a decisao em cenarios claros e de fronteira.</p></div>",
+            unsafe_allow_html=True,
+        )
+
 
 def _render_fase6(result: dict) -> None:
     report = result.get("report", {})
@@ -825,6 +877,29 @@ with tab4:
         "Clique em <span class='kbd'>Treinar modelos</span>, depois <span class='kbd'>Prever irrigacao</span>.",
     )
     section("Treino e predicao")
+
+    st.markdown(
+        "<div class='card'><span class='tag violet'>Exemplos do treino</span>"
+        "<h4>O que o modelo aprende a separar</h4>"
+        "<p>Com poucos dados reais, o pipeline expande o dataset com variacoes leves e cria exemplos de borda para explicar "
+        "a decisao do classificador. O padrao e simples: solo seco, calor ou pH fora da faixa aumentam a chance de irrigacao.</p></div>",
+        unsafe_allow_html=True,
+    )
+
+    example_cols = st.columns(4)
+    example_cards = [
+        ("Solo seco + calor", "irrigar", "Temperatura alta e umidade baixa empurram o modelo para classe positiva."),
+        ("pH fora da faixa", "irrigar", "Mesmo com solo moderado, o pH extremo ativa a recomendacao."),
+        ("Umido + clima ameno", "nao irrigar", "Cenario equilibrado, normalmente classificado como negativo."),
+        ("Fronteira de decisao", "irrigar", "Exemplo desenhado para mostrar um caso limiar na tela."),
+    ]
+    for col, (title, label, desc) in zip(example_cols, example_cards):
+        col.markdown(
+            f"<div class='card'><span class='tag'>{label}</span>"
+            f"<h4>{title}</h4><p>{desc}</p></div>",
+            unsafe_allow_html=True,
+        )
+
     cT, cP = st.columns(2)
     with cT:
         if st.button("\U0001F3CB\ufe0f Treinar modelos", key="btn_f4t") or run_all:
