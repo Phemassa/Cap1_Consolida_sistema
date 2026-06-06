@@ -428,15 +428,15 @@ with st.sidebar:
     pred_umid = st.number_input("Umidade do solo", value=22.0)
     pred_ph = st.number_input("pH do solo", value=6.0)
     st.divider()
-        st.markdown(
-                """
-                <div class="sidebar-callout">
-                    <b>Demo completa:</b> aciona todas as fases em sequencia com barra de progresso.<br>
-                    Ideal para iniciar a gravacao do video.
-                </div>
-                """,
-                unsafe_allow_html=True,
-        )
+    st.markdown(
+        """
+        <div class="sidebar-callout">
+            <b>Demo completa:</b> aciona todas as fases em sequencia com barra de progresso.<br>
+            Ideal para iniciar a gravacao do video.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     run_all = st.button("\u25B6  Rodar demo completa", type="primary", use_container_width=True)
     st.divider()
     st.markdown("### \U0001F4DA  Recursos")
